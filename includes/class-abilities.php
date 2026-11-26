@@ -291,6 +291,7 @@ final class Abilities {
 			'contents_by_level'  => Status::count_by_level(),
 			'pending_proposals'  => Proposals::count_pending(),
 			'other_seo_plugins'  => Compat::active_plugins(),
+			'scan'               => Site_Scan::state(),
 		);
 	}
 

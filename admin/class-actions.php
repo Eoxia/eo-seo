@@ -10,7 +10,7 @@ namespace EoSeo\Admin;
 use EoSeo\Not_Found_Log;
 use EoSeo\Proposals;
 use EoSeo\Redirections;
-use EoSeo\Status;
+use EoSeo\Site_Scan;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -29,7 +29,7 @@ final class Actions {
 		add_action( 'admin_post_eo_seo_redirections_export', array( self::class, 'redirections_export' ) );
 		add_action( 'admin_post_eo_seo_404', array( self::class, 'not_found' ) );
 		add_action( 'admin_post_eo_seo_proposal', array( self::class, 'proposal' ) );
-		add_action( 'admin_post_eo_seo_fill_status', array( self::class, 'fill_status' ) );
+		add_action( 'admin_post_eo_seo_scan_start', array( self::class, 'scan_start' ) );
 	}
 
 	/**
@@ -163,15 +163,14 @@ final class Actions {
 	}
 
 	/**
-	 * Computes the indicator of the contents that have none.
+	 * Starts the scan of the site (without JavaScript: WP-Cron then runs it in the background).
 	 */
-	public static function fill_status(): void {
+	public static function scan_start(): void {
 		self::check_capability( 'manage_options' );
-		check_admin_referer( 'eo_seo_fill_status' );
+		check_admin_referer( 'eo_seo_scan_start' );
 
-		$count = Status::fill_missing( 100 );
-		/* translators: %d: number of contents. */
-		self::notice( 'success', sprintf( _n( '%d content analyzed.', '%d contents analyzed.', $count, 'eo-seo' ), $count ) );
+		Site_Scan::start();
+		self::notice( 'success', esc_html__( 'The scan of the site is running in the background.', 'eo-seo' ) );
 		self::back();
 	}
 

@@ -87,6 +87,61 @@
 		} );
 	} );
 
+	// Site scan: the dashboard runs the batches one after the other while it is open, then reloads
+	// to show the new figures. Without JavaScript, the form starts the scan in the background (WP-Cron).
+	const scan = document.querySelector( '[data-eo-seo-scan]' );
+	if ( scan && wp.apiFetch ) {
+		const status = scan.querySelector( '[data-eo-seo-scan-status]' );
+		const bar = scan.querySelector( '[data-eo-seo-scan-bar]' );
+		const button = scan.querySelector( '[data-eo-seo-scan-button]' );
+
+		const show = ( state ) => {
+			const total = Math.max( state.total, 1 );
+			bar.hidden = false;
+			bar.firstElementChild.style.width = Math.round( ( 100 * state.done ) / total ) + '%';
+			status.textContent = sprintf(
+				/* translators: 1: contents analyzed, 2: contents to analyze. */
+				__( 'Scan in progress: %1$d of %2$d contents.', 'eo-seo' ),
+				Math.min( state.done, state.total ),
+				state.total
+			);
+		};
+
+		const step = () =>
+			wp.apiFetch( { path: '/eo-seo/v1/scan/step', method: 'POST' } ).then( ( state ) => {
+				show( state );
+				if ( 'running' === state.status ) {
+					// A batch of the background scan may hold the lock: try again shortly.
+					return new Promise( ( resolve ) => setTimeout( resolve, 400 ) ).then( step );
+				}
+				status.textContent = __( 'Scan finished. Updating the figures…', 'eo-seo' );
+				window.location.reload();
+			} );
+
+		const fail = () => {
+			status.textContent = __( 'The scan could not continue from this page: it goes on in the background.', 'eo-seo' );
+			button.disabled = false;
+			scan.classList.remove( 'is-running' );
+		};
+
+		scan.addEventListener( 'submit', ( event ) => {
+			event.preventDefault();
+			button.disabled = true;
+			scan.classList.add( 'is-running' );
+			wp.apiFetch( { path: '/eo-seo/v1/scan', method: 'POST' } )
+				.then( ( state ) => {
+					show( state );
+					return step();
+				} )
+				.catch( fail );
+		} );
+
+		// A scan already running (nightly or after a change): this page helps it along.
+		if ( '1' === scan.dataset.running ) {
+			step().catch( fail );
+		}
+	}
+
 	// Address and phone: only for a local business.
 	const types = document.querySelector( '[data-eo-seo-identity-type]' );
 	const address = document.querySelector( '[data-eo-seo-local-business]' );

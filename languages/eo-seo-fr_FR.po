@@ -45,14 +45,11 @@ msgid_plural "%d proposals applied."
 msgstr[0] "%d proposition appliquée."
 msgstr[1] "%d propositions appliquées."
 
-#. translators: %d: number of contents.
-#: admin/class-actions.php:174
-msgid "%d content analyzed."
-msgid_plural "%d contents analyzed."
-msgstr[0] "%d contenu analysé."
-msgstr[1] "%d contenus analysés."
+#: admin/class-actions.php:173
+msgid "The scan of the site is running in the background."
+msgstr "L’analyse du site tourne en arrière-plan."
 
-#: admin/class-actions.php:219
+#: admin/class-actions.php:218
 msgid "You are not allowed to do this."
 msgstr "Vous n’avez pas le droit de faire cela."
 
@@ -61,7 +58,7 @@ msgstr "Vous n’avez pas le droit de faire cela."
 msgid "EO SEO"
 msgstr "EO SEO"
 
-#: admin/class-admin.php:62 admin/views/dashboard.php:23
+#: admin/class-admin.php:62 admin/views/dashboard.php:24
 msgid "SEO dashboard"
 msgstr "Tableau de bord SEO"
 
@@ -73,7 +70,7 @@ msgstr "Tableau de bord"
 msgid "SEO settings"
 msgstr "Réglages SEO"
 
-#: admin/class-admin.php:63 admin/class-dashboard-page.php:27 admin/class-ui.php:32 blocks/breadcrumbs/index.js:21
+#: admin/class-admin.php:63 admin/class-dashboard-page.php:28 admin/class-ui.php:32 blocks/breadcrumbs/index.js:21
 msgid "Settings"
 msgstr "Réglages"
 
@@ -98,11 +95,11 @@ msgstr "Propositions SEO"
 msgid "%s is active: EO SEO adds nothing on the front (tags, sitemap, robots.txt, structured data) and hides its editor panel. Redirections and the 404 log keep working."
 msgstr "%s est actif : EO SEO n’ajoute rien sur le site (balises, plan de site, robots.txt, données structurées) et masque son panneau dans l’éditeur. Les redirections et le journal 404 continuent de fonctionner."
 
-#: admin/class-dashboard-page.php:28 admin/class-settings-page.php:32
+#: admin/class-dashboard-page.php:29 admin/class-settings-page.php:32
 msgid "Indexing"
 msgstr "Indexation"
 
-#: admin/class-dashboard-page.php:29 includes/class-site-audit.php:170
+#: admin/class-dashboard-page.php:30 includes/class-site-audit.php:170
 msgid "Contents"
 msgstr "Contenus"
 
@@ -215,54 +212,77 @@ msgstr "Archives par date"
 msgid "Search results"
 msgstr "Résultats de recherche"
 
-#: admin/views/dashboard.php:17 includes/class-checks.php:34
+#: admin/views/dashboard.php:18 includes/class-checks.php:34
 msgid "Good"
 msgstr "Bon"
 
-#: admin/views/dashboard.php:18 assets/js/editor.js:35
+#: admin/views/dashboard.php:19 assets/js/editor.js:35
 msgid "To improve"
 msgstr "À améliorer"
 
-#: admin/views/dashboard.php:19
+#: admin/views/dashboard.php:20
 msgid "To fix"
 msgstr "À corriger"
 
-#: admin/views/dashboard.php:23
+#: admin/views/dashboard.php:24
 msgid "The SEO review of the whole site. Each point links to where you fix it."
 msgstr "Le bilan SEO de tout le site. Chaque point mène à l’endroit où le corriger."
 
-#: admin/views/dashboard.php:27
+#: admin/views/dashboard.php:28
 msgid "Site review"
 msgstr "Bilan du site"
 
-#: admin/views/dashboard.php:30
+#: admin/views/dashboard.php:31
 msgid "points OK"
 msgstr "points OK"
 
-#: admin/views/dashboard.php:36
+#: admin/views/dashboard.php:37
 msgid "published contents"
 msgstr "contenus publiés"
 
+#: admin/views/dashboard.php:47
+msgid "Site scan"
+msgstr "Analyse du site"
+
+#. translators: 1: contents analyzed, 2: contents to analyze.
+#: admin/views/dashboard.php:52 assets/js/admin.js:103
+msgid "Scan in progress: %1$d of %2$d contents."
+msgstr "Analyse en cours : %1$d contenus sur %2$d."
+
 #. translators: %d: number of contents.
-#: admin/views/dashboard.php:50
+#: admin/views/dashboard.php:57
 msgid "%d published content has not been analyzed yet."
 msgid_plural "%d published contents have not been analyzed yet."
 msgstr[0] "%d contenu publié n’a pas encore été analysé."
 msgstr[1] "%d contenus publiés n’ont pas encore été analysés."
 
-#: admin/views/dashboard.php:56
-msgid "Analyze them"
-msgstr "Les analyser"
+#. translators: %s: time since the last scan, e.g. "2 hours".
+#: admin/views/dashboard.php:62
+msgid "Last complete scan %s ago. Duplicates and orphan pages are checked again every night and a few minutes after a change."
+msgstr "Dernière analyse complète il y a %s. Les doublons et les pages orphelines sont revérifiés chaque nuit et quelques minutes après une modification."
 
-#: admin/views/dashboard.php:82
+#: admin/views/dashboard.php:65
+msgid "Checks again every content against the others (duplicates, orphan pages, broken links)."
+msgstr "Revérifie chaque contenu par rapport aux autres (doublons, pages orphelines, liens cassés)."
+
+#. translators: %s: time until the next scan, e.g. "4 minutes".
+#: admin/views/dashboard.php:70
+msgid "Next scan in %s, after the latest changes."
+msgstr "Prochaine analyse dans %s, après les dernières modifications."
+
+#: admin/views/dashboard.php:76
+msgid "Scan the whole site"
+msgstr "Analyser tout le site"
+
+#: admin/views/dashboard.php:101
 msgid "View"
 msgstr "Voir"
 
-#: admin/views/dashboard.php:83 admin/views/settings-indexing.php:23 admin/views/settings-indexing.php:61
+#: admin/views/dashboard.php:102 admin/views/settings-indexing.php:23 admin/views/settings-indexing.php:61
 msgid "(opens in a new tab)"
 msgstr "(s’ouvre dans un nouvel onglet)"
 
-#: admin/views/dashboard.php:87
+#: admin/views/dashboard.php:106
 msgid "Fix"
 msgstr "Corriger"
 
@@ -749,6 +769,14 @@ msgstr "Aperçu dans les résultats de recherche"
 msgid "%1$d characters (recommended: %2$d to %3$d)"
 msgstr "%1$d caractères (conseillé : %2$d à %3$d)"
 
+#: assets/js/admin.js:117
+msgid "Scan finished. Updating the figures…"
+msgstr "Analyse terminée. Mise à jour des chiffres…"
+
+#: assets/js/admin.js:122
+msgid "The scan could not continue from this page: it goes on in the background."
+msgstr "L’analyse n’a pas pu continuer depuis cette page : elle se poursuit en arrière-plan."
+
 #: assets/js/editor.js:34
 msgid "Problems"
 msgstr "Problèmes"
@@ -903,19 +931,19 @@ msgstr "Proposer des redirections"
 msgid "Prepares redirections, created once a human applies them."
 msgstr "Prépare des redirections, créées quand un humain les applique."
 
-#: includes/class-abilities.php:441
+#: includes/class-abilities.php:442
 msgid "You are not allowed to edit this content."
 msgstr "Vous n’avez pas le droit de modifier ce contenu."
 
-#: includes/class-abilities.php:472
+#: includes/class-abilities.php:473
 msgid "You are not allowed to edit this item."
 msgstr "Vous n’avez pas le droit de modifier cet élément."
 
-#: includes/class-abilities.php:540 includes/class-rest.php:65
+#: includes/class-abilities.php:541 includes/class-rest.php:95
 msgid "Content not found."
 msgstr "Contenu introuvable."
 
-#: includes/class-abilities.php:543
+#: includes/class-abilities.php:544
 msgid "You are not allowed to read this content."
 msgstr "Vous n’avez pas le droit de lire ce contenu."
 

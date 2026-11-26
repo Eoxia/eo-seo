@@ -51,6 +51,36 @@ final class Rest {
 				),
 			)
 		);
+
+		$can_scan = static fn() => current_user_can( 'manage_options' );
+
+		register_rest_route(
+			self::NAMESPACE,
+			'/scan',
+			array(
+				array(
+					'methods'             => \WP_REST_Server::READABLE,
+					'callback'            => static fn() => rest_ensure_response( Site_Scan::state() ),
+					'permission_callback' => $can_scan,
+				),
+				array(
+					'methods'             => \WP_REST_Server::CREATABLE,
+					'callback'            => static fn() => rest_ensure_response( Site_Scan::start() ),
+					'permission_callback' => $can_scan,
+				),
+			)
+		);
+
+		// The dashboard runs the batches one after the other while it is open.
+		register_rest_route(
+			self::NAMESPACE,
+			'/scan/step',
+			array(
+				'methods'             => \WP_REST_Server::CREATABLE,
+				'callback'            => static fn() => rest_ensure_response( Site_Scan::run_batch() ),
+				'permission_callback' => $can_scan,
+			)
+		);
 	}
 
 	/**

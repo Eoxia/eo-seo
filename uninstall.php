@@ -25,11 +25,12 @@ function eo_seo_uninstall_site(): void {
 	$wpdb->query( $wpdb->prepare( "DELETE p, m FROM {$wpdb->posts} p LEFT JOIN {$wpdb->postmeta} m ON m.post_id = p.ID WHERE p.post_type = %s", 'eo_seo_proposal' ) );
 	// phpcs:enable
 
-	foreach ( array( 'eo_seo_settings', 'eo_seo_db_version', 'eo_seo_redirections_count' ) as $option ) {
+	foreach ( array( 'eo_seo_settings', 'eo_seo_db_version', 'eo_seo_redirections_count', 'eo_seo_scan' ) as $option ) {
 		delete_option( $option );
 	}
 	delete_transient( 'eo_seo_404_count' );
 	wp_clear_scheduled_hook( 'eo_seo_daily' );
+	wp_clear_scheduled_hook( 'eo_seo_scan_batch' );
 }
 
 if ( is_multisite() ) {

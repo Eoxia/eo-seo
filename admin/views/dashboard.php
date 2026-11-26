@@ -9,6 +9,7 @@
  * @var array<string, int>                $levels Contents per level.
  * @var array<string, string>             $labels Level labels.
  * @var array<string, int>                $score  Review points: good, total.
+ * @var array<string, int|string>         $scan   State of the site scan.
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -38,24 +39,42 @@ $eo_seo_status_labels = array(
 		<?php endforeach; ?>
 	</div>
 
-	<?php if ( ! empty( $levels['unknown'] ) ) : ?>
-		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="eo-seo-callout">
-			<input type="hidden" name="action" value="eo_seo_fill_status" />
-			<?php wp_nonce_field( 'eo_seo_fill_status' ); ?>
-			<span>
-				<?php
-				echo esc_html(
-					sprintf(
-						/* translators: %d: number of contents. */
-						_n( '%d published content has not been analyzed yet.', '%d published contents have not been analyzed yet.', $levels['unknown'], 'eo-seo' ),
-						$levels['unknown']
-					)
-				);
-				?>
-			</span>
-			<button type="submit" class="eo-seo-button eo-seo-button--primary"><?php esc_html_e( 'Analyze them', 'eo-seo' ); ?></button>
-		</form>
-	<?php endif; ?>
+	<?php $eo_seo_running = 'running' === $scan['status']; ?>
+	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="eo-seo-card eo-seo-scan<?php echo $eo_seo_running ? ' is-running' : ''; ?>" data-eo-seo-scan data-running="<?php echo $eo_seo_running ? '1' : '0'; ?>">
+		<input type="hidden" name="action" value="eo_seo_scan_start" />
+		<?php wp_nonce_field( 'eo_seo_scan_start' ); ?>
+		<div class="eo-seo-scan__text">
+			<h2 class="eo-seo-card__title"><?php esc_html_e( 'Site scan', 'eo-seo' ); ?></h2>
+			<p class="eo-seo-help" data-eo-seo-scan-status>
+				<?php if ( $eo_seo_running ) : ?>
+					<?php
+					/* translators: 1: contents analyzed, 2: contents to analyze. */
+					echo esc_html( sprintf( __( 'Scan in progress: %1$d of %2$d contents.', 'eo-seo' ), $scan['done'], $scan['total'] ) );
+					?>
+				<?php elseif ( ! empty( $levels['unknown'] ) ) : ?>
+					<?php
+					/* translators: %d: number of contents. */
+					echo esc_html( sprintf( _n( '%d published content has not been analyzed yet.', '%d published contents have not been analyzed yet.', $levels['unknown'], 'eo-seo' ), $levels['unknown'] ) );
+					?>
+				<?php elseif ( $scan['finished'] ) : ?>
+					<?php
+					/* translators: %s: time since the last scan, e.g. "2 hours". */
+					echo esc_html( sprintf( __( 'Last complete scan %s ago. Duplicates and orphan pages are checked again every night and a few minutes after a change.', 'eo-seo' ), human_time_diff( $scan['finished'] ) ) );
+					?>
+				<?php else : ?>
+					<?php esc_html_e( 'Checks again every content against the others (duplicates, orphan pages, broken links).', 'eo-seo' ); ?>
+				<?php endif; ?>
+				<?php if ( $scan['scheduled'] && ! $eo_seo_running ) : ?>
+					<?php
+					/* translators: %s: time until the next scan, e.g. "4 minutes". */
+					echo esc_html( sprintf( __( 'Next scan in %s, after the latest changes.', 'eo-seo' ), human_time_diff( $scan['scheduled'] ) ) );
+					?>
+				<?php endif; ?>
+			</p>
+			<span class="eo-seo-progress" aria-hidden="true"<?php echo $eo_seo_running ? '' : ' hidden'; ?> data-eo-seo-scan-bar><span style="width: <?php echo esc_attr( (string) ( $scan['total'] ? round( 100 * $scan['done'] / $scan['total'] ) : 0 ) ); ?>%"></span></span>
+		</div>
+		<button type="submit" class="eo-seo-button eo-seo-button--primary" data-eo-seo-scan-button<?php disabled( $eo_seo_running ); ?>><?php esc_html_e( 'Scan the whole site', 'eo-seo' ); ?></button>
+	</form>
 
 	<div class="eo-seo-grid eo-seo-grid--review">
 		<?php foreach ( $groups as $eo_seo_group => $eo_seo_group_label ) : ?>

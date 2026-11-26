@@ -60,6 +60,7 @@ final class Installer {
 	 */
 	public static function deactivate(): void {
 		wp_clear_scheduled_hook( self::CRON_HOOK );
+		wp_clear_scheduled_hook( Site_Scan::BATCH_HOOK );
 	}
 
 	/**

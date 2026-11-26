@@ -9,6 +9,7 @@ namespace EoSeo\Admin;
 
 use EoSeo\Checks;
 use EoSeo\Site_Audit;
+use EoSeo\Site_Scan;
 use EoSeo\Status;
 
 defined( 'ABSPATH' ) || exit;
@@ -29,6 +30,7 @@ final class Dashboard_Page {
 			'contents' => __( 'Contents', 'eo-seo' ),
 		);
 		$levels = Status::count_by_level();
+		$scan   = Site_Scan::state();
 		$labels = Checks::levels();
 		$score  = array(
 			'good'  => count( array_filter( $items, static fn( $item ) => 'good' === $item['status'] ) ),

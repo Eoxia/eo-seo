@@ -90,7 +90,7 @@ final class Admin {
 
 		if ( $ours || ( $screen && 'term' === $screen->base ) ) {
 			wp_enqueue_media();
-			wp_enqueue_script( 'eo-seo-admin', EO_SEO_URL . 'assets/js/admin.js', array( 'wp-i18n' ), EO_SEO_VERSION, true );
+			wp_enqueue_script( 'eo-seo-admin', EO_SEO_URL . 'assets/js/admin.js', array( 'wp-api-fetch', 'wp-i18n' ), EO_SEO_VERSION, true );
 			wp_set_script_translations( 'eo-seo-admin', 'eo-seo', EO_SEO_DIR . 'languages' );
 		}
 	}

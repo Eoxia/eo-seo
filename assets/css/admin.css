@@ -657,3 +657,12 @@ a.eo-seo-stat:focus { border-color: var(--eo-seo-accent); color: inherit; box-sh
 
 /* Media picker on the term screen (outside .eo-seo-app) */
 .term-php .eo-seo-media__preview { background: #f6f7f7; }
+
+/* ---------- Site scan ---------- */
+
+.eo-seo-scan { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+.eo-seo-scan__text { flex: 1; min-width: 260px; }
+.eo-seo-scan__text .eo-seo-card__title { margin-bottom: 4px; }
+.eo-seo-scan__text .eo-seo-help { margin: 0; }
+.eo-seo-scan .eo-seo-progress { max-width: 480px; margin-top: 10px; }
+.eo-seo-scan.is-running .eo-seo-progress span { background: var(--eo-seo-accent); transition: width 0.3s; }

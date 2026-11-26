@@ -22,6 +22,7 @@ final class Plugin {
 		Settings::init();
 		Fields::init();
 		Status::init();
+		Site_Scan::init();
 		Redirections::init();
 		Not_Found_Log::init();
 		Proposals::init();
@@ -48,5 +49,6 @@ final class Plugin {
 	public static function daily(): void {
 		Not_Found_Log::purge();
 		Proposals::purge_expired();
+		Site_Scan::start();
 	}
 }

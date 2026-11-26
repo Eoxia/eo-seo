@@ -108,32 +108,4 @@ final class Status {
 
 		return $counts;
 	}
-
-	/**
-	 * Computes the indicator of published contents that have none yet (in batches).
-	 *
-	 * @param int $limit Contents per batch.
-	 * @return int Number of contents computed.
-	 */
-	public static function fill_missing( int $limit = 50 ): int {
-		$posts = get_posts(
-			array(
-				'post_type'      => array_keys( Settings::post_types() ),
-				'post_status'    => 'publish',
-				'posts_per_page' => $limit,
-				'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Batch run from the dashboard.
-					array(
-						'key'     => Fields::STATUS_META,
-						'compare' => 'NOT EXISTS',
-					),
-				),
-			)
-		);
-
-		foreach ( $posts as $post ) {
-			self::refresh( $post );
-		}
-
-		return count( $posts );
-	}
 }
