@@ -1,0 +1,37 @@
+<wpml-config>
+	<custom-fields>
+		<custom-field action="translate">_eo_seo_title</custom-field>
+		<custom-field action="translate">_eo_seo_description</custom-field>
+		<custom-field action="translate">_eo_seo_focus_keyword</custom-field>
+		<custom-field action="copy">_eo_seo_noindex</custom-field>
+		<custom-field action="ignore">_eo_seo_canonical</custom-field>
+		<custom-field action="translate">_eo_seo_og_title</custom-field>
+		<custom-field action="translate">_eo_seo_og_description</custom-field>
+		<custom-field action="copy">_eo_seo_og_image_id</custom-field>
+		<custom-field action="ignore">_eo_seo_status</custom-field>
+		<custom-field action="ignore">_eo_seo_points</custom-field>
+		<custom-field action="ignore">_eo_seo_issues</custom-field>
+	</custom-fields>
+	<custom-term-fields>
+		<custom-term-field action="translate">_eo_seo_title</custom-term-field>
+		<custom-term-field action="translate">_eo_seo_description</custom-term-field>
+		<custom-term-field action="copy">_eo_seo_noindex</custom-term-field>
+		<custom-term-field action="ignore">_eo_seo_canonical</custom-term-field>
+		<custom-term-field action="translate">_eo_seo_og_title</custom-term-field>
+		<custom-term-field action="translate">_eo_seo_og_description</custom-term-field>
+		<custom-term-field action="copy">_eo_seo_og_image_id</custom-term-field>
+	</custom-term-fields>
+	<admin-texts>
+		<key name="eo_seo_settings">
+			<key name="templates">
+				<key name="*">
+					<key name="title" />
+					<key name="description" />
+				</key>
+			</key>
+			<key name="identity">
+				<key name="name" />
+			</key>
+		</key>
+	</admin-texts>
+</wpml-config>

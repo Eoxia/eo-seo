@@ -1,0 +1,40 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "eo-seo/breadcrumbs",
+	"title": "Breadcrumbs",
+	"category": "theme",
+	"icon": "networking",
+	"description": "Trail of links from the home page to the current page.",
+	"keywords": [ "breadcrumb", "navigation", "seo" ],
+	"textdomain": "eo-seo",
+	"attributes": {
+		"separator": {
+			"type": "string",
+			"default": "›"
+		},
+		"showHome": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"color": {
+			"text": true,
+			"link": true,
+			"background": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"typography": {
+			"fontSize": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

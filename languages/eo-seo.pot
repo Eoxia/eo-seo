@@ -1,0 +1,1730 @@
+# Copyright (C) 2026 Eoxia
+# This file is distributed under the GPL-3.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: EO SEO 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/eo-seo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-26T15:53:35+00:00\n"
+"X-Domain: eo-seo\n"
+
+#: admin/class-actions.php:53
+msgid "Redirection saved."
+msgstr ""
+
+#: admin/class-actions.php:68
+msgid "Redirections deleted."
+msgstr ""
+
+#: admin/class-actions.php:84
+msgid "Choose a CSV file."
+msgstr ""
+
+#. translators: %d: number of redirections.
+#: admin/class-actions.php:91
+#, php-format
+msgid "%d redirection imported."
+msgid_plural "%d redirections imported."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-actions.php:126
+msgid "404 log updated."
+msgstr ""
+
+#. translators: %d: number of proposals.
+#: admin/class-actions.php:154
+#, php-format
+msgid "%d proposal rejected."
+msgid_plural "%d proposals rejected."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of proposals.
+#: admin/class-actions.php:156
+#, php-format
+msgid "%d proposal applied."
+msgid_plural "%d proposals applied."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of contents.
+#: admin/class-actions.php:174
+#, php-format
+msgid "%d content analyzed."
+msgid_plural "%d contents analyzed."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-actions.php:219
+msgid "You are not allowed to do this."
+msgstr ""
+
+#. Plugin Name of the plugin
+#: admin/class-admin.php:61 admin/views/partials/header.php:18 assets/js/editor.js:326 eo-seo.php
+msgid "EO SEO"
+msgstr ""
+
+#: admin/class-admin.php:62 admin/views/dashboard.php:23
+msgid "SEO dashboard"
+msgstr ""
+
+#: admin/class-admin.php:62 admin/class-ui.php:28
+msgid "Dashboard"
+msgstr ""
+
+#: admin/class-admin.php:63 admin/views/settings.php:21
+msgid "SEO settings"
+msgstr ""
+
+#: admin/class-admin.php:63 admin/class-dashboard-page.php:27 admin/class-ui.php:32 blocks/breadcrumbs/index.js:21
+msgid "Settings"
+msgstr ""
+
+#: admin/class-admin.php:64 admin/class-ui.php:36 admin/views/redirections.php:21 includes/class-proposals.php:443
+msgid "Redirections"
+msgstr ""
+
+#: admin/class-admin.php:65 admin/class-ui.php:40 admin/views/not-found.php:19 includes/class-abilities.php:113 includes/class-site-audit.php:186
+msgid "404 errors"
+msgstr ""
+
+#: admin/class-admin.php:70 admin/class-ui.php:48
+msgid "Proposals"
+msgstr ""
+
+#: admin/class-admin.php:72 admin/views/proposals.php:18 includes/class-proposals.php:46
+msgid "SEO proposals"
+msgstr ""
+
+#. translators: %s: plugin names.
+#: admin/class-admin.php:123
+#, php-format
+msgid "%s is active: EO SEO adds nothing on the front (tags, sitemap, robots.txt, structured data) and hides its editor panel. Redirections and the 404 log keep working."
+msgstr ""
+
+#: admin/class-dashboard-page.php:28 admin/class-settings-page.php:32
+msgid "Indexing"
+msgstr ""
+
+#: admin/class-dashboard-page.php:29 includes/class-site-audit.php:170
+msgid "Contents"
+msgstr ""
+
+#: admin/class-list-column.php:48 admin/views/term-fields.php:15 includes/class-abilities.php:34
+msgid "SEO"
+msgstr ""
+
+#: admin/class-list-column.php:70 assets/js/editor.js:320
+msgid "Not analyzed yet"
+msgstr ""
+
+#: admin/class-list-column.php:99
+msgid "Filter by SEO indicator"
+msgstr ""
+
+#: admin/class-list-column.php:101
+msgid "All SEO levels"
+msgstr ""
+
+#: admin/class-media-field.php:29 admin/class-media-field.php:31 assets/js/admin.js:19 assets/js/editor.js:140
+msgid "Choose an image"
+msgstr ""
+
+#: admin/class-media-field.php:33 assets/js/editor.js:141
+msgid "Remove"
+msgstr ""
+
+#: admin/class-redirections-page.php:39
+msgid "Manual"
+msgstr ""
+
+#: admin/class-redirections-page.php:40 admin/views/settings-tools.php:15
+msgid "404 log"
+msgstr ""
+
+#: admin/class-redirections-page.php:41
+msgid "Address change"
+msgstr ""
+
+#: admin/class-redirections-page.php:42
+msgid "AI proposal"
+msgstr ""
+
+#: admin/class-redirections-page.php:43 admin/views/redirections.php:58
+msgid "Import"
+msgstr ""
+
+#: admin/class-settings-page.php:28
+msgid "Search appearance"
+msgstr ""
+
+#: admin/class-settings-page.php:29 admin/views/settings-appearance.php:39
+msgid "Title and description templates"
+msgstr ""
+
+#: admin/class-settings-page.php:33
+msgid "What search engines see, sitemap, robots.txt"
+msgstr ""
+
+#: admin/class-settings-page.php:36
+msgid "Identity"
+msgstr ""
+
+#: admin/class-settings-page.php:37
+msgid "Organization, logo, address, profiles"
+msgstr ""
+
+#: admin/class-settings-page.php:40
+msgid "Social networks"
+msgstr ""
+
+#: admin/class-settings-page.php:41
+msgid "Sharing image and X account"
+msgstr ""
+
+#: admin/class-settings-page.php:44
+msgid "Webmaster tools"
+msgstr ""
+
+#: admin/class-settings-page.php:45
+msgid "Search Console and Bing"
+msgstr ""
+
+#: admin/class-settings-page.php:48
+msgid "Tools"
+msgstr ""
+
+#: admin/class-settings-page.php:49
+msgid "404 log, uninstallation"
+msgstr ""
+
+#: admin/class-settings-page.php:81
+msgid "Home page"
+msgstr ""
+
+#. translators: %s: post type name.
+#: admin/class-settings-page.php:87
+#, php-format
+msgid "Archive of %s"
+msgstr ""
+
+#: admin/class-settings-page.php:94
+msgid "Author archives"
+msgstr ""
+
+#: admin/class-settings-page.php:95
+msgid "Date archives"
+msgstr ""
+
+#: admin/class-settings-page.php:96
+msgid "Search results"
+msgstr ""
+
+#: admin/views/dashboard.php:17 includes/class-checks.php:34
+msgid "Good"
+msgstr ""
+
+#: admin/views/dashboard.php:18 assets/js/editor.js:35
+msgid "To improve"
+msgstr ""
+
+#: admin/views/dashboard.php:19
+msgid "To fix"
+msgstr ""
+
+#: admin/views/dashboard.php:23
+msgid "The SEO review of the whole site. Each point links to where you fix it."
+msgstr ""
+
+#: admin/views/dashboard.php:27
+msgid "Site review"
+msgstr ""
+
+#: admin/views/dashboard.php:30
+msgid "points OK"
+msgstr ""
+
+#: admin/views/dashboard.php:36
+msgid "published contents"
+msgstr ""
+
+#. translators: %d: number of contents.
+#: admin/views/dashboard.php:50
+#, php-format
+msgid "%d published content has not been analyzed yet."
+msgid_plural "%d published contents have not been analyzed yet."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/dashboard.php:56
+msgid "Analyze them"
+msgstr ""
+
+#: admin/views/dashboard.php:82
+msgid "View"
+msgstr ""
+
+#: admin/views/dashboard.php:83 admin/views/settings-indexing.php:23 admin/views/settings-indexing.php:61
+msgid "(opens in a new tab)"
+msgstr ""
+
+#: admin/views/dashboard.php:87
+msgid "Fix"
+msgstr ""
+
+#. translators: %s: points, as "17/23".
+#: admin/views/list-badge.php:26
+#, php-format
+msgid "· %s points OK"
+msgstr ""
+
+#: admin/views/list-badge.php:31
+msgid "Save the content to analyze it."
+msgstr ""
+
+#: admin/views/list-badge.php:33 assets/js/editor.js:201
+msgid "Hidden from search engines: nothing to check."
+msgstr ""
+
+#: admin/views/list-badge.php:35
+msgid "Every check passes."
+msgstr ""
+
+#: admin/views/list-badge.php:37
+msgid "Open the content to see the points to fix."
+msgstr ""
+
+#. translators: %d: number of other points to fix.
+#: admin/views/list-badge.php:49
+#, php-format
+msgid "And %d other point: open the content."
+msgid_plural "And %d other points: open the content."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/not-found.php:19
+msgid "Addresses requested by visitors or search engines that do not exist. Vulnerability probes and scripts are not logged, nor any IP address."
+msgstr ""
+
+#: admin/views/not-found.php:23
+msgid "Filter"
+msgstr ""
+
+#: admin/views/not-found.php:24
+msgid "To handle"
+msgstr ""
+
+#: admin/views/not-found.php:25
+msgid "Handled"
+msgstr ""
+
+#: admin/views/not-found.php:32
+msgid "Address"
+msgstr ""
+
+#: admin/views/not-found.php:33
+msgid "Views"
+msgstr ""
+
+#: admin/views/not-found.php:34
+msgid "Last view"
+msgstr ""
+
+#: admin/views/not-found.php:35
+msgid "Action"
+msgstr ""
+
+#: admin/views/not-found.php:40
+msgid "Nothing here."
+msgstr ""
+
+#. translators: %s: referring page.
+#: admin/views/not-found.php:50
+#, php-format
+msgid "From %s"
+msgstr ""
+
+#: admin/views/not-found.php:65 admin/views/not-found.php:66 admin/views/redirections.php:35 admin/views/redirections.php:91
+msgid "New address"
+msgstr ""
+
+#: admin/views/not-found.php:67
+msgid "Redirect"
+msgstr ""
+
+#: admin/views/not-found.php:75
+msgid "Mark as handled"
+msgstr ""
+
+#: admin/views/not-found.php:77
+msgid "Back to handle"
+msgstr ""
+
+#: admin/views/not-found.php:79
+msgid "Delete"
+msgstr ""
+
+#: admin/views/partials/header.php:21
+msgid "EO SEO screens"
+msgstr ""
+
+#. translators: %d: number of days.
+#: admin/views/proposals.php:21
+#, php-format
+msgid "Changes prepared by the AI. Nothing is changed on the site until you apply them. Proposals expire after %d days."
+msgstr ""
+
+#: admin/views/proposals.php:30
+msgid "No proposal to validate."
+msgstr ""
+
+#: admin/views/proposals.php:40 admin/views/redirections.php:89 admin/views/redirections.php:104
+msgid "Select"
+msgstr ""
+
+#: admin/views/proposals.php:47
+msgid "Redirection"
+msgstr ""
+
+#: admin/views/proposals.php:53
+msgid "Open"
+msgstr ""
+
+#: admin/views/proposals.php:66
+msgid "Also apply when the value changed since the proposal"
+msgstr ""
+
+#: admin/views/proposals.php:67
+msgid "Reject the selected proposals"
+msgstr ""
+
+#: admin/views/proposals.php:68
+msgid "Apply the selected proposals"
+msgstr ""
+
+#: admin/views/redirections.php:21
+msgid "Send visitors and search engines from an old address to the new one."
+msgstr ""
+
+#: admin/views/redirections.php:25
+msgid "Add a redirection"
+msgstr ""
+
+#: admin/views/redirections.php:30 admin/views/redirections.php:90
+msgid "Old address"
+msgstr ""
+
+#: admin/views/redirections.php:39 admin/views/redirections.php:92
+msgid "Type"
+msgstr ""
+
+#: admin/views/redirections.php:41
+msgid "301 – Moved permanently"
+msgstr ""
+
+#: admin/views/redirections.php:42
+msgid "302 – Moved temporarily"
+msgstr ""
+
+#: admin/views/redirections.php:43
+msgid "410 – Deleted for good"
+msgstr ""
+
+#: admin/views/redirections.php:46
+msgid "Add"
+msgstr ""
+
+#: admin/views/redirections.php:51
+msgid "Import and export"
+msgstr ""
+
+#: admin/views/redirections.php:52
+msgid "CSV file with three columns: old address, new address, type (301 by default). The tool for a redesign: prepare the list, import it on launch day."
+msgstr ""
+
+#: admin/views/redirections.php:56
+msgid "CSV file"
+msgstr ""
+
+#: admin/views/redirections.php:63
+msgid "Export as CSV"
+msgstr ""
+
+#. translators: %s: number of redirections.
+#: admin/views/redirections.php:73
+#, php-format
+msgid "%s redirection"
+msgid_plural "%s redirections"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/redirections.php:78
+msgid "Search redirections"
+msgstr ""
+
+#: admin/views/redirections.php:79
+msgid "Search an address…"
+msgstr ""
+
+#: admin/views/redirections.php:93
+msgid "Origin"
+msgstr ""
+
+#: admin/views/redirections.php:94
+msgid "Hits"
+msgstr ""
+
+#: admin/views/redirections.php:95
+msgid "Last hit"
+msgstr ""
+
+#: admin/views/redirections.php:100
+msgid "No redirection yet."
+msgstr ""
+
+#: admin/views/redirections.php:120
+msgid "Delete the selected redirections"
+msgstr ""
+
+#: admin/views/redirections.php:122
+msgid "The old addresses will answer \"page not found\" again."
+msgstr ""
+
+#: admin/views/redirections.php:123
+msgid "Confirm the deletion"
+msgstr ""
+
+#: admin/views/settings-appearance.php:18 admin/views/settings-appearance.php:27
+msgid "Title separator"
+msgstr ""
+
+#. translators: %s: name of the template variable (%sep%).
+#: admin/views/settings-appearance.php:22
+#, php-format
+msgid "Placed between the title of the page and the name of the site (variable %s)."
+msgstr ""
+
+#: admin/views/settings-appearance.php:40
+msgid "Used when a content or a term has no SEO title or description of its own. Click a variable to insert it in the field you are editing."
+msgstr ""
+
+#: admin/views/settings-appearance.php:61
+msgid "Title"
+msgstr ""
+
+#: admin/views/settings-appearance.php:63
+msgid "Description"
+msgstr ""
+
+#: admin/views/settings-identity.php:16
+msgid "Organization"
+msgstr ""
+
+#: admin/views/settings-identity.php:17
+msgid "Local business"
+msgstr ""
+
+#: admin/views/settings-identity.php:18
+msgid "Person"
+msgstr ""
+
+#: admin/views/settings-identity.php:21
+msgid "Street address"
+msgstr ""
+
+#: admin/views/settings-identity.php:22
+msgid "Postal code"
+msgstr ""
+
+#: admin/views/settings-identity.php:23
+msgid "City"
+msgstr ""
+
+#: admin/views/settings-identity.php:24
+msgid "Country"
+msgstr ""
+
+#: admin/views/settings-identity.php:25
+msgid "Phone"
+msgstr ""
+
+#: admin/views/settings-identity.php:30
+msgid "Who is behind the site"
+msgstr ""
+
+#: admin/views/settings-identity.php:31
+msgid "Used in the structured data read by search engines."
+msgstr ""
+
+#: admin/views/settings-identity.php:35
+msgid "The site represents"
+msgstr ""
+
+#: admin/views/settings-identity.php:46
+msgid "Name"
+msgstr ""
+
+#: admin/views/settings-identity.php:50
+msgid "Logo"
+msgstr ""
+
+#: admin/views/settings-identity.php:52
+msgid "Defaults to the logo of the theme."
+msgstr ""
+
+#: admin/views/settings-identity.php:59
+msgid "Address and phone"
+msgstr ""
+
+#: admin/views/settings-identity.php:60
+msgid "Shown by Google for a local business."
+msgstr ""
+
+#: admin/views/settings-identity.php:74 admin/views/settings-identity.php:77
+msgid "Profiles on other sites"
+msgstr ""
+
+#: admin/views/settings-identity.php:75
+msgid "One address per line: LinkedIn, Facebook, Instagram, YouTube, Wikipedia…"
+msgstr ""
+
+#: admin/views/settings-indexing.php:19
+msgid "Show to search engines"
+msgstr ""
+
+#: admin/views/settings-indexing.php:21
+msgid "Turned off, a type is set to noindex and left out of the sitemap."
+msgstr ""
+
+#: admin/views/settings-indexing.php:23
+msgid "See the sitemap"
+msgstr ""
+
+#: admin/views/settings-indexing.php:29
+msgid "Content types"
+msgstr ""
+
+#: admin/views/settings-indexing.php:35
+msgid "Taxonomies"
+msgstr ""
+
+#: admin/views/settings-indexing.php:45
+msgid "Pages without value for search engines"
+msgstr ""
+
+#: admin/views/settings-indexing.php:48
+msgid "Hide the internal search results"
+msgstr ""
+
+#: admin/views/settings-indexing.php:48
+msgid "Recommended: these pages are endless and thin."
+msgstr ""
+
+#: admin/views/settings-indexing.php:49
+msgid "Hide the date archives"
+msgstr ""
+
+#: admin/views/settings-indexing.php:49
+msgid "They repeat the contents of the categories."
+msgstr ""
+
+#: admin/views/settings-indexing.php:50
+msgid "Keep the author archives"
+msgstr ""
+
+#: admin/views/settings-indexing.php:50
+msgid "Turned off, they redirect to the home page. Useful on a site with a single author."
+msgstr ""
+
+#: admin/views/settings-indexing.php:51
+msgid "Keep the attachment pages"
+msgstr ""
+
+#: admin/views/settings-indexing.php:51
+msgid "Turned off (recommended), they redirect to the file."
+msgstr ""
+
+#: admin/views/settings-indexing.php:57 admin/views/settings-indexing.php:67
+msgid "Extra robots.txt rules"
+msgstr ""
+
+#: admin/views/settings-indexing.php:59
+msgid "Added to the robots.txt generated by WordPress, which already gives the address of the sitemap. No file is written on the server."
+msgstr ""
+
+#: admin/views/settings-indexing.php:61
+msgid "See robots.txt"
+msgstr ""
+
+#: admin/views/settings-indexing.php:63
+msgid "WordPress is installed in a sub-folder: robots.txt is not generated, these rules do not apply."
+msgstr ""
+
+#: admin/views/settings-indexing.php:73
+msgid "Optimizations"
+msgstr ""
+
+#: admin/views/settings-indexing.php:76
+msgid "Remove the secondary feeds"
+msgstr ""
+
+#: admin/views/settings-indexing.php:76
+msgid "Comments, categories, tags… links in the <head>."
+msgstr ""
+
+#: admin/views/settings-indexing.php:77
+msgid "Remove the useless links of the <head>"
+msgstr ""
+
+#: admin/views/settings-indexing.php:77
+msgid "RSD, shortlink, generator, REST API, oEmbed."
+msgstr ""
+
+#: admin/views/settings-indexing.php:78
+msgid "Add nofollow to the \"Reply\" links of comments"
+msgstr ""
+
+#: admin/views/settings-indexing.php:78
+msgid "Keeps the ?replytocom= addresses out of the index."
+msgstr ""
+
+#: admin/views/settings-social.php:15
+msgid "Default sharing image"
+msgstr ""
+
+#: admin/views/settings-social.php:16
+msgid "Used when a page is shared and has neither a social image nor a featured image. Recommended size: 1200 × 630 pixels."
+msgstr ""
+
+#: admin/views/settings-social.php:23 admin/views/settings-social.php:28
+msgid "X (Twitter) account"
+msgstr ""
+
+#: admin/views/settings-social.php:24
+msgid "Shown with the pages shared on X."
+msgstr ""
+
+#: admin/views/settings-tools.php:16
+msgid "Addresses without a new view during this time are removed from the log."
+msgstr ""
+
+#: admin/views/settings-tools.php:19
+msgid "404 log retention"
+msgstr ""
+
+#: admin/views/settings-tools.php:21
+msgid "days"
+msgstr ""
+
+#: admin/views/settings-tools.php:27
+msgid "Uninstallation"
+msgstr ""
+
+#: admin/views/settings-tools.php:33
+msgid "Delete all EO SEO data when the plugin is deleted"
+msgstr ""
+
+#: admin/views/settings-tools.php:34
+msgid "SEO fields, redirections, 404 log and settings. Cannot be undone."
+msgstr ""
+
+#: admin/views/settings-webmaster.php:14
+msgid "Google Search Console"
+msgstr ""
+
+#: admin/views/settings-webmaster.php:15
+msgid "Bing Webmaster Tools"
+msgstr ""
+
+#: admin/views/settings-webmaster.php:20
+msgid "Site verification"
+msgstr ""
+
+#: admin/views/settings-webmaster.php:21
+msgid "Paste the verification code, or the whole <meta> tag: only the code is kept. The tag is added to the home page."
+msgstr ""
+
+#: admin/views/settings.php:24
+msgid "Settings sections"
+msgstr ""
+
+#: admin/views/settings.php:38
+msgid "Save the changes"
+msgstr ""
+
+#: admin/views/term-fields.php:17 assets/js/editor.js:175
+msgid "Search result preview"
+msgstr ""
+
+#. translators: 1: number of characters, 2: minimum, 3: maximum.
+#: assets/js/admin.js:57 assets/js/editor.js:91
+#, php-format
+msgid "%1$d characters (recommended: %2$d to %3$d)"
+msgstr ""
+
+#: assets/js/editor.js:34
+msgid "Problems"
+msgstr ""
+
+#: assets/js/editor.js:36
+msgid "Readability"
+msgstr ""
+
+#: assets/js/editor.js:75
+msgid "Empty: the template writes it automatically (grey text). Write your own."
+msgstr ""
+
+#: assets/js/editor.js:76
+msgid "Empty."
+msgstr ""
+
+#: assets/js/editor.js:140
+msgid "Replace the image"
+msgstr ""
+
+#. translators: 1: number of checks passed, 2: number of checks.
+#: assets/js/editor.js:206
+#, php-format
+msgid "%1$d/%2$d points OK"
+msgstr ""
+
+#. translators: %s: SEO level (Good, Needs improvement…).
+#: assets/js/editor.js:318
+#, php-format
+msgid "EO SEO: %s"
+msgstr ""
+
+#: assets/js/editor.js:336
+msgid "Search engines"
+msgstr ""
+
+#: assets/js/editor.js:337
+msgid "Checks"
+msgstr ""
+
+#: assets/js/editor.js:338
+msgid "Social sharing"
+msgstr ""
+
+#: assets/js/editor.js:339
+msgid "Advanced"
+msgstr ""
+
+#. translators: %d: number of checks.
+#: assets/js/editor.js:250
+#, php-format
+msgid "%d point OK"
+msgid_plural "%d points OK"
+msgstr[0] ""
+msgstr[1] ""
+
+#: blocks/breadcrumbs/block.json
+msgctxt "block title"
+msgid "Breadcrumbs"
+msgstr ""
+
+#: blocks/breadcrumbs/block.json
+msgctxt "block description"
+msgid "Trail of links from the home page to the current page."
+msgstr ""
+
+#: blocks/breadcrumbs/block.json
+msgctxt "block keyword"
+msgid "breadcrumb"
+msgstr ""
+
+#: blocks/breadcrumbs/block.json
+msgctxt "block keyword"
+msgid "navigation"
+msgstr ""
+
+#: blocks/breadcrumbs/block.json
+msgctxt "block keyword"
+msgid "seo"
+msgstr ""
+
+#: blocks/breadcrumbs/index.js:23 includes/class-variables.php:33
+msgid "Separator"
+msgstr ""
+
+#: blocks/breadcrumbs/index.js:30
+msgid "Show the home page"
+msgstr ""
+
+#: blocks/breadcrumbs/render.php:22
+msgid "Breadcrumbs"
+msgstr ""
+
+#: includes/class-abilities.php:35
+msgid "Search engine optimization, by EO SEO."
+msgstr ""
+
+#: includes/class-abilities.php:60
+msgid "SEO review of the site"
+msgstr ""
+
+#: includes/class-abilities.php:69
+msgid "Reads the SEO review of the site (the EO SEO dashboard)."
+msgstr ""
+
+#: includes/class-abilities.php:74
+msgid "SEO audit of a content"
+msgstr ""
+
+#: includes/class-abilities.php:80
+msgid "Reads the SEO audit of one content."
+msgstr ""
+
+#: includes/class-abilities.php:85
+msgid "Contents per SEO level"
+msgstr ""
+
+#: includes/class-abilities.php:108
+msgid "Lists the contents in red or orange with their failed checks."
+msgstr ""
+
+#: includes/class-abilities.php:127
+msgid "Reads the 404 log of EO SEO."
+msgstr ""
+
+#: includes/class-abilities.php:132
+msgid "EO SEO settings"
+msgstr ""
+
+#: includes/class-abilities.php:141
+msgid "Reads the EO SEO settings."
+msgstr ""
+
+#: includes/class-abilities.php:146
+msgid "SEO fields of a draft"
+msgstr ""
+
+#: includes/class-abilities.php:162
+msgid "Writes the SEO fields of unpublished drafts only."
+msgstr ""
+
+#: includes/class-abilities.php:167
+msgid "Propose SEO fields"
+msgstr ""
+
+#: includes/class-abilities.php:201
+msgid "Prepares changes of the SEO fields of published contents, applied by a human."
+msgstr ""
+
+#: includes/class-abilities.php:206
+msgid "Propose redirections"
+msgstr ""
+
+#: includes/class-abilities.php:240
+msgid "Prepares redirections, created once a human applies them."
+msgstr ""
+
+#: includes/class-abilities.php:441
+msgid "You are not allowed to edit this content."
+msgstr ""
+
+#: includes/class-abilities.php:472
+msgid "You are not allowed to edit this item."
+msgstr ""
+
+#: includes/class-abilities.php:540 includes/class-rest.php:65
+msgid "Content not found."
+msgstr ""
+
+#: includes/class-abilities.php:543
+msgid "You are not allowed to read this content."
+msgstr ""
+
+#: includes/class-breadcrumbs.php:39
+msgid "Home"
+msgstr ""
+
+#. translators: %s: searched words.
+#: includes/class-breadcrumbs.php:79
+#, php-format
+msgid "Search results for \"%s\""
+msgstr ""
+
+#: includes/class-breadcrumbs.php:84
+msgid "Page not found"
+msgstr ""
+
+#: includes/class-checks.php:32
+msgid "Problem"
+msgstr ""
+
+#: includes/class-checks.php:33
+msgid "Needs improvement"
+msgstr ""
+
+#: includes/class-checks.php:35
+msgid "Not indexed"
+msgstr ""
+
+#: includes/class-checks.php:52
+msgid "Custom SEO title"
+msgstr ""
+
+#: includes/class-checks.php:56
+msgid "The SEO title is written for this page."
+msgstr ""
+
+#: includes/class-checks.php:57
+msgid "The SEO title comes from the template: write one for this page."
+msgstr ""
+
+#: includes/class-checks.php:60
+msgid "SEO title length"
+msgstr ""
+
+#: includes/class-checks.php:66
+msgid "Unique SEO title"
+msgstr ""
+
+#. translators: %s: title of another content.
+#: includes/class-checks.php:73
+#, php-format
+msgid "Same SEO title as \"%s\"."
+msgstr ""
+
+#: includes/class-checks.php:74
+msgid "No other content has this SEO title."
+msgstr ""
+
+#: includes/class-checks.php:78 includes/class-fields.php:64
+msgid "Meta description"
+msgstr ""
+
+#: includes/class-checks.php:83
+msgid "The meta description is written for this page."
+msgstr ""
+
+#: includes/class-checks.php:87
+msgid "Automatic description, taken from the beginning of the text by the template: write one for this page."
+msgstr ""
+
+#: includes/class-checks.php:88
+msgid "No meta description: search engines will pick a piece of text themselves."
+msgstr ""
+
+#: includes/class-checks.php:92
+msgid "Meta description length"
+msgstr ""
+
+#: includes/class-checks.php:99
+msgid "Unique meta description"
+msgstr ""
+
+#. translators: %s: title of another content.
+#: includes/class-checks.php:109
+#, php-format
+msgid "Same meta description as \"%s\"."
+msgstr ""
+
+#: includes/class-checks.php:110
+msgid "No other content has this meta description."
+msgstr ""
+
+#: includes/class-checks.php:114 includes/class-fields.php:73
+msgid "Focus keyphrase"
+msgstr ""
+
+#: includes/class-checks.php:118
+msgid "A focus keyphrase is set."
+msgstr ""
+
+#: includes/class-checks.php:119
+msgid "Set a focus keyphrase to check how well the page targets it."
+msgstr ""
+
+#: includes/class-checks.php:122
+msgid "Keyphrase not targeted elsewhere"
+msgstr ""
+
+#. translators: %s: title of another content.
+#: includes/class-checks.php:130
+#, php-format
+msgid "\"%s\" targets the same keyphrase: the two pages compete in search results."
+msgstr ""
+
+#: includes/class-checks.php:131
+msgid "No other content targets this keyphrase."
+msgstr ""
+
+#: includes/class-checks.php:134
+msgid "Keyphrase in the SEO title"
+msgstr ""
+
+#: includes/class-checks.php:135
+msgid "Keyphrase in the page title"
+msgstr ""
+
+#: includes/class-checks.php:136
+msgid "Keyphrase in the meta description"
+msgstr ""
+
+#: includes/class-checks.php:137
+msgid "Keyphrase in the introduction"
+msgstr ""
+
+#: includes/class-checks.php:139
+msgid "Keyphrase in the address"
+msgstr ""
+
+#: includes/class-checks.php:148
+msgid "The address contains the keyphrase."
+msgstr ""
+
+#: includes/class-checks.php:149
+msgid "Put the keyphrase in the address (slug)."
+msgstr ""
+
+#: includes/class-checks.php:153
+msgid "Content"
+msgstr ""
+
+#: includes/class-checks.php:157
+msgid "The page has content."
+msgstr ""
+
+#. translators: %d: number of words.
+#: includes/class-checks.php:159
+#, php-format
+msgid "Almost empty page (%d word)."
+msgid_plural "Almost empty page (%d words)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-checks.php:162
+msgid "Text length"
+msgstr ""
+
+#. translators: %d: number of words.
+#: includes/class-checks.php:167
+#, php-format
+msgid "%d words."
+msgstr ""
+
+#. translators: %d: number of words.
+#: includes/class-checks.php:169
+#, php-format
+msgid "%d words: aim for at least 300."
+msgstr ""
+
+#: includes/class-checks.php:172 includes/class-fields.php:87
+msgid "Canonical URL"
+msgstr ""
+
+#: includes/class-checks.php:181
+msgid "The canonical URL is the address of the page."
+msgstr ""
+
+#: includes/class-checks.php:182
+msgid "The canonical URL points to another page: this page will not appear in search results."
+msgstr ""
+
+#: includes/class-checks.php:186
+msgid "H1 heading"
+msgstr ""
+
+#: includes/class-checks.php:193
+msgid "page title"
+msgstr ""
+
+#. translators: %s: H1 headings of the templates (e.g. "page title, site title").
+#: includes/class-checks.php:199
+#, php-format
+msgid "The templates of the site provide the H1 (%s): the content uses lower headings."
+msgstr ""
+
+#. translators: %s: H1 headings of the templates (e.g. "page title, site title").
+#: includes/class-checks.php:201
+#, php-format
+msgid "Your site already uses the H1 in its templates (%s). Your page must not contain one: use H2 headings."
+msgstr ""
+
+#: includes/class-checks.php:206
+msgid "The content has its H1 heading (the templates of the site have none)."
+msgstr ""
+
+#: includes/class-checks.php:210
+msgid "The templates of the site have no H1: add one H1 heading at the top of the content."
+msgstr ""
+
+#. translators: %d: number of H1 headings.
+#: includes/class-checks.php:212
+#, php-format
+msgid "%d H1 headings in the content: keep only one."
+msgstr ""
+
+#: includes/class-checks.php:216 includes/class-site-audit.php:199
+msgid "Alternative texts"
+msgstr ""
+
+#: includes/class-checks.php:225 includes/class-site-audit.php:203
+msgid "Every image has an alternative text."
+msgstr ""
+
+#. translators: %d: number of images.
+#: includes/class-checks.php:227
+#, php-format
+msgid "%d image has no alternative text."
+msgid_plural "%d images have no alternative text."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-checks.php:231
+msgid "Internal links"
+msgstr ""
+
+#. translators: %d: number of links.
+#: includes/class-checks.php:238
+#, php-format
+msgid "%d link to another page of the site."
+msgid_plural "%d links to other pages of the site."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-checks.php:239
+msgid "Add links to other pages of the site."
+msgstr ""
+
+#: includes/class-checks.php:243
+msgid "Broken or redirected links"
+msgstr ""
+
+#: includes/class-checks.php:249
+msgid "No internal link to a missing or redirected page."
+msgstr ""
+
+#. translators: %s: list of addresses.
+#: includes/class-checks.php:251
+#, php-format
+msgid "Fix these links: %s"
+msgstr ""
+
+#: includes/class-checks.php:255
+msgid "Incoming links"
+msgstr ""
+
+#: includes/class-checks.php:263
+msgid "Other pages or a menu link to this page."
+msgstr ""
+
+#: includes/class-checks.php:264
+msgid "Orphan page: no other page or menu links to it."
+msgstr ""
+
+#: includes/class-checks.php:268
+msgid "Sentence length"
+msgstr ""
+
+#: includes/class-checks.php:279
+msgid "Sentences are short enough."
+msgstr ""
+
+#. translators: %d: percentage.
+#: includes/class-checks.php:281
+#, php-format
+msgid "%d%% of the sentences have more than 25 words: shorten some of them."
+msgstr ""
+
+#: includes/class-checks.php:285
+msgid "Paragraph length"
+msgstr ""
+
+#: includes/class-checks.php:294
+msgid "Paragraphs are short enough."
+msgstr ""
+
+#. translators: %d: number of paragraphs.
+#: includes/class-checks.php:296
+#, php-format
+msgid "%d paragraph has more than 150 words."
+msgid_plural "%d paragraphs have more than 150 words."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-checks.php:300
+msgid "Subheadings"
+msgstr ""
+
+#: includes/class-checks.php:310
+msgid "The text is divided by subheadings."
+msgstr ""
+
+#: includes/class-checks.php:311
+msgid "A part of the text has more than 300 words without a subheading."
+msgstr ""
+
+#. translators: 1: length, 2: minimum length.
+#: includes/class-checks.php:407
+#, php-format
+msgid "%1$d characters: too short (at least %2$d)."
+msgstr ""
+
+#. translators: 1: length, 2: maximum length.
+#: includes/class-checks.php:411
+#, php-format
+msgid "%1$d characters: too long, it will be cut (at most %2$d)."
+msgstr ""
+
+#. translators: %d: length.
+#: includes/class-checks.php:415
+#, php-format
+msgid "%d characters."
+msgstr ""
+
+#: includes/class-checks.php:432
+msgid "The keyphrase is there."
+msgstr ""
+
+#: includes/class-checks.php:433
+msgid "The keyphrase is missing."
+msgstr ""
+
+#: includes/class-fields.php:55
+msgid "SEO title"
+msgstr ""
+
+#: includes/class-fields.php:56
+msgid "Title shown by search engines. Leave empty to use the template."
+msgstr ""
+
+#: includes/class-fields.php:65
+msgid "Summary shown under the title in search results. Leave empty to use the template (beginning of the text)."
+msgstr ""
+
+#: includes/class-fields.php:74
+msgid "The search query this page should rank for."
+msgstr ""
+
+#: includes/class-fields.php:80
+msgid "Hide from search engines (noindex)"
+msgstr ""
+
+#: includes/class-fields.php:88
+msgid "Only if this page duplicates another one."
+msgstr ""
+
+#: includes/class-fields.php:94
+msgid "Social title"
+msgstr ""
+
+#: includes/class-fields.php:95
+msgid "Title when the page is shared. Defaults to the SEO title."
+msgstr ""
+
+#: includes/class-fields.php:101
+msgid "Social description"
+msgstr ""
+
+#: includes/class-fields.php:102
+msgid "Defaults to the meta description."
+msgstr ""
+
+#: includes/class-fields.php:108
+msgid "Social image"
+msgstr ""
+
+#: includes/class-fields.php:109
+msgid "Defaults to the featured image, then to the default image of the site."
+msgstr ""
+
+#. translators: 1: minimum length, 2: maximum length.
+#: includes/class-fields.php:272
+#, php-format
+msgid "Recommended length: %1$d to %2$d characters."
+msgstr ""
+
+#: includes/class-proposals.php:47
+msgid "SEO proposal"
+msgstr ""
+
+#. translators: %d: ID.
+#: includes/class-proposals.php:77
+#, php-format
+msgid "Content %d not found."
+msgstr ""
+
+#. translators: %d: ID.
+#: includes/class-proposals.php:85
+#, php-format
+msgid "Term %d not found."
+msgstr ""
+
+#. translators: %s: field name.
+#: includes/class-proposals.php:95
+#, php-format
+msgid "Unknown field: %s"
+msgstr ""
+
+#: includes/class-proposals.php:107
+msgid "The proposed values are the current ones."
+msgstr ""
+
+#. translators: %s: field label.
+#: includes/class-proposals.php:254
+#, php-format
+msgid "\"%s\" changed since the proposal."
+msgstr ""
+
+#: includes/class-proposals.php:272 includes/class-proposals.php:317
+msgid "This proposal is no longer pending."
+msgstr ""
+
+#: includes/class-proposals.php:275
+msgid "You are not allowed to apply this proposal."
+msgstr ""
+
+#: includes/class-proposals.php:320
+msgid "You are not allowed to reject this proposal."
+msgstr ""
+
+#: includes/class-proposals.php:389
+msgid "gone"
+msgstr ""
+
+#. translators: %s: reason given by the AI.
+#: includes/class-proposals.php:396
+#, php-format
+msgid "Reason: %s"
+msgstr ""
+
+#: includes/class-proposals.php:409
+msgid "yes"
+msgstr ""
+
+#: includes/class-proposals.php:409
+msgid "no"
+msgstr ""
+
+#: includes/class-proposals.php:412
+msgid "(empty)"
+msgstr ""
+
+#: includes/class-proposals.php:434
+msgid "SEO fields"
+msgstr ""
+
+#: includes/class-proposals.php:435
+msgid "SEO title, description and other fields of published contents and terms."
+msgstr ""
+
+#: includes/class-proposals.php:444
+msgid "Created in EO SEO once validated."
+msgstr ""
+
+#: includes/class-redirections.php:158
+msgid "The type must be 301, 302 or 410."
+msgstr ""
+
+#: includes/class-redirections.php:168
+msgid "The home page cannot be redirected."
+msgstr ""
+
+#: includes/class-redirections.php:182
+msgid "The destination is the redirected address itself."
+msgstr ""
+
+#: includes/class-redirections.php:186
+msgid "Redirection to another site."
+msgstr ""
+
+#. translators: 1: address, 2: address.
+#: includes/class-redirections.php:196
+#, php-format
+msgid "The destination \"%1$s\" is itself redirected to \"%2$s\": redirect straight to the final address."
+msgstr ""
+
+#: includes/class-redirections.php:241
+msgid "The redirection could not be saved."
+msgstr ""
+
+#. translators: 1: line number, 2: error message.
+#: includes/class-redirections.php:342
+#, php-format
+msgid "Line %1$d: %2$s"
+msgstr ""
+
+#: includes/class-settings.php:61
+msgid "EO SEO settings."
+msgstr ""
+
+#: includes/class-site-audit.php:31
+msgid "Visible to search engines"
+msgstr ""
+
+#: includes/class-site-audit.php:32
+msgid "Search engines may index the site."
+msgstr ""
+
+#: includes/class-site-audit.php:32
+msgid "The site asks search engines not to index it (Settings › Reading)."
+msgstr ""
+
+#: includes/class-site-audit.php:41
+msgid "Readable addresses"
+msgstr ""
+
+#: includes/class-site-audit.php:42
+msgid "Addresses use the post name."
+msgstr ""
+
+#: includes/class-site-audit.php:42
+msgid "Addresses look like ?p=123: choose a permalink structure."
+msgstr ""
+
+#: includes/class-site-audit.php:51
+msgid "Site title and tagline"
+msgstr ""
+
+#: includes/class-site-audit.php:52
+msgid "The site has a tagline."
+msgstr ""
+
+#: includes/class-site-audit.php:52
+msgid "The tagline is empty: it is used in the home page title."
+msgstr ""
+
+#: includes/class-site-audit.php:61
+msgid "HTTPS"
+msgstr ""
+
+#: includes/class-site-audit.php:62
+msgid "The site address uses HTTPS."
+msgstr ""
+
+#: includes/class-site-audit.php:62
+msgid "The site address does not use HTTPS."
+msgstr ""
+
+#: includes/class-site-audit.php:70
+msgid "Site icon"
+msgstr ""
+
+#: includes/class-site-audit.php:71
+msgid "The site has an icon (shown by Google next to the results)."
+msgstr ""
+
+#: includes/class-site-audit.php:71
+msgid "No site icon: Google shows a generic icon next to the results."
+msgstr ""
+
+#: includes/class-site-audit.php:81
+msgid "Site identity"
+msgstr ""
+
+#: includes/class-site-audit.php:82
+msgid "Name and logo of the organization are set."
+msgstr ""
+
+#: includes/class-site-audit.php:82
+msgid "Set the name and the logo of the organization or person behind the site."
+msgstr ""
+
+#. translators: %s: folder of the site, e.g. /wordpress.
+#: includes/class-site-audit.php:96
+#, php-format
+msgid "WordPress is installed in a sub-folder (%s): it does not generate robots.txt, which search engines only read at the root of the domain. EO SEO's rules do not apply."
+msgstr ""
+
+#: includes/class-site-audit.php:107
+msgid "A physical robots.txt file exists at the root of the site: it replaces the one of WordPress and EO SEO's rules. Delete it or merge it by hand."
+msgstr ""
+
+#: includes/class-site-audit.php:107
+msgid "robots.txt is generated by WordPress, with the address of the sitemap."
+msgstr ""
+
+#: includes/class-site-audit.php:116
+msgid "The sitemap of WordPress is active."
+msgstr ""
+
+#: includes/class-site-audit.php:119
+msgid "Turned off by WordPress because the site asks search engines not to index it: allow indexing in Settings › Reading."
+msgstr ""
+
+#: includes/class-site-audit.php:122
+msgid "Turned off by code: a theme or another plugin uses the wp_sitemaps_enabled filter."
+msgstr ""
+
+#: includes/class-site-audit.php:125
+msgid "Sitemap"
+msgstr ""
+
+#: includes/class-site-audit.php:132
+msgid "Attachment pages"
+msgstr ""
+
+#: includes/class-site-audit.php:133
+msgid "Each media file has its own thin page: these pages should redirect to the file."
+msgstr ""
+
+#: includes/class-site-audit.php:133
+msgid "Attachment pages redirect to the file."
+msgstr ""
+
+#: includes/class-site-audit.php:143
+msgid "H1 headings of the templates"
+msgstr ""
+
+#. translators: %s: list of headings (e.g. "site title").
+#: includes/class-site-audit.php:146
+#, php-format
+msgid "The templates print other H1 headings on every page (%s): only the page title should be an H1. Set them to another level in the site editor."
+msgstr ""
+
+#: includes/class-site-audit.php:147
+msgid "The templates print no other H1 than the page title."
+msgstr ""
+
+#: includes/class-site-audit.php:157
+msgid "Other SEO plugins"
+msgstr ""
+
+#. translators: %s: plugin names.
+#: includes/class-site-audit.php:160
+#, php-format
+msgid "Also active: %s. EO SEO adds nothing on the front to avoid duplicates; keep only one SEO plugin."
+msgstr ""
+
+#: includes/class-site-audit.php:161
+msgid "EO SEO is the only SEO plugin."
+msgstr ""
+
+#. translators: 1: number of contents with problems, 2: to improve, 3: good.
+#: includes/class-site-audit.php:173
+#, php-format
+msgid "%1$d with problems, %2$d to improve, %3$d good."
+msgstr ""
+
+#. translators: %d: number of addresses.
+#: includes/class-site-audit.php:189
+#, php-format
+msgid "%d missing address to redirect or handle."
+msgid_plural "%d missing addresses to redirect or handle."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-site-audit.php:190
+msgid "No missing address to handle."
+msgstr ""
+
+#. translators: %d: number of images.
+#: includes/class-site-audit.php:202
+#, php-format
+msgid "%d image of the media library has no alternative text."
+msgid_plural "%d images of the media library have no alternative text."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-site-audit.php:212
+msgid "Categories and tags"
+msgstr ""
+
+#. translators: %d: number of terms.
+#: includes/class-site-audit.php:215
+#, php-format
+msgid "%d indexed term has contents but no description."
+msgid_plural "%d indexed terms have contents but no description."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-site-audit.php:216
+msgid "Indexed terms with contents have a description."
+msgstr ""
+
+#: includes/class-template-headings.php:136
+msgid "site title"
+msgstr ""
+
+#: includes/class-template-headings.php:143
+msgid "heading"
+msgstr ""
+
+#: includes/class-url.php:48
+msgid "The address to redirect is empty or invalid."
+msgstr ""
+
+#. translators: %s: address.
+#: includes/class-url.php:54
+#, php-format
+msgid "\"%s\" is not an address of this site."
+msgstr ""
+
+#: includes/class-url.php:83
+msgid "The destination address is empty."
+msgstr ""
+
+#. translators: %s: address.
+#: includes/class-url.php:89 includes/class-url.php:95
+#, php-format
+msgid "Invalid destination address: %s"
+msgstr ""
+
+#: includes/class-variables.php:24
+msgid "Title of the content"
+msgstr ""
+
+#: includes/class-variables.php:25
+msgid "Excerpt of the content, or description of the term"
+msgstr ""
+
+#: includes/class-variables.php:26
+msgid "Name of the category, tag or term"
+msgstr ""
+
+#: includes/class-variables.php:27
+msgid "Name of the archive"
+msgstr ""
+
+#: includes/class-variables.php:28
+msgid "Name of the author"
+msgstr ""
+
+#: includes/class-variables.php:29
+msgid "Date of a date archive"
+msgstr ""
+
+#: includes/class-variables.php:30
+msgid "Searched words"
+msgstr ""
+
+#: includes/class-variables.php:31
+msgid "Name of the site"
+msgstr ""
+
+#: includes/class-variables.php:32
+msgid "Tagline of the site"
+msgstr ""
+
+#: includes/class-variables.php:34
+msgid "Page number (\"Page 2 of 5\"), only from page 2"
+msgstr ""
+
+#. translators: 1: page number, 2: number of pages.
+#: includes/class-variables.php:133
+#, php-format
+msgid "Page %1$d of %2$d"
+msgstr ""
+
+#. translators: %d: page number.
+#: includes/class-variables.php:135
+#, php-format
+msgid "Page %d"
+msgstr ""
+
+#. Description of the plugin
+#: eo-seo.php
+msgid "A complete, lightweight SEO plugin: metadata, per-page SEO indicator, indexing, structured data, redirections and 404 log."
+msgstr ""
+
+#. Author of the plugin
+#: eo-seo.php
+msgid "Eoxia"
+msgstr ""
+

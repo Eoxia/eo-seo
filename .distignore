@@ -1,0 +1,10 @@
+/.git
+/.github
+/.agents
+/tests
+.distignore
+.gitignore
+.editorconfig
+phpcs.xml.dist
+README.md
+CLAUDE.md

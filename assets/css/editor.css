@@ -1,0 +1,92 @@
+/* EO SEO in the block editor: badge in the top bar and sidebar. */
+
+.eo-seo-badge {
+	display: inline-block;
+	flex: none;
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	background: #a7aaad;
+}
+
+.eo-seo-badge--problem { background: #d63638; }
+.eo-seo-badge--improve { background: #dba617; }
+.eo-seo-badge--good { background: #00a32a; }
+.eo-seo-badge--unknown { background: transparent; box-shadow: inset 0 0 0 2px #a7aaad; }
+.eo-seo-badge--large { width: 28px; height: 28px; }
+
+/* Top bar button: the badge takes the place of the 24px icon. */
+.eo-seo-toolbar-icon { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; }
+.eo-seo-toolbar-icon .eo-seo-badge { box-shadow: 0 0 0 3px #fff, 0 0 0 4px rgba(0, 0, 0, 0.08); }
+
+/* Sidebar */
+.eo-seo-sidebar__head { padding: 16px; border-bottom: 1px solid #e0e0e0; }
+
+.eo-seo-summary { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.eo-seo-summary > div { display: flex; flex-direction: column; }
+.eo-seo-summary__level { font-size: 15px; }
+.eo-seo-summary__points { color: #757575; font-size: 12px; }
+
+.eo-seo-serp {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	padding: 12px;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+	font-family: Arial, sans-serif;
+}
+
+.eo-seo-serp__url { color: #202124; font-size: 12px; word-break: break-all; }
+.eo-seo-serp__title { color: #1a0dab; font-size: 16px; line-height: 1.3; }
+.eo-seo-serp__description { color: #4d5156; font-size: 13px; line-height: 1.45; }
+
+.eo-seo-editor-field { margin-bottom: 20px; }
+.eo-seo-editor-field:last-child { margin-bottom: 0; }
+.eo-seo-editor-media { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+/* Length meter */
+.eo-seo-meter { margin-top: 6px; }
+.eo-seo-meter__bar { display: block; height: 4px; overflow: hidden; border-radius: 2px; background: #f0f0f0; }
+.eo-seo-meter__bar span { display: block; height: 100%; border-radius: 2px; background: #a7aaad; transition: width 0.2s, background 0.2s; }
+.eo-seo-meter--good .eo-seo-meter__bar span { background: #00a32a; }
+.eo-seo-meter--bad .eo-seo-meter__bar span { background: #dba617; }
+.eo-seo-meter__text { display: block; margin-top: 4px; color: #757575; font-size: 11px; }
+
+/* Checks */
+.eo-seo-checks-group { margin-bottom: 16px; }
+.eo-seo-checks-group:last-child { margin-bottom: 0; }
+.eo-seo-checks-group h3 { margin: 0 0 8px; color: #757575; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+.eo-seo-checks-group--ok summary { color: #757575; font-size: 12px; font-weight: 600; cursor: pointer; }
+.eo-seo-checks-group--ok .eo-seo-checks { margin-top: 10px; }
+
+.eo-seo-checks { margin: 0; }
+
+.eo-seo-check {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
+	margin: 0 0 10px;
+	padding-left: 18px;
+	font-size: 12px;
+	line-height: 1.45;
+}
+
+.eo-seo-check span { color: #50575e; }
+
+.eo-seo-check::before {
+	content: "";
+	position: absolute;
+	top: 4px;
+	left: 0;
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+	background: #00a32a;
+}
+
+.eo-seo-check--problem::before { background: #d63638; }
+.eo-seo-check--improve::before,
+.eo-seo-check--readability::before { background: #dba617; }
