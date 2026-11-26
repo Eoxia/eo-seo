@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-26T16:10:15+00:00\n"
+"POT-Creation-Date: 2026-11-26T16:15:32+00:00\n"
 "X-Domain: eo-seo\n"
 
 #: admin/class-actions.php:53
@@ -239,26 +239,34 @@ msgstr ""
 msgid "Site review"
 msgstr ""
 
-#: admin/views/dashboard.php:31
+#. translators: %d: number of points of the site review that are not good.
+#: admin/views/dashboard.php:37
+#, php-format
+msgid "points OK · %d to fix below"
+msgid_plural "points OK · %d to fix below"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/dashboard.php:38
 msgid "points OK"
 msgstr ""
 
-#: admin/views/dashboard.php:37
+#: admin/views/dashboard.php:47
 msgid "published contents"
 msgstr ""
 
-#: admin/views/dashboard.php:47
+#: admin/views/dashboard.php:57
 msgid "Site scan"
 msgstr ""
 
 #. translators: 1: contents analyzed, 2: contents to analyze.
-#: admin/views/dashboard.php:52 assets/js/admin.js:103
+#: admin/views/dashboard.php:62 assets/js/admin.js:103
 #, php-format
 msgid "Scan in progress: %1$d of %2$d contents."
 msgstr ""
 
 #. translators: %d: number of contents.
-#: admin/views/dashboard.php:57
+#: admin/views/dashboard.php:67
 #, php-format
 msgid "%d published content has not been analyzed yet."
 msgid_plural "%d published contents have not been analyzed yet."
@@ -266,34 +274,34 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: %s: time since the last scan, e.g. "2 hours".
-#: admin/views/dashboard.php:62
+#: admin/views/dashboard.php:72
 #, php-format
 msgid "Last complete scan %s ago. Duplicates and orphan pages are checked again every night and a few minutes after a change."
 msgstr ""
 
-#: admin/views/dashboard.php:65
+#: admin/views/dashboard.php:75
 msgid "Checks again every content against the others (duplicates, orphan pages, broken links)."
 msgstr ""
 
 #. translators: %s: time until the next scan, e.g. "4 minutes".
-#: admin/views/dashboard.php:70
+#: admin/views/dashboard.php:80
 #, php-format
 msgid "Next scan in %s, after the latest changes."
 msgstr ""
 
-#: admin/views/dashboard.php:76
+#: admin/views/dashboard.php:86
 msgid "Scan the whole site"
 msgstr ""
 
-#: admin/views/dashboard.php:101
+#: admin/views/dashboard.php:111
 msgid "View"
 msgstr ""
 
-#: admin/views/dashboard.php:102 admin/views/settings-indexing.php:23 admin/views/settings-indexing.php:61
+#: admin/views/dashboard.php:112 admin/views/settings-indexing.php:23 admin/views/settings-indexing.php:61
 msgid "(opens in a new tab)"
 msgstr ""
 
-#: admin/views/dashboard.php:106
+#: admin/views/dashboard.php:116
 msgid "Fix"
 msgstr ""
 

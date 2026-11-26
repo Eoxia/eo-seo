@@ -27,8 +27,18 @@ $eo_seo_status_labels = array(
 		<div class="eo-seo-card eo-seo-stat eo-seo-stat--score">
 			<span class="eo-seo-stat__label"><?php esc_html_e( 'Site review', 'eo-seo' ); ?></span>
 			<span class="eo-seo-stat__value"><?php echo esc_html( $score['good'] . '/' . $score['total'] ); ?></span>
-			<span class="eo-seo-progress" aria-hidden="true"><span style="width: <?php echo esc_attr( (string) ( $score['total'] ? round( 100 * $score['good'] / $score['total'] ) : 0 ) ); ?>%"></span></span>
-			<span class="eo-seo-stat__hint"><?php esc_html_e( 'points OK', 'eo-seo' ); ?></span>
+			<span class="eo-seo-progress eo-seo-progress--<?php echo esc_attr( $score['level'] ); ?>" aria-hidden="true"><span style="width: <?php echo esc_attr( (string) $score['percent'] ); ?>%"></span></span>
+			<span class="eo-seo-stat__hint">
+				<?php
+				$eo_seo_to_fix = $score['total'] - $score['good'];
+				echo esc_html(
+					$eo_seo_to_fix
+						/* translators: %d: number of points of the site review that are not good. */
+						? sprintf( _n( 'points OK · %d to fix below', 'points OK · %d to fix below', $eo_seo_to_fix, 'eo-seo' ), $eo_seo_to_fix )
+						: __( 'points OK', 'eo-seo' )
+				);
+				?>
+			</span>
 		</div>
 		<?php foreach ( array( 'problem', 'improve', 'good', 'noindex' ) as $eo_seo_level ) : ?>
 			<a class="eo-seo-card eo-seo-stat" href="<?php echo esc_url( admin_url( 'edit.php?post_type=page&eo_seo_level=' . $eo_seo_level ) ); ?>">

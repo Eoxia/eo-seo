@@ -107,6 +107,9 @@
 .eo-seo-app *::before,
 .eo-seo-app *::after { box-sizing: border-box; }
 
+/* The display of the components must never override the hidden attribute. */
+.eo-seo-app [hidden] { display: none !important; }
+
 .eo-seo-topbar {
 	display: flex;
 	flex-wrap: wrap;
@@ -255,6 +258,8 @@ a.eo-seo-stat:focus { border-color: var(--eo-seo-accent); color: inherit; box-sh
 
 .eo-seo-progress { display: block; height: 6px; margin: 4px 0; overflow: hidden; border-radius: 3px; background: var(--eo-seo-subtle); }
 .eo-seo-progress span { display: block; height: 100%; border-radius: 3px; background: var(--eo-seo-good); }
+.eo-seo-progress--problem span { background: var(--eo-seo-problem); }
+.eo-seo-progress--improve span { background: var(--eo-seo-improve); }
 
 .eo-seo-callout {
 	display: flex;

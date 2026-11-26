@@ -232,57 +232,64 @@ msgstr "Le bilan SEO de tout le site. Chaque point mène à l’endroit où le c
 msgid "Site review"
 msgstr "Bilan du site"
 
-#: admin/views/dashboard.php:31
+#. translators: %d: number of points of the site review that are not good.
+#: admin/views/dashboard.php:37
+msgid "points OK · %d to fix below"
+msgid_plural "points OK · %d to fix below"
+msgstr[0] "points OK · %d à corriger ci-dessous"
+msgstr[1] "points OK · %d à corriger ci-dessous"
+
+#: admin/views/dashboard.php:38
 msgid "points OK"
 msgstr "points OK"
 
-#: admin/views/dashboard.php:37
+#: admin/views/dashboard.php:47
 msgid "published contents"
 msgstr "contenus publiés"
 
-#: admin/views/dashboard.php:47
+#: admin/views/dashboard.php:57
 msgid "Site scan"
 msgstr "Analyse du site"
 
 #. translators: 1: contents analyzed, 2: contents to analyze.
-#: admin/views/dashboard.php:52 assets/js/admin.js:103
+#: admin/views/dashboard.php:62 assets/js/admin.js:103
 msgid "Scan in progress: %1$d of %2$d contents."
 msgstr "Analyse en cours : %1$d contenus sur %2$d."
 
 #. translators: %d: number of contents.
-#: admin/views/dashboard.php:57
+#: admin/views/dashboard.php:67
 msgid "%d published content has not been analyzed yet."
 msgid_plural "%d published contents have not been analyzed yet."
 msgstr[0] "%d contenu publié n’a pas encore été analysé."
 msgstr[1] "%d contenus publiés n’ont pas encore été analysés."
 
 #. translators: %s: time since the last scan, e.g. "2 hours".
-#: admin/views/dashboard.php:62
+#: admin/views/dashboard.php:72
 msgid "Last complete scan %s ago. Duplicates and orphan pages are checked again every night and a few minutes after a change."
 msgstr "Dernière analyse complète il y a %s. Les doublons et les pages orphelines sont revérifiés chaque nuit et quelques minutes après une modification."
 
-#: admin/views/dashboard.php:65
+#: admin/views/dashboard.php:75
 msgid "Checks again every content against the others (duplicates, orphan pages, broken links)."
 msgstr "Revérifie chaque contenu par rapport aux autres (doublons, pages orphelines, liens cassés)."
 
 #. translators: %s: time until the next scan, e.g. "4 minutes".
-#: admin/views/dashboard.php:70
+#: admin/views/dashboard.php:80
 msgid "Next scan in %s, after the latest changes."
 msgstr "Prochaine analyse dans %s, après les dernières modifications."
 
-#: admin/views/dashboard.php:76
+#: admin/views/dashboard.php:86
 msgid "Scan the whole site"
 msgstr "Analyser tout le site"
 
-#: admin/views/dashboard.php:101
+#: admin/views/dashboard.php:111
 msgid "View"
 msgstr "Voir"
 
-#: admin/views/dashboard.php:102 admin/views/settings-indexing.php:23 admin/views/settings-indexing.php:61
+#: admin/views/dashboard.php:112 admin/views/settings-indexing.php:23 admin/views/settings-indexing.php:61
 msgid "(opens in a new tab)"
 msgstr "(s’ouvre dans un nouvel onglet)"
 
-#: admin/views/dashboard.php:106
+#: admin/views/dashboard.php:116
 msgid "Fix"
 msgstr "Corriger"
 

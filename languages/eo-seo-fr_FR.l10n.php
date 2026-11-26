@@ -60,6 +60,7 @@ return array (
     'To fix' => 'À corriger',
     'The SEO review of the whole site. Each point links to where you fix it.' => 'Le bilan SEO de tout le site. Chaque point mène à l’endroit où le corriger.',
     'Site review' => 'Bilan du site',
+    'points OK · %d to fix below' => 'points OK · %d à corriger ci-dessous' . "\0" . 'points OK · %d à corriger ci-dessous',
     'points OK' => 'points OK',
     'published contents' => 'contenus publiés',
     'Site scan' => 'Analyse du site',
