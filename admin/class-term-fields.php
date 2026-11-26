@@ -7,13 +7,13 @@
 
 namespace EoSeo\Admin;
 
-use EoSeo\Checks;
 use EoSeo\Compat;
 use EoSeo\Fields;
 use EoSeo\Meta;
 use EoSeo\Settings;
 use EoSeo\Term_Analysis;
 use EoSeo\Term_Checks;
+use EoSeo\Variables;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -49,17 +49,22 @@ final class Term_Fields {
 	 * @param \WP_Term $term Term.
 	 */
 	public static function render( \WP_Term $term ): void {
-		$fields = Fields::all();
-		$values = Fields::get_term_values( $term->term_id );
-		$preview = array(
-			'title'       => Meta::term_title( $term ),
-			'description' => Meta::term_description( $term ),
+		$fields   = Fields::all();
+		$template = Settings::template( 'taxonomy:' . $term->taxonomy );
+		$vars     = Variables::for_term( $term );
+		$link     = get_term_link( $term );
+		$preview  = array(
+			'title'                => Meta::term_title( $term ),
+			'description'          => Meta::term_description( $term ),
+			'url'                  => is_wp_error( $link ) ? '' : $link,
+			'title_template'       => Variables::replace( $template['title'], $vars ),
+			'description_template' => Variables::replace( $template['description'], $vars ),
 		);
-		$result  = Term_Checks::run( new Term_Analysis( $term ) );
-		$levels  = Checks::levels();
-		unset( $fields['focus_keyword'] );
+		unset( $fields['focus_keyword'] ); // No focus keyphrase for an archive.
 
-		include EO_SEO_DIR . 'admin/views/term-fields.php';
+		wp_nonce_field( 'eo_seo_term_' . $term->term_id, 'eo_seo_term_nonce' );
+		echo '<h2 class="eo-seo-box-title">' . esc_html__( 'SEO', 'eo-seo' ) . '</h2>';
+		Ui::seo_box( $fields, Fields::get_term_values( $term->term_id ), $preview, Term_Checks::run( new Term_Analysis( $term ) ), $term->name );
 	}
 
 	/**

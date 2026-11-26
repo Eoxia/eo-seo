@@ -36,6 +36,8 @@ final class Fields {
 	 */
 	public static function init(): void {
 		add_action( 'init', array( self::class, 'register_meta' ), 99 );
+		// Post types and taxonomies registered late (after init 99) by a theme or a plugin.
+		add_action( 'wp_loaded', array( self::class, 'register_meta' ) );
 	}
 
 	/**
@@ -122,6 +124,15 @@ final class Fields {
 	 * Declares the post and term metas (show_in_rest: the block editor saves them itself).
 	 */
 	public static function register_meta(): void {
+		Settings::flush();
+
+		foreach ( array_keys( Settings::post_types() ) as $post_type ) {
+			// Without "custom-fields", the REST API of a custom post type hides its metas: the editor could not save them.
+			if ( ! post_type_supports( $post_type, 'custom-fields' ) ) {
+				add_post_type_support( $post_type, 'custom-fields' );
+			}
+		}
+
 		foreach ( self::all() as $field ) {
 			$args = array(
 				'type'              => $field['type'],
@@ -132,6 +143,9 @@ final class Fields {
 			);
 
 			foreach ( array_keys( Settings::post_types() ) as $post_type ) {
+				if ( registered_meta_key_exists( 'post', $field['meta'], $post_type ) ) {
+					continue; // Called again on wp_loaded for the late post types.
+				}
 				register_post_meta(
 					$post_type,
 					$field['meta'],
@@ -142,6 +156,9 @@ final class Fields {
 			}
 
 			foreach ( array_keys( Settings::taxonomies() ) as $taxonomy ) {
+				if ( registered_meta_key_exists( 'term', $field['meta'], $taxonomy ) ) {
+					continue;
+				}
 				register_term_meta(
 					$taxonomy,
 					$field['meta'],
@@ -155,6 +172,9 @@ final class Fields {
 		// The indicator is computed by EO SEO: readable in the editor, never written through REST.
 		foreach ( array( self::STATUS_META, self::POINTS_META ) as $meta ) {
 			foreach ( array_keys( Settings::post_types() ) as $post_type ) {
+				if ( registered_meta_key_exists( 'post', $meta, $post_type ) ) {
+					continue;
+				}
 				register_post_meta(
 					$post_type,
 					$meta,

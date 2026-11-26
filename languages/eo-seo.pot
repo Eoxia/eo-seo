@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-26T16:23:02+00:00\n"
+"POT-Creation-Date: 2026-11-26T16:33:20+00:00\n"
 "X-Domain: eo-seo\n"
 
 #: admin/class-actions.php:53
@@ -59,44 +59,44 @@ msgid "You are not allowed to do this."
 msgstr ""
 
 #. Plugin Name of the plugin
-#: admin/class-admin.php:61 admin/views/partials/header.php:18 assets/js/editor.js:326 eo-seo.php
+#: admin/class-admin.php:63 admin/class-metabox.php:52 admin/views/partials/header.php:18 assets/js/editor.js:326 eo-seo.php
 msgid "EO SEO"
 msgstr ""
 
-#: admin/class-admin.php:62 admin/views/dashboard.php:24
+#: admin/class-admin.php:64 admin/views/dashboard.php:24
 msgid "SEO dashboard"
 msgstr ""
 
-#: admin/class-admin.php:62 admin/class-ui.php:28
+#: admin/class-admin.php:64 admin/class-ui.php:28
 msgid "Dashboard"
 msgstr ""
 
-#: admin/class-admin.php:63 admin/views/settings.php:21
+#: admin/class-admin.php:65 admin/views/settings.php:21
 msgid "SEO settings"
 msgstr ""
 
-#: admin/class-admin.php:63 admin/class-dashboard-page.php:28 admin/class-ui.php:32 blocks/breadcrumbs/index.js:21
+#: admin/class-admin.php:65 admin/class-dashboard-page.php:28 admin/class-ui.php:32 blocks/breadcrumbs/index.js:21
 msgid "Settings"
 msgstr ""
 
-#: admin/class-admin.php:64 admin/class-ui.php:36 admin/views/redirections.php:21 includes/class-proposals.php:443
+#: admin/class-admin.php:66 admin/class-ui.php:36 admin/views/redirections.php:21 includes/class-proposals.php:443
 msgid "Redirections"
 msgstr ""
 
-#: admin/class-admin.php:65 admin/class-ui.php:40 admin/views/not-found.php:19 includes/class-abilities.php:122 includes/class-site-audit.php:186
+#: admin/class-admin.php:67 admin/class-ui.php:40 admin/views/not-found.php:19 includes/class-abilities.php:122 includes/class-site-audit.php:186
 msgid "404 errors"
 msgstr ""
 
-#: admin/class-admin.php:70 admin/class-ui.php:48
+#: admin/class-admin.php:72 admin/class-ui.php:48
 msgid "Proposals"
 msgstr ""
 
-#: admin/class-admin.php:72 admin/views/proposals.php:18 includes/class-proposals.php:46
+#: admin/class-admin.php:74 admin/views/proposals.php:18 includes/class-proposals.php:46
 msgid "SEO proposals"
 msgstr ""
 
 #. translators: %s: plugin names.
-#: admin/class-admin.php:123
+#: admin/class-admin.php:127
 #, php-format
 msgid "%s is active: EO SEO adds nothing on the front (tags, sitemap, robots.txt, structured data) and hides its editor panel. Redirections and the 404 log keep working."
 msgstr ""
@@ -109,7 +109,7 @@ msgstr ""
 msgid "Contents"
 msgstr ""
 
-#: admin/class-list-column.php:56 admin/views/term-fields.php:17 includes/class-abilities.php:34
+#: admin/class-list-column.php:56 admin/class-term-fields.php:66 includes/class-abilities.php:34
 msgid "SEO"
 msgstr ""
 
@@ -278,7 +278,7 @@ msgid "Site scan"
 msgstr ""
 
 #. translators: 1: contents analyzed, 2: contents to analyze.
-#: admin/views/dashboard.php:62 assets/js/admin.js:103
+#: admin/views/dashboard.php:62 assets/js/admin.js:137
 #, php-format
 msgid "Scan in progress: %1$d of %2$d contents."
 msgstr ""
@@ -329,7 +329,7 @@ msgstr ""
 msgid "· %s points OK"
 msgstr ""
 
-#: admin/views/list-badge.php:34 admin/views/term-fields.php:24 assets/js/editor.js:201
+#: admin/views/list-badge.php:34 admin/views/partials/seo-box.php:34 admin/views/partials/seo-box.php:91 assets/js/editor.js:201
 msgid "Hidden from search engines: nothing to check."
 msgstr ""
 
@@ -414,6 +414,44 @@ msgstr ""
 #: admin/views/partials/header.php:21
 msgid "EO SEO screens"
 msgstr ""
+
+#. translators: 1: number of checks passed, 2: number of checks.
+#: admin/views/partials/seo-box.php:38 assets/js/editor.js:206
+#, php-format
+msgid "%1$d/%2$d points OK"
+msgstr ""
+
+#: admin/views/partials/seo-box.php:40
+msgid "updated when you save"
+msgstr ""
+
+#: admin/views/partials/seo-box.php:48 assets/js/editor.js:175
+msgid "Search result preview"
+msgstr ""
+
+#: admin/views/partials/seo-box.php:55 assets/js/editor.js:336
+msgid "Search engines"
+msgstr ""
+
+#: admin/views/partials/seo-box.php:66 assets/js/editor.js:338
+msgid "Social sharing"
+msgstr ""
+
+#: admin/views/partials/seo-box.php:77 assets/js/editor.js:339
+msgid "Advanced"
+msgstr ""
+
+#: admin/views/partials/seo-box.php:88 admin/views/partials/seo-box.php:89 assets/js/editor.js:337
+msgid "Checks"
+msgstr ""
+
+#. translators: %d: number of checks.
+#: admin/views/partials/seo-box.php:108 assets/js/editor.js:250
+#, php-format
+msgid "%d point OK"
+msgid_plural "%d points OK"
+msgstr[0] ""
+msgstr[1] ""
 
 #. translators: %d: number of days.
 #: admin/views/proposals.php:21
@@ -799,27 +837,25 @@ msgstr ""
 msgid "Save the changes"
 msgstr ""
 
-#. translators: 1: number of checks passed, 2: number of checks.
-#: admin/views/term-fields.php:29 assets/js/editor.js:206
-#, php-format
-msgid "%1$d/%2$d points OK"
+#: assets/js/admin.js:67 assets/js/editor.js:75
+msgid "Empty: the template writes it automatically (grey text). Write your own."
 msgstr ""
 
-#: admin/views/term-fields.php:45 assets/js/editor.js:175
-msgid "Search result preview"
+#: assets/js/admin.js:68 assets/js/editor.js:76
+msgid "Empty."
 msgstr ""
 
 #. translators: 1: number of characters, 2: minimum, 3: maximum.
-#: assets/js/admin.js:57 assets/js/editor.js:91
+#: assets/js/admin.js:73 assets/js/editor.js:91
 #, php-format
 msgid "%1$d characters (recommended: %2$d to %3$d)"
 msgstr ""
 
-#: assets/js/admin.js:117
+#: assets/js/admin.js:151
 msgid "Scan finished. Updating the figures…"
 msgstr ""
 
-#: assets/js/admin.js:122
+#: assets/js/admin.js:156
 msgid "The scan could not continue from this page: it goes on in the background."
 msgstr ""
 
@@ -831,14 +867,6 @@ msgstr ""
 msgid "Readability"
 msgstr ""
 
-#: assets/js/editor.js:75
-msgid "Empty: the template writes it automatically (grey text). Write your own."
-msgstr ""
-
-#: assets/js/editor.js:76
-msgid "Empty."
-msgstr ""
-
 #: assets/js/editor.js:140
 msgid "Replace the image"
 msgstr ""
@@ -848,30 +876,6 @@ msgstr ""
 #, php-format
 msgid "EO SEO: %s"
 msgstr ""
-
-#: assets/js/editor.js:336
-msgid "Search engines"
-msgstr ""
-
-#: assets/js/editor.js:337
-msgid "Checks"
-msgstr ""
-
-#: assets/js/editor.js:338
-msgid "Social sharing"
-msgstr ""
-
-#: assets/js/editor.js:339
-msgid "Advanced"
-msgstr ""
-
-#. translators: %d: number of checks.
-#: assets/js/editor.js:250
-#, php-format
-msgid "%d point OK"
-msgid_plural "%d points OK"
-msgstr[0] ""
-msgstr[1] ""
 
 #: blocks/breadcrumbs/block.json
 msgctxt "block title"
@@ -995,12 +999,12 @@ msgid "Home"
 msgstr ""
 
 #. translators: %s: searched words.
-#: includes/class-breadcrumbs.php:79
+#: includes/class-breadcrumbs.php:86
 #, php-format
 msgid "Search results for \"%s\""
 msgstr ""
 
-#: includes/class-breadcrumbs.php:84
+#: includes/class-breadcrumbs.php:91
 msgid "Page not found"
 msgstr ""
 
@@ -1046,7 +1050,7 @@ msgstr ""
 msgid "No other content has this SEO title."
 msgstr ""
 
-#: includes/class-checks.php:78 includes/class-fields.php:64 includes/class-term-checks.php:75
+#: includes/class-checks.php:78 includes/class-fields.php:66 includes/class-term-checks.php:75
 msgid "Meta description"
 msgstr ""
 
@@ -1080,7 +1084,7 @@ msgstr ""
 msgid "No other content has this meta description."
 msgstr ""
 
-#: includes/class-checks.php:114 includes/class-fields.php:73
+#: includes/class-checks.php:114 includes/class-fields.php:75
 msgid "Focus keyphrase"
 msgstr ""
 
@@ -1166,7 +1170,7 @@ msgstr ""
 msgid "%d words: aim for at least 300."
 msgstr ""
 
-#: includes/class-checks.php:172 includes/class-fields.php:87
+#: includes/class-checks.php:172 includes/class-fields.php:89
 msgid "Canonical URL"
 msgstr ""
 
@@ -1338,56 +1342,56 @@ msgstr ""
 msgid "The keyphrase is missing."
 msgstr ""
 
-#: includes/class-fields.php:55
+#: includes/class-fields.php:57
 msgid "SEO title"
 msgstr ""
 
-#: includes/class-fields.php:56
+#: includes/class-fields.php:58
 msgid "Title shown by search engines. Leave empty to use the template."
 msgstr ""
 
-#: includes/class-fields.php:65
+#: includes/class-fields.php:67
 msgid "Summary shown under the title in search results. Leave empty to use the template (beginning of the text)."
 msgstr ""
 
-#: includes/class-fields.php:74
+#: includes/class-fields.php:76
 msgid "The search query this page should rank for."
 msgstr ""
 
-#: includes/class-fields.php:80
+#: includes/class-fields.php:82
 msgid "Hide from search engines (noindex)"
 msgstr ""
 
-#: includes/class-fields.php:88
+#: includes/class-fields.php:90
 msgid "Only if this page duplicates another one."
 msgstr ""
 
-#: includes/class-fields.php:94
+#: includes/class-fields.php:96
 msgid "Social title"
 msgstr ""
 
-#: includes/class-fields.php:95
+#: includes/class-fields.php:97
 msgid "Title when the page is shared. Defaults to the SEO title."
 msgstr ""
 
-#: includes/class-fields.php:101
+#: includes/class-fields.php:103
 msgid "Social description"
 msgstr ""
 
-#: includes/class-fields.php:102
+#: includes/class-fields.php:104
 msgid "Defaults to the meta description."
 msgstr ""
 
-#: includes/class-fields.php:108
+#: includes/class-fields.php:110
 msgid "Social image"
 msgstr ""
 
-#: includes/class-fields.php:109
+#: includes/class-fields.php:111
 msgid "Defaults to the featured image, then to the default image of the site."
 msgstr ""
 
 #. translators: 1: minimum length, 2: maximum length.
-#: includes/class-fields.php:272
+#: includes/class-fields.php:292
 #, php-format
 msgid "Recommended length: %1$d to %2$d characters."
 msgstr ""
@@ -1502,7 +1506,7 @@ msgstr ""
 msgid "Line %1$d: %2$s"
 msgstr ""
 
-#: includes/class-settings.php:61
+#: includes/class-settings.php:64
 msgid "EO SEO settings."
 msgstr ""
 

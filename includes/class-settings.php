@@ -47,6 +47,9 @@ final class Settings {
 		add_action( 'init', array( self::class, 'register' ) );
 		add_action( 'update_option_' . self::OPTION, array( self::class, 'flush' ) );
 		add_action( 'add_option_' . self::OPTION, array( self::class, 'flush' ) );
+		// The defaults depend on the registered post types and taxonomies.
+		add_action( 'registered_post_type', array( self::class, 'flush' ) );
+		add_action( 'registered_taxonomy', array( self::class, 'flush' ) );
 	}
 
 	/**
@@ -79,6 +82,7 @@ final class Settings {
 	 * @return \WP_Post_Type[] Keyed by name.
 	 */
 	public static function post_types(): array {
+		// Every public post type with an admin screen: pages, posts and the custom post types (products, events…).
 		$types = get_post_types(
 			array(
 				'public'  => true,
@@ -88,7 +92,12 @@ final class Settings {
 		);
 		unset( $types['attachment'] );
 
-		return $types;
+		/**
+		 * Filters the post types handled by EO SEO (fields, indicator, sitemap, settings).
+		 *
+		 * @param \WP_Post_Type[] $types Post types keyed by name.
+		 */
+		return array_filter( (array) apply_filters( 'eo_seo_post_types', $types ), static fn( $type ) => $type instanceof \WP_Post_Type );
 	}
 
 	/**
@@ -106,7 +115,12 @@ final class Settings {
 		);
 		unset( $taxonomies['post_format'] );
 
-		return $taxonomies;
+		/**
+		 * Filters the taxonomies handled by EO SEO (fields, indicator, sitemap, settings).
+		 *
+		 * @param \WP_Taxonomy[] $taxonomies Taxonomies keyed by name.
+		 */
+		return array_filter( (array) apply_filters( 'eo_seo_taxonomies', $taxonomies ), static fn( $taxonomy ) => $taxonomy instanceof \WP_Taxonomy );
 	}
 
 	/**

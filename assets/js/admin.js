@@ -44,26 +44,60 @@
 		} );
 	} );
 
-	// Character counters (term screen).
+	// Length gauges of the SEO box: they measure only what is typed (an empty field uses the template).
 	document.querySelectorAll( '[data-eo-seo-counter]' ).forEach( ( field ) => {
 		const [ min, max ] = field.dataset.eoSeoCounter.split( ',' ).map( Number );
-		const output = document.createElement( 'span' );
-		output.className = 'eo-seo-counter';
-		field.after( output );
+		const meter = document.createElement( 'div' );
+		const bar = document.createElement( 'span' );
+		const fill = document.createElement( 'span' );
+		const text = document.createElement( 'span' );
+		meter.className = 'eo-seo-meter';
+		bar.className = 'eo-seo-meter__bar';
+		text.className = 'eo-seo-meter__text';
+		bar.append( fill );
+		meter.append( bar, text );
+		field.after( meter );
 
 		const update = () => {
 			const length = field.value.length;
-			output.textContent = sprintf(
+			fill.style.width = Math.min( 100, ( 100 * length ) / max ) + '%';
+			meter.className = 'eo-seo-meter';
+			if ( ! length ) {
+				text.textContent = field.placeholder
+					? __( 'Empty: the template writes it automatically (grey text). Write your own.', 'eo-seo' )
+					: __( 'Empty.', 'eo-seo' );
+				return;
+			}
+			meter.classList.add( length < min || length > max ? 'eo-seo-meter--bad' : 'eo-seo-meter--good' );
+			text.textContent = sprintf(
 				/* translators: 1: number of characters, 2: minimum, 3: maximum. */
 				__( '%1$d characters (recommended: %2$d to %3$d)', 'eo-seo' ),
 				length,
 				min,
 				max
 			);
-			output.classList.toggle( 'is-bad', length > 0 && ( length < min || length > max ) );
 		};
 		field.addEventListener( 'input', update );
 		update();
+	} );
+
+	// Live Google preview of the SEO box: what is typed, else the value of the template.
+	document.querySelectorAll( '[data-eo-seo-box]' ).forEach( ( box ) => {
+		const vars = { sitename: box.dataset.sitename, sep: box.dataset.sep, title: box.dataset.title, term: box.dataset.title };
+		const render = ( value ) =>
+			value
+				.replace( /%([a-z_]+)%/g, ( match, name ) => ( name in vars ? vars[ name ] : '' ) )
+				.replace( /\s+/g, ' ' )
+				.trim();
+
+		box.querySelectorAll( '[data-eo-seo-preview]' ).forEach( ( field ) => {
+			const target = box.querySelector( '[data-eo-seo-serp="' + field.dataset.eoSeoPreview + '"]' );
+			if ( target ) {
+				field.addEventListener( 'input', () => {
+					target.textContent = render( field.value || field.placeholder );
+				} );
+			}
+		} );
 	} );
 
 	// Template variables: a click inserts the variable in the last focused template field.

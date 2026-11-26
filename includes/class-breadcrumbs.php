@@ -58,11 +58,18 @@ final class Breadcrumbs {
 				if ( $categories ) {
 					$items = array_merge( $items, self::term_trail( $categories[0] ) );
 				}
-			} elseif ( $type && $type->has_archive ) {
-				$items[] = array(
-					'name' => (string) $type->labels->name,
-					'url'  => (string) get_post_type_archive_link( $type->name ),
-				);
+			} elseif ( $type ) {
+				if ( $type->has_archive ) {
+					$items[] = array(
+						'name' => (string) $type->labels->name,
+						'url'  => (string) get_post_type_archive_link( $type->name ),
+					);
+				}
+				// Custom post types: their first category-like taxonomy (products › product category…).
+				$term = self::primary_term( $object );
+				if ( $term ) {
+					$items = array_merge( $items, self::term_trail( $term ) );
+				}
 			}
 
 			foreach ( array_reverse( get_post_ancestors( $object ) ) as $ancestor ) {
@@ -110,6 +117,29 @@ final class Breadcrumbs {
 			'name' => wp_strip_all_tags( get_the_title( $post_id ) ),
 			'url'  => (string) get_permalink( $post_id ),
 		);
+	}
+
+	/**
+	 * Main term of a custom content: first term of its first public hierarchical taxonomy.
+	 *
+	 * @param \WP_Post $post Content.
+	 */
+	private static function primary_term( \WP_Post $post ): ?\WP_Term {
+		if ( is_post_type_hierarchical( $post->post_type ) ) {
+			return null; // Pages and page-like types use their parents.
+		}
+
+		foreach ( get_object_taxonomies( $post->post_type, 'objects' ) as $taxonomy ) {
+			if ( ! $taxonomy->hierarchical || ! $taxonomy->public ) {
+				continue;
+			}
+			$terms = get_the_terms( $post, $taxonomy->name );
+			if ( $terms && ! is_wp_error( $terms ) ) {
+				return $terms[0];
+			}
+		}
+
+		return null;
 	}
 
 	/**

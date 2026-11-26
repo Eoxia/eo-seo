@@ -66,6 +66,39 @@ final class Ui {
 	}
 
 	/**
+	 * Prints one SEO field of the SEO box (input named eo_seo[name]).
+	 *
+	 * @param string               $name        Field name.
+	 * @param array<string, mixed> $field       Field definition.
+	 * @param mixed                $value       Value.
+	 * @param string               $placeholder Value given by the template when the field is empty.
+	 */
+	public static function field( string $name, array $field, mixed $value, string $placeholder = '' ): void {
+		$id    = 'eo-seo-field-' . $name;
+		$input = 'eo_seo[' . $name . ']';
+		include EO_SEO_DIR . 'admin/views/partials/field.php';
+	}
+
+	/**
+	 * Prints the SEO box of a content or a term.
+	 *
+	 * @param array<string, array<string, mixed>> $fields  Fields shown.
+	 * @param array<string, mixed>                $values  Values.
+	 * @param array<string, string>               $preview Resolved title, description and address.
+	 * @param array<string, mixed>                $result  Indicator and checks.
+	 * @param string                              $title   Title of the content or name of the term (live preview).
+	 */
+	public static function seo_box( array $fields, array $values, array $preview, array $result, string $title ): void {
+		$levels = \EoSeo\Checks::levels();
+		$vars   = array(
+			'sitename' => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
+			'sep'      => (string) \EoSeo\Settings::get( 'separator' ),
+			'title'    => $title,
+		);
+		include EO_SEO_DIR . 'admin/views/partials/seo-box.php';
+	}
+
+	/**
 	 * Prints a toggle switch (a styled checkbox).
 	 *
 	 * @param string $name    Input name.

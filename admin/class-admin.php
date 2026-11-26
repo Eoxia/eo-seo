@@ -10,6 +10,7 @@ namespace EoSeo\Admin;
 use EoSeo\Compat;
 use EoSeo\Not_Found_Log;
 use EoSeo\Proposals;
+use EoSeo\Settings;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -38,6 +39,7 @@ final class Admin {
 		if ( ! Compat::has_conflict() ) {
 			List_Column::init();
 			Editor::init();
+			Metabox::init();
 		}
 	}
 
@@ -81,14 +83,16 @@ final class Admin {
 		$screen  = get_current_screen();
 		$ours    = in_array( $hook, self::$screens, true );
 		$listing = $screen && in_array( $screen->base, array( 'edit', 'term', 'edit-tags' ), true );
+		// Classic editor: the SEO box is a metabox (the block editor has its own sidebar script).
+		$classic = $screen && 'post' === $screen->base && ! $screen->is_block_editor() && isset( Settings::post_types()[ $screen->post_type ] );
 
-		if ( ! $ours && ! $listing ) {
+		if ( ! $ours && ! $listing && ! $classic ) {
 			return;
 		}
 
 		wp_enqueue_style( 'eo-seo-admin', EO_SEO_URL . 'assets/css/admin.css', array(), EO_SEO_VERSION );
 
-		if ( $ours || ( $screen && 'term' === $screen->base ) ) {
+		if ( $ours || $classic || ( $screen && 'term' === $screen->base ) ) {
 			wp_enqueue_media();
 			wp_enqueue_script( 'eo-seo-admin', EO_SEO_URL . 'assets/js/admin.js', array( 'wp-api-fetch', 'wp-i18n' ), EO_SEO_VERSION, true );
 			wp_set_script_translations( 'eo-seo-admin', 'eo-seo', EO_SEO_DIR . 'languages' );
