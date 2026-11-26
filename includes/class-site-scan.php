@@ -55,6 +55,21 @@ final class Site_Scan {
 		add_action( 'wp_after_insert_post', array( self::class, 'on_save' ), 30, 4 );
 		add_action( 'deleted_post', array( self::class, 'on_delete' ) );
 		add_action( 'trashed_post', array( self::class, 'on_delete' ) );
+		add_action( 'saved_term', array( self::class, 'on_term_change' ), 30, 3 );
+		add_action( 'delete_term', array( self::class, 'on_term_change' ), 30, 3 );
+	}
+
+	/**
+	 * A term was saved or deleted: the terms it no longer shares a title with are fixed by the next scan.
+	 *
+	 * @param int    $term_id  Term ID.
+	 * @param int    $tt_id    Term taxonomy ID.
+	 * @param string $taxonomy Taxonomy.
+	 */
+	public static function on_term_change( int $term_id, int $tt_id, string $taxonomy ): void {
+		if ( isset( Settings::taxonomies()[ $taxonomy ] ) ) {
+			self::schedule_after_change();
+		}
 	}
 
 	/**
@@ -72,9 +87,9 @@ final class Site_Scan {
 	/**
 	 * State of the scan.
 	 *
-	 * @return array{status: string, last_id: int, done: int, total: int, started: int, finished: int, scheduled: int}
-	 *         status: idle or running; finished: time of the last complete scan (0: never);
-	 *         scheduled: time of the next scan planned after a change (0: none).
+	 * @return array{status: string, phase: string, last_id: int, done: int, total: int, started: int, finished: int, scheduled: int}
+	 *         status: idle or running; phase: posts, then terms; last_id: last post or term ID handled in the phase;
+	 *         finished: time of the last complete scan (0: never); scheduled: time of the next scan planned after a change (0: none).
 	 */
 	public static function state(): array {
 		$state = get_option( self::OPTION, array() );
@@ -82,6 +97,7 @@ final class Site_Scan {
 			is_array( $state ) ? $state : array(),
 			array(
 				'status'   => 'idle',
+				'phase'    => 'posts',
 				'last_id'  => 0,
 				'done'     => 0,
 				'total'    => 0,
@@ -128,9 +144,10 @@ final class Site_Scan {
 			$state,
 			array(
 				'status'  => 'running',
+				'phase'   => 'posts',
 				'last_id' => 0,
 				'done'    => 0,
-				'total'   => self::count_contents(),
+				'total'   => self::count_contents() + self::count_terms(),
 				'started' => time(),
 			)
 		);
@@ -169,21 +186,31 @@ final class Site_Scan {
 		}
 		set_transient( self::LOCK, 1, MINUTE_IN_SECONDS );
 
-		$ids = self::next_ids( (int) $state['last_id'], self::BATCH_SIZE );
+		$terms = 'terms' === $state['phase'];
+		$ids   = $terms ? self::next_term_ids( (int) $state['last_id'], self::BATCH_SIZE ) : self::next_ids( (int) $state['last_id'], self::BATCH_SIZE );
 		foreach ( $ids as $id ) {
-			$post = get_post( $id );
-			if ( $post ) {
-				Status::refresh( $post );
+			$item = $terms ? get_term( $id ) : get_post( $id );
+			if ( $item instanceof \WP_Term ) {
+				Status::refresh_term( $item );
+			} elseif ( $item instanceof \WP_Post ) {
+				Status::refresh( $item );
 			}
 			$state['last_id'] = $id;
 			++$state['done'];
 		}
 
 		if ( count( $ids ) < self::BATCH_SIZE ) {
-			$state['status']   = 'idle';
-			$state['finished'] = time();
-			$state['done']     = max( $state['done'], $state['total'] );
-			wp_clear_scheduled_hook( self::BATCH_HOOK );
+			if ( ! $terms ) {
+				// Contents done: the terms come next.
+				$state['phase']   = 'terms';
+				$state['last_id'] = 0;
+			} else {
+				$state['status']   = 'idle';
+				$state['phase']    = 'posts';
+				$state['finished'] = time();
+				$state['done']     = max( $state['done'], $state['total'] );
+				wp_clear_scheduled_hook( self::BATCH_HOOK );
+			}
 		}
 
 		unset( $state['scheduled'] );
@@ -217,6 +244,12 @@ final class Site_Scan {
 			if ( $related && 'publish' === $related->post_status ) {
 				Status::refresh( $related );
 			}
+		}
+
+		// Its categories and tags: their number of contents may have changed (thin archive).
+		$terms = wp_get_object_terms( $post->ID, array_keys( Settings::taxonomies() ) );
+		foreach ( is_wp_error( $terms ) ? array() : $terms as $term ) {
+			Status::refresh_term( $term );
 		}
 
 		self::schedule_after_change();
@@ -292,6 +325,45 @@ final class Site_Scan {
 		}
 
 		return $total;
+	}
+
+	/**
+	 * Number of terms of the handled taxonomies.
+	 */
+	private static function count_terms(): int {
+		$taxonomies = array_keys( Settings::taxonomies() );
+		if ( ! $taxonomies ) {
+			return 0;
+		}
+
+		$count = wp_count_terms(
+			array(
+				'taxonomy'   => $taxonomies,
+				'hide_empty' => false,
+			)
+		);
+
+		return is_wp_error( $count ) ? 0 : (int) $count;
+	}
+
+	/**
+	 * IDs of the next terms of the handled taxonomies.
+	 *
+	 * @param int $after Last term ID handled.
+	 * @param int $limit Number of IDs.
+	 * @return int[]
+	 */
+	private static function next_term_ids( int $after, int $limit ): array {
+		global $wpdb;
+
+		$taxonomies = array_keys( Settings::taxonomies() );
+		if ( ! $taxonomies ) {
+			return array();
+		}
+
+		$placeholders = implode( ',', array_fill( 0, count( $taxonomies ), '%s' ) );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- One placeholder per taxonomy; paginated on the primary key.
+		return array_map( 'intval', $wpdb->get_col( $wpdb->prepare( "SELECT term_id FROM {$wpdb->term_taxonomy} WHERE taxonomy IN ({$placeholders}) AND term_id > %d ORDER BY term_id ASC LIMIT %d", ...array_merge( $taxonomies, array( $after, $limit ) ) ) ) );
 	}
 
 	/**

@@ -10,6 +10,7 @@
  * @var array<int, array{severity: string, label: string, message: string}> $issues Failed checks shown.
  * @var int                                                            $more       Failed checks not shown.
  * @var string                                                         $tooltip_id Tooltip ID.
+ * @var string                                                         $unknown_hint Text when the indicator was never computed.
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -28,13 +29,13 @@ defined( 'ABSPATH' ) || exit;
 			<?php endif; ?>
 		</span>
 		<?php if ( 'unknown' === $level ) : ?>
-			<span class="eo-seo-tip__line"><?php esc_html_e( 'Save the content to analyze it.', 'eo-seo' ); ?></span>
+			<span class="eo-seo-tip__line"><?php echo esc_html( $unknown_hint ); ?></span>
 		<?php elseif ( 'noindex' === $level ) : ?>
 			<span class="eo-seo-tip__line"><?php esc_html_e( 'Hidden from search engines: nothing to check.', 'eo-seo' ); ?></span>
 		<?php elseif ( ! $issues && 'good' === $level ) : ?>
 			<span class="eo-seo-tip__line"><?php esc_html_e( 'Every check passes.', 'eo-seo' ); ?></span>
 		<?php elseif ( ! $issues ) : ?>
-			<span class="eo-seo-tip__line"><?php esc_html_e( 'Open the content to see the points to fix.', 'eo-seo' ); ?></span>
+			<span class="eo-seo-tip__line"><?php esc_html_e( 'Open it to see the points to fix.', 'eo-seo' ); ?></span>
 		<?php endif; ?>
 		<?php foreach ( $issues as $eo_seo_issue ) : ?>
 			<span class="eo-seo-tip__line eo-seo-tip__line--<?php echo esc_attr( $eo_seo_issue['severity'] ); ?>">
@@ -46,7 +47,7 @@ defined( 'ABSPATH' ) || exit;
 			<span class="eo-seo-tip__line">
 				<?php
 				/* translators: %d: number of other points to fix. */
-				echo esc_html( sprintf( _n( 'And %d other point: open the content.', 'And %d other points: open the content.', $more, 'eo-seo' ), $more ) );
+				echo esc_html( sprintf( _n( 'And %d other point: open it to see them all.', 'And %d other points: open it to see them all.', $more, 'eo-seo' ), $more ) );
 				?>
 			</span>
 		<?php endif; ?>

@@ -78,7 +78,7 @@ msgstr "Réglages"
 msgid "Redirections"
 msgstr "Redirections"
 
-#: admin/class-admin.php:65 admin/class-ui.php:40 admin/views/not-found.php:19 includes/class-abilities.php:113 includes/class-site-audit.php:186
+#: admin/class-admin.php:65 admin/class-ui.php:40 admin/views/not-found.php:19 includes/class-abilities.php:122 includes/class-site-audit.php:186
 msgid "404 errors"
 msgstr "Erreurs 404"
 
@@ -103,21 +103,38 @@ msgstr "Indexation"
 msgid "Contents"
 msgstr "Contenus"
 
-#: admin/class-list-column.php:48 admin/views/term-fields.php:15 includes/class-abilities.php:34
+#: admin/class-list-column.php:56 admin/views/term-fields.php:17 includes/class-abilities.php:34
 msgid "SEO"
 msgstr "SEO"
 
-#: admin/class-list-column.php:70 assets/js/editor.js:320
+#: admin/class-list-column.php:75
+msgid "Save the content to analyze it."
+msgstr "Enregistrez le contenu pour l’analyser."
+
+#: admin/class-list-column.php:94
+msgid "Save the term, or scan the site from the EO SEO dashboard."
+msgstr "Enregistrez le terme, ou lancez l’analyse du site depuis le tableau de bord d’EO SEO."
+
+#: admin/class-list-column.php:112 assets/js/editor.js:320
 msgid "Not analyzed yet"
 msgstr "Pas encore analysé"
 
-#: admin/class-list-column.php:99
+#: admin/class-list-column.php:140
 msgid "Filter by SEO indicator"
 msgstr "Filtrer par indicateur SEO"
 
-#: admin/class-list-column.php:101
+#: admin/class-list-column.php:142
 msgid "All SEO levels"
 msgstr "Tous les niveaux SEO"
+
+#. translators: 1: SEO level, 2: link to show every term.
+#: admin/class-list-column.php:205
+msgid "Only the terms with the SEO level \"%1$s\" are shown. %2$s"
+msgstr "Seuls les termes de niveau SEO « %1$s » sont affichés. %2$s"
+
+#: admin/class-list-column.php:207
+msgid "Show all"
+msgstr "Tout afficher"
 
 #: admin/class-media-field.php:29 admin/class-media-field.php:31 assets/js/admin.js:19 assets/js/editor.js:140
 msgid "Choose an image"
@@ -294,32 +311,28 @@ msgid "Fix"
 msgstr "Corriger"
 
 #. translators: %s: points, as "17/23".
-#: admin/views/list-badge.php:26
+#: admin/views/list-badge.php:27
 msgid "· %s points OK"
 msgstr "· %s points OK"
 
-#: admin/views/list-badge.php:31
-msgid "Save the content to analyze it."
-msgstr "Enregistrez le contenu pour l’analyser."
-
-#: admin/views/list-badge.php:33 assets/js/editor.js:201
+#: admin/views/list-badge.php:34 admin/views/term-fields.php:24 assets/js/editor.js:201
 msgid "Hidden from search engines: nothing to check."
 msgstr "Masqué aux moteurs de recherche : rien à vérifier."
 
-#: admin/views/list-badge.php:35
+#: admin/views/list-badge.php:36
 msgid "Every check passes."
 msgstr "Toutes les vérifications sont bonnes."
 
-#: admin/views/list-badge.php:37
-msgid "Open the content to see the points to fix."
-msgstr "Ouvrez le contenu pour voir les points à corriger."
+#: admin/views/list-badge.php:38
+msgid "Open it to see the points to fix."
+msgstr "Ouvrez-le pour voir les points à corriger."
 
 #. translators: %d: number of other points to fix.
-#: admin/views/list-badge.php:49
-msgid "And %d other point: open the content."
-msgid_plural "And %d other points: open the content."
-msgstr[0] "Et %d autre point : ouvrez le contenu."
-msgstr[1] "Et %d autres points : ouvrez le contenu."
+#: admin/views/list-badge.php:50
+msgid "And %d other point: open it to see them all."
+msgid_plural "And %d other points: open it to see them all."
+msgstr[0] "Et %d autre point : ouvrez-le pour tout voir."
+msgstr[1] "Et %d autres points : ouvrez-le pour tout voir."
 
 #: admin/views/not-found.php:19
 msgid "Addresses requested by visitors or search engines that do not exist. Vulnerability probes and scripts are not logged, nor any IP address."
@@ -767,7 +780,12 @@ msgstr "Sections des réglages"
 msgid "Save the changes"
 msgstr "Enregistrer les modifications"
 
-#: admin/views/term-fields.php:17 assets/js/editor.js:175
+#. translators: 1: number of checks passed, 2: number of checks.
+#: admin/views/term-fields.php:29 assets/js/editor.js:206
+msgid "%1$d/%2$d points OK"
+msgstr "%1$d/%2$d points OK"
+
+#: admin/views/term-fields.php:45 assets/js/editor.js:175
 msgid "Search result preview"
 msgstr "Aperçu dans les résultats de recherche"
 
@@ -803,11 +821,6 @@ msgstr "Vide."
 #: assets/js/editor.js:140
 msgid "Replace the image"
 msgstr "Remplacer l’image"
-
-#. translators: 1: number of checks passed, 2: number of checks.
-#: assets/js/editor.js:206
-msgid "%1$d/%2$d points OK"
-msgstr "%1$d/%2$d points OK"
 
 #. translators: %s: SEO level (Good, Needs improvement…).
 #: assets/js/editor.js:318
@@ -895,62 +908,62 @@ msgid "Reads the SEO audit of one content."
 msgstr "Lit l’audit SEO d’un contenu."
 
 #: includes/class-abilities.php:85
-msgid "Contents per SEO level"
-msgstr "Contenus par niveau SEO"
+msgid "SEO issues"
+msgstr "Problèmes SEO"
 
-#: includes/class-abilities.php:108
-msgid "Lists the contents in red or orange with their failed checks."
-msgstr "Liste les contenus en rouge ou en orange, avec leurs points à corriger."
+#: includes/class-abilities.php:117
+msgid "Lists the contents and terms in red or orange with their failed checks, and the images without alternative text."
+msgstr "Liste les contenus et les termes en rouge ou en orange avec leurs points à corriger, et les images sans texte alternatif."
 
-#: includes/class-abilities.php:127
+#: includes/class-abilities.php:136
 msgid "Reads the 404 log of EO SEO."
 msgstr "Lit le journal 404 d’EO SEO."
 
-#: includes/class-abilities.php:132
+#: includes/class-abilities.php:141
 msgid "EO SEO settings"
 msgstr "Réglages d’EO SEO"
 
-#: includes/class-abilities.php:141
+#: includes/class-abilities.php:150
 msgid "Reads the EO SEO settings."
 msgstr "Lit les réglages d’EO SEO."
 
-#: includes/class-abilities.php:146
+#: includes/class-abilities.php:155
 msgid "SEO fields of a draft"
 msgstr "Champs SEO d’un brouillon"
 
-#: includes/class-abilities.php:162
+#: includes/class-abilities.php:171
 msgid "Writes the SEO fields of unpublished drafts only."
 msgstr "Écrit les champs SEO des brouillons non publiés uniquement."
 
-#: includes/class-abilities.php:167
+#: includes/class-abilities.php:176
 msgid "Propose SEO fields"
 msgstr "Proposer des champs SEO"
 
-#: includes/class-abilities.php:201
+#: includes/class-abilities.php:210
 msgid "Prepares changes of the SEO fields of published contents, applied by a human."
 msgstr "Prépare des modifications des champs SEO de contenus publiés, appliquées par un humain."
 
-#: includes/class-abilities.php:206
+#: includes/class-abilities.php:215
 msgid "Propose redirections"
 msgstr "Proposer des redirections"
 
-#: includes/class-abilities.php:240
+#: includes/class-abilities.php:249
 msgid "Prepares redirections, created once a human applies them."
 msgstr "Prépare des redirections, créées quand un humain les applique."
 
-#: includes/class-abilities.php:442
+#: includes/class-abilities.php:561
 msgid "You are not allowed to edit this content."
 msgstr "Vous n’avez pas le droit de modifier ce contenu."
 
-#: includes/class-abilities.php:473
+#: includes/class-abilities.php:592
 msgid "You are not allowed to edit this item."
 msgstr "Vous n’avez pas le droit de modifier cet élément."
 
-#: includes/class-abilities.php:541 includes/class-rest.php:95
+#: includes/class-abilities.php:660 includes/class-rest.php:95
 msgid "Content not found."
 msgstr "Contenu introuvable."
 
-#: includes/class-abilities.php:544
+#: includes/class-abilities.php:663
 msgid "You are not allowed to read this content."
 msgstr "Vous n’avez pas le droit de lire ce contenu."
 
@@ -991,11 +1004,11 @@ msgstr "Le titre SEO est écrit pour cette page."
 msgid "The SEO title comes from the template: write one for this page."
 msgstr "Le titre SEO vient du modèle : rédigez-en un pour cette page."
 
-#: includes/class-checks.php:60
+#: includes/class-checks.php:60 includes/class-term-checks.php:88
 msgid "SEO title length"
 msgstr "Longueur du titre SEO"
 
-#: includes/class-checks.php:66
+#: includes/class-checks.php:66 includes/class-term-checks.php:94
 msgid "Unique SEO title"
 msgstr "Titre SEO unique"
 
@@ -1008,7 +1021,7 @@ msgstr "Même titre SEO que « %s »."
 msgid "No other content has this SEO title."
 msgstr "Aucun autre contenu n’a ce titre SEO."
 
-#: includes/class-checks.php:78 includes/class-fields.php:64
+#: includes/class-checks.php:78 includes/class-fields.php:64 includes/class-term-checks.php:75
 msgid "Meta description"
 msgstr "Méta description"
 
@@ -1020,7 +1033,7 @@ msgstr "La méta description est écrite pour cette page."
 msgid "Automatic description, taken from the beginning of the text by the template: write one for this page."
 msgstr "Description automatique, tirée du début du texte par le modèle : rédigez-en une pour cette page."
 
-#: includes/class-checks.php:88
+#: includes/class-checks.php:88 includes/class-term-checks.php:84
 msgid "No meta description: search engines will pick a piece of text themselves."
 msgstr "Pas de méta description : les moteurs choisiront eux-mêmes un morceau du texte."
 
@@ -1262,25 +1275,25 @@ msgid "A part of the text has more than 300 words without a subheading."
 msgstr "Une partie du texte dépasse 300 mots sans intertitre."
 
 #. translators: 1: length, 2: minimum length.
-#: includes/class-checks.php:407
+#: includes/class-checks.php:428
 msgid "%1$d characters: too short (at least %2$d)."
 msgstr "%1$d caractères : trop court (au moins %2$d)."
 
 #. translators: 1: length, 2: maximum length.
-#: includes/class-checks.php:411
+#: includes/class-checks.php:432
 msgid "%1$d characters: too long, it will be cut (at most %2$d)."
 msgstr "%1$d caractères : trop long, il sera coupé (au plus %2$d)."
 
 #. translators: %d: length.
-#: includes/class-checks.php:415
+#: includes/class-checks.php:436
 msgid "%d characters."
 msgstr "%d caractères."
 
-#: includes/class-checks.php:432
+#: includes/class-checks.php:453
 msgid "The keyphrase is there."
 msgstr "La requête y est."
 
-#: includes/class-checks.php:433
+#: includes/class-checks.php:454
 msgid "The keyphrase is missing."
 msgstr "La requête n’y est pas."
 
@@ -1584,7 +1597,7 @@ msgid "EO SEO is the only SEO plugin."
 msgstr "EO SEO est la seule extension SEO."
 
 #. translators: 1: number of contents with problems, 2: to improve, 3: good.
-#: includes/class-site-audit.php:173
+#: includes/class-site-audit.php:173 includes/class-site-audit.php:211
 msgid "%1$d with problems, %2$d to improve, %3$d good."
 msgstr "%1$d avec des problèmes, %2$d à améliorer, %3$d bons."
 
@@ -1606,20 +1619,16 @@ msgid_plural "%d images of the media library have no alternative text."
 msgstr[0] "%d image de la médiathèque n’a pas de texte alternatif."
 msgstr[1] "%d images de la médiathèque n’ont pas de texte alternatif."
 
-#: includes/class-site-audit.php:212
+#. translators: %d: number of terms.
+#: includes/class-site-audit.php:218
+msgid "%d not analyzed yet: scan the site."
+msgid_plural "%d not analyzed yet: scan the site."
+msgstr[0] "%d pas encore analysé : lancez l’analyse du site."
+msgstr[1] "%d pas encore analysés : lancez l’analyse du site."
+
+#: includes/class-site-audit.php:225
 msgid "Categories and tags"
 msgstr "Catégories et étiquettes"
-
-#. translators: %d: number of terms.
-#: includes/class-site-audit.php:215
-msgid "%d indexed term has contents but no description."
-msgid_plural "%d indexed terms have contents but no description."
-msgstr[0] "%d terme indexé a des contenus mais pas de description."
-msgstr[1] "%d termes indexés ont des contenus mais pas de description."
-
-#: includes/class-site-audit.php:216
-msgid "Indexed terms with contents have a description."
-msgstr "Les termes indexés qui ont des contenus ont une description."
 
 #: includes/class-template-headings.php:136
 msgid "site title"
@@ -1628,6 +1637,67 @@ msgstr "titre du site"
 #: includes/class-template-headings.php:143
 msgid "heading"
 msgstr "titre"
+
+#: includes/class-term-checks.php:37
+msgid "Contents of the archive"
+msgstr "Contenus de l’archive"
+
+#. translators: %d: number of contents.
+#: includes/class-term-checks.php:46
+msgid "%d content in this archive."
+msgid_plural "%d contents in this archive."
+msgstr[0] "%d contenu dans cette archive."
+msgstr[1] "%d contenus dans cette archive."
+
+#. translators: 1: number of contents, 2: minimum number of contents.
+#: includes/class-term-checks.php:48
+msgid "Thin archive: %1$d content (at least %2$d recommended), or hide it (noindex)."
+msgid_plural "Thin archive: %1$d contents (at least %2$d recommended), or hide it (noindex)."
+msgstr[0] "Archive pauvre : %1$d contenu (au moins %2$d conseillés), ou masquez-la (noindex)."
+msgstr[1] "Archive pauvre : %1$d contenus (au moins %2$d conseillés), ou masquez-la (noindex)."
+
+#: includes/class-term-checks.php:52
+msgid "Empty archive"
+msgstr "Archive vide"
+
+#: includes/class-term-checks.php:56
+msgid "This archive has no content: search engines see an empty page. Add contents, or hide it (noindex)."
+msgstr "Cette archive n’a aucun contenu : les moteurs voient une page vide. Ajoutez des contenus, ou masquez-la (noindex)."
+
+#: includes/class-term-checks.php:60
+msgid "Introduction text"
+msgstr "Texte de présentation"
+
+#: includes/class-term-checks.php:65
+msgid "No description: write an introduction text, shown at the top of the archive by most themes."
+msgstr "Pas de description : rédigez un texte de présentation, affiché en haut de l’archive par la plupart des thèmes."
+
+#. translators: %d: number of words.
+#: includes/class-term-checks.php:69
+msgid "Introduction text of %d words."
+msgstr "Texte de présentation de %d mots."
+
+#. translators: 1: number of words, 2: minimum number of words.
+#: includes/class-term-checks.php:71
+msgid "Short introduction text (%1$d words): aim for at least %2$d."
+msgstr "Texte de présentation court (%1$d mots) : visez au moins %2$d."
+
+#: includes/class-term-checks.php:80
+msgid "The meta description is written for this archive."
+msgstr "La méta description est écrite pour cette archive."
+
+#: includes/class-term-checks.php:83
+msgid "Automatic description, taken from the description of the term: write one for search results."
+msgstr "Description automatique, tirée de la description du terme : rédigez-en une pour les résultats de recherche."
+
+#. translators: 1: term name, 2: taxonomy name.
+#: includes/class-term-checks.php:101
+msgid "Same SEO title as \"%1$s\" (%2$s)."
+msgstr "Même titre SEO que « %1$s » (%2$s)."
+
+#: includes/class-term-checks.php:102
+msgid "No other archive has this SEO title."
+msgstr "Aucune autre archive n’a ce titre SEO."
 
 #: includes/class-url.php:48
 msgid "The address to redirect is empty or invalid."

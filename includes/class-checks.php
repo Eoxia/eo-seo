@@ -328,25 +328,47 @@ final class Checks {
 	 * @return array{level: string, passed: int, total: int, checks: array<int, array<string, mixed>>}
 	 */
 	public static function run( Analysis $analysis ): array {
-		$results     = array();
-		$has_keyword = '' !== $analysis->keyword;
-		$failed      = array();
-
 		if ( $analysis->noindex ) {
-			return array(
-				'level'  => self::LEVEL_NOINDEX,
-				'passed' => 0,
-				'total'  => 0,
-				'checks' => array(),
-			);
+			return self::noindex_result();
 		}
 
-		foreach ( self::definitions() as $id => $check ) {
-			if ( ! empty( $check['keyword'] ) && ! $has_keyword ) {
-				continue;
-			}
+		$has_keyword = '' !== $analysis->keyword;
 
-			[ $passed, $message ] = call_user_func( $check['callback'], $analysis );
+		$definitions = array_filter( self::definitions(), static fn( $check ) => empty( $check['keyword'] ) || $has_keyword );
+
+		// Without a focus keyphrase, the indicator does not go above orange.
+		return self::evaluate( $definitions, $analysis, ! $has_keyword );
+	}
+
+	/**
+	 * Indicator of an item hidden from search engines: nothing to check.
+	 *
+	 * @return array{level: string, passed: int, total: int, checks: array<int, array<string, mixed>>}
+	 */
+	public static function noindex_result(): array {
+		return array(
+			'level'  => self::LEVEL_NOINDEX,
+			'passed' => 0,
+			'total'  => 0,
+			'checks' => array(),
+		);
+	}
+
+	/**
+	 * Runs checks and computes the indicator: red when a "problem" check fails, orange when
+	 * another one fails, green otherwise. Shared by the contents and the terms.
+	 *
+	 * @param array<string, array<string, mixed>> $definitions Checks to run.
+	 * @param object                              $subject     Analysis given to the callbacks.
+	 * @param bool                                $cap         Whether the indicator cannot be green.
+	 * @return array{level: string, passed: int, total: int, checks: array<int, array<string, mixed>>}
+	 */
+	public static function evaluate( array $definitions, object $subject, bool $cap = false ): array {
+		$results = array();
+		$failed  = array();
+
+		foreach ( $definitions as $id => $check ) {
+			[ $passed, $message ] = call_user_func( $check['callback'], $subject );
 			if ( null === $passed ) {
 				continue;
 			}
@@ -366,8 +388,7 @@ final class Checks {
 
 		if ( in_array( 'problem', $failed, true ) ) {
 			$level = self::LEVEL_PROBLEM;
-		} elseif ( $failed || ! $has_keyword ) {
-			// Without a focus keyphrase, the indicator does not go above orange.
+		} elseif ( $failed || $cap ) {
 			$level = self::LEVEL_IMPROVE;
 		} else {
 			$level = self::LEVEL_GOOD;
@@ -399,7 +420,7 @@ final class Checks {
 	 * @param array<string, mixed> $field Field with min and max.
 	 * @return array{0: bool, 1: string}
 	 */
-	private static function length_result( string $text, array $field ): array {
+	public static function length_result( string $text, array $field ): array {
 		$length = mb_strlen( $text );
 
 		if ( $length < $field['min'] ) {

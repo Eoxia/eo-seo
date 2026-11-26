@@ -7,10 +7,13 @@
 
 namespace EoSeo\Admin;
 
+use EoSeo\Checks;
 use EoSeo\Compat;
 use EoSeo\Fields;
 use EoSeo\Meta;
 use EoSeo\Settings;
+use EoSeo\Term_Analysis;
+use EoSeo\Term_Checks;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -52,6 +55,8 @@ final class Term_Fields {
 			'title'       => Meta::term_title( $term ),
 			'description' => Meta::term_description( $term ),
 		);
+		$result  = Term_Checks::run( new Term_Analysis( $term ) );
+		$levels  = Checks::levels();
 		unset( $fields['focus_keyword'] );
 
 		include EO_SEO_DIR . 'admin/views/term-fields.php';

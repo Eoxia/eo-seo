@@ -204,17 +204,33 @@ final class Site_Audit {
 			admin_url( 'upload.php?mode=list' )
 		);
 
-		$poor_terms = self::count_terms_without_description();
-		$items[]    = self::item(
+		$terms   = Status::count_terms_by_level();
+		$worst   = $terms[ Checks::LEVEL_PROBLEM ] ? Checks::LEVEL_PROBLEM : ( $terms[ Checks::LEVEL_IMPROVE ] ? Checks::LEVEL_IMPROVE : '' );
+		$message = sprintf(
+			/* translators: 1: number of terms with problems, 2: to improve, 3: good. */
+			__( '%1$d with problems, %2$d to improve, %3$d good.', 'eo-seo' ),
+			$terms[ Checks::LEVEL_PROBLEM ],
+			$terms[ Checks::LEVEL_IMPROVE ],
+			$terms[ Checks::LEVEL_GOOD ]
+		);
+		if ( $terms['unknown'] ) {
+			/* translators: %d: number of terms. */
+			$message .= ' ' . sprintf( _n( '%d not analyzed yet: scan the site.', '%d not analyzed yet: scan the site.', $terms['unknown'], 'eo-seo' ), $terms['unknown'] );
+		}
+		$taxonomy = '' !== $worst ? self::first_taxonomy_with_level( $worst ) : '';
+		$items[]  = self::item(
 			'terms',
 			'contents',
-			$poor_terms ? 'warning' : 'good',
+			Checks::LEVEL_PROBLEM === $worst ? 'error' : ( '' !== $worst ? 'warning' : 'good' ),
 			__( 'Categories and tags', 'eo-seo' ),
-			$poor_terms
-				/* translators: %d: number of terms. */
-				? sprintf( _n( '%d indexed term has contents but no description.', '%d indexed terms have contents but no description.', $poor_terms, 'eo-seo' ), $poor_terms )
-				: __( 'Indexed terms with contents have a description.', 'eo-seo' ),
-			admin_url( 'edit-tags.php?taxonomy=category' )
+			$message,
+			'' !== $taxonomy ? add_query_arg(
+				array(
+					'taxonomy'     => $taxonomy,
+					'eo_seo_level' => $worst,
+				),
+				admin_url( 'edit-tags.php' )
+			) : ''
 		);
 
 		/**
@@ -294,34 +310,21 @@ final class Site_Audit {
 	}
 
 	/**
-	 * Indexed terms with contents but no description.
+	 * First handled taxonomy that has a term at a level (for the "Fix" link).
+	 *
+	 * @param string $level Level.
 	 */
-	private static function count_terms_without_description(): int {
-		$taxonomies = array_filter( array_keys( Settings::taxonomies() ), array( Settings::class, 'is_taxonomy_indexed' ) );
-		if ( ! $taxonomies ) {
-			return 0;
-		}
+	private static function first_taxonomy_with_level( string $level ): string {
+		global $wpdb;
 
-		$terms = get_terms(
-			array(
-				'taxonomy'   => $taxonomies,
-				'hide_empty' => true,
-				'fields'     => 'id=>name',
-				'number'     => 500,
-			)
-		);
-		if ( is_wp_error( $terms ) ) {
-			return 0;
-		}
-
-		$count = 0;
-		foreach ( array_keys( $terms ) as $term_id ) {
-			$term = get_term( (int) $term_id );
-			if ( $term instanceof \WP_Term && '' === trim( $term->description ) && ! Meta::term_noindex( $term ) ) {
-				++$count;
+		foreach ( array_keys( Settings::taxonomies() ) as $taxonomy ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Dashboard only.
+			$found = $wpdb->get_var( $wpdb->prepare( "SELECT tt.term_id FROM {$wpdb->term_taxonomy} tt INNER JOIN {$wpdb->termmeta} m ON m.term_id = tt.term_id AND m.meta_key = %s AND m.meta_value = %s WHERE tt.taxonomy = %s LIMIT 1", Fields::STATUS_META, $level, $taxonomy ) );
+			if ( $found ) {
+				return $taxonomy;
 			}
 		}
 
-		return $count;
+		return '';
 	}
 }

@@ -8,12 +8,40 @@
  * @var array<string, array<string, mixed>> $fields  Fields.
  * @var array<string, mixed>                $values  Values.
  * @var array<string, string>               $preview Resolved title and description.
+ * @var array<string, mixed>                $result  Indicator and checks of the term.
+ * @var array<string, string>               $levels  Level labels.
  */
 
 defined( 'ABSPATH' ) || exit;
 ?>
 <h2><?php esc_html_e( 'SEO', 'eo-seo' ); ?></h2>
 <?php wp_nonce_field( 'eo_seo_term_' . $term->term_id, 'eo_seo_term_nonce' ); ?>
+<div class="eo-seo-term-status">
+	<p class="eo-seo-term-status__head">
+		<span class="eo-seo-badge eo-seo-badge--<?php echo esc_attr( $result['level'] ); ?>" aria-hidden="true"></span>
+		<strong><?php echo esc_html( $levels[ $result['level'] ] ?? '' ); ?></strong>
+		<?php if ( 'noindex' === $result['level'] ) : ?>
+			<span><?php esc_html_e( 'Hidden from search engines: nothing to check.', 'eo-seo' ); ?></span>
+		<?php else : ?>
+			<span>
+				<?php
+				/* translators: 1: number of checks passed, 2: number of checks. */
+				echo esc_html( sprintf( __( '%1$d/%2$d points OK', 'eo-seo' ), $result['passed'], $result['total'] ) );
+				?>
+			</span>
+		<?php endif; ?>
+	</p>
+	<?php if ( $result['checks'] ) : ?>
+		<ul class="eo-seo-term-checks">
+			<?php foreach ( $result['checks'] as $eo_seo_check ) : ?>
+				<li class="eo-seo-term-check eo-seo-term-check--<?php echo esc_attr( $eo_seo_check['passed'] ? 'ok' : $eo_seo_check['severity'] ); ?>">
+					<strong><?php echo esc_html( $eo_seo_check['label'] ); ?></strong>
+					<?php echo esc_html( $eo_seo_check['message'] ); ?>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>
+</div>
 <div class="eo-seo-serp" aria-label="<?php esc_attr_e( 'Search result preview', 'eo-seo' ); ?>">
 	<span class="eo-seo-serp__url"><?php echo esc_html( (string) get_term_link( $term ) ); ?></span>
 	<span class="eo-seo-serp__title"><?php echo esc_html( $preview['title'] ); ?></span>

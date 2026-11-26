@@ -82,11 +82,16 @@ final class Abilities {
 
 		self::add(
 			'list-issues',
-			__( 'Contents per SEO level', 'eo-seo' ),
-			'Published contents whose SEO indicator has the given level, worst first, with their failed checks. Use it to find what to fix, then eo-seo/audit-post for details.',
+			__( 'SEO issues', 'eo-seo' ),
+			'What to fix, 20 per page. type "post" (default): published contents whose SEO indicator has the given level, with their failed checks (details with eo-seo/audit-post). type "term": categories, tags and other terms at that level (thin or empty archive, no introduction text, no meta description, duplicate title); fix them with eo-seo/propose-seo (type term). type "media": images of the media library without alternative text (level ignored); fix them with eo-tools/update-media.',
 			array(
 				'type'       => 'object',
 				'properties' => array(
+					'type'      => array(
+						'type'        => 'string',
+						'enum'        => array( 'post', 'term', 'media' ),
+						'description' => 'post (default), term or media.',
+					),
 					'level'     => array(
 						'type'        => 'string',
 						'enum'        => array( 'problem', 'improve' ),
@@ -94,7 +99,11 @@ final class Abilities {
 					),
 					'post_type' => array(
 						'type'        => 'string',
-						'description' => 'Limit to one post type (post, page…).',
+						'description' => 'type post: limit to one post type (post, page…).',
+					),
+					'taxonomy'  => array(
+						'type'        => 'string',
+						'description' => 'type term: limit to one taxonomy (category, post_tag…).',
 					),
 					'page'      => array(
 						'type'    => 'integer',
@@ -105,7 +114,7 @@ final class Abilities {
 			array( self::class, 'list_issues' ),
 			'edit_posts',
 			'read',
-			__( 'Lists the contents in red or orange with their failed checks.', 'eo-seo' )
+			__( 'Lists the contents and terms in red or orange with their failed checks, and the images without alternative text.', 'eo-seo' )
 		);
 
 		self::add(
@@ -289,6 +298,7 @@ final class Abilities {
 		return array(
 			'items'              => Site_Audit::run(),
 			'contents_by_level'  => Status::count_by_level(),
+			'terms_by_level'     => Status::count_terms_by_level(),
 			'pending_proposals'  => Proposals::count_pending(),
 			'other_seo_plugins'  => Compat::active_plugins(),
 			'scan'               => Site_Scan::state(),
@@ -355,6 +365,15 @@ final class Abilities {
 	public static function list_issues( ?array $input = null ): array {
 		$input = (array) $input;
 		$level = in_array( $input['level'] ?? '', array( Checks::LEVEL_PROBLEM, Checks::LEVEL_IMPROVE ), true ) ? $input['level'] : Checks::LEVEL_PROBLEM;
+		$page  = max( 1, (int) ( $input['page'] ?? 1 ) );
+
+		if ( 'term' === ( $input['type'] ?? '' ) ) {
+			return self::list_term_issues( $level, (string) ( $input['taxonomy'] ?? '' ), $page );
+		}
+		if ( 'media' === ( $input['type'] ?? '' ) ) {
+			return self::list_media_issues( $page );
+		}
+
 		$types = array_keys( Settings::post_types() );
 		if ( ! empty( $input['post_type'] ) && in_array( $input['post_type'], $types, true ) ) {
 			$types = array( $input['post_type'] );
@@ -365,7 +384,7 @@ final class Abilities {
 				'post_type'      => $types,
 				'post_status'    => 'publish',
 				'posts_per_page' => 20,
-				'paged'          => max( 1, (int) ( $input['page'] ?? 1 ) ),
+				'paged'          => $page,
 				'meta_key'       => Fields::STATUS_META, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Paginated, on demand.
 				'meta_value'     => $level, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Paginated, on demand.
 			)
@@ -384,10 +403,110 @@ final class Abilities {
 		}
 
 		return array(
+			'type'  => 'post',
 			'level' => $level,
 			'total' => (int) $query->found_posts,
 			'pages' => (int) $query->max_num_pages,
 			'items' => $items,
+		);
+	}
+
+	/**
+	 * Terms at a level, with their failed checks.
+	 *
+	 * @param string $level    problem or improve.
+	 * @param string $taxonomy Taxonomy, empty for every handled one.
+	 * @param int    $page     Page number.
+	 * @return array<string, mixed>
+	 */
+	private static function list_term_issues( string $level, string $taxonomy, int $page ): array {
+		$taxonomies = array_keys( Settings::taxonomies() );
+		if ( '' !== $taxonomy && in_array( $taxonomy, $taxonomies, true ) ) {
+			$taxonomies = array( $taxonomy );
+		}
+
+		$args = array(
+			'taxonomy'   => $taxonomies,
+			'hide_empty' => false,
+			'meta_key'   => Fields::STATUS_META, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Paginated, on demand.
+			'meta_value' => $level, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Paginated, on demand.
+		);
+		$total = (int) wp_count_terms( $args );
+		$terms = get_terms(
+			$args + array(
+				'number' => 20,
+				'offset' => ( $page - 1 ) * 20,
+			)
+		);
+
+		$items = array();
+		foreach ( is_wp_error( $terms ) ? array() : $terms as $term ) {
+			$result  = Term_Checks::run( new Term_Analysis( $term ) );
+			$link    = get_term_link( $term );
+			$items[] = array(
+				'id'       => $term->term_id,
+				'name'     => $term->name,
+				'taxonomy' => $term->taxonomy,
+				'url'      => is_wp_error( $link ) ? '' : $link,
+				'contents' => (int) $term->count,
+				'points'   => $result['passed'] . '/' . $result['total'],
+				'failed'   => array_values( array_map( static fn( $c ) => $c['id'] . ': ' . $c['message'], array_filter( $result['checks'], static fn( $c ) => ! $c['passed'] ) ) ),
+			);
+		}
+
+		return array(
+			'type'  => 'term',
+			'level' => $level,
+			'total' => $total,
+			'pages' => (int) ceil( $total / 20 ),
+			'items' => $items,
+		);
+	}
+
+	/**
+	 * Images of the media library without alternative text.
+	 *
+	 * @param int $page Page number.
+	 * @return array<string, mixed>
+	 */
+	private static function list_media_issues( int $page ): array {
+		$query = new \WP_Query(
+			array(
+				'post_type'      => 'attachment',
+				'post_status'    => 'inherit',
+				'post_mime_type' => 'image',
+				'posts_per_page' => 20,
+				'paged'          => $page,
+				'meta_query'     => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Paginated, on demand.
+					'relation' => 'OR',
+					array(
+						'key'     => '_wp_attachment_image_alt',
+						'compare' => 'NOT EXISTS',
+					),
+					array(
+						'key'   => '_wp_attachment_image_alt',
+						'value' => '',
+					),
+				),
+			)
+		);
+
+		$items = array();
+		foreach ( $query->posts as $attachment ) {
+			$items[] = array(
+				'id'       => $attachment->ID,
+				'title'    => get_the_title( $attachment ),
+				'url'      => (string) wp_get_attachment_url( $attachment->ID ),
+				'used_in'  => $attachment->post_parent ? (string) get_permalink( $attachment->post_parent ) : '',
+			);
+		}
+
+		return array(
+			'type'  => 'media',
+			'total' => (int) $query->found_posts,
+			'pages' => (int) $query->max_num_pages,
+			'items' => $items,
+			'fix'   => 'eo-tools/update-media',
 		);
 	}
 

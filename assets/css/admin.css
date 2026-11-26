@@ -671,3 +671,16 @@ a.eo-seo-stat:focus { border-color: var(--eo-seo-accent); color: inherit; box-sh
 .eo-seo-scan__text .eo-seo-help { margin: 0; }
 .eo-seo-scan .eo-seo-progress { max-width: 480px; margin-top: 10px; }
 .eo-seo-scan.is-running .eo-seo-progress span { background: var(--eo-seo-accent); transition: width 0.3s; }
+
+/* ---------- Term edit screen: indicator and checks ---------- */
+
+.eo-seo-term-status { max-width: 760px; margin: 8px 0 16px; padding: 14px 16px; background: #fff; border: 1px solid var(--eo-seo-border); border-radius: var(--eo-seo-radius); }
+.eo-seo-term-status__head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 10px; }
+.eo-seo-term-status__head span:last-child { color: var(--eo-seo-muted); }
+.eo-seo-term-checks { margin: 0; }
+.eo-seo-term-check { position: relative; margin: 0 0 6px; padding-left: 18px; }
+.eo-seo-term-check::before { content: ""; position: absolute; top: 6px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--eo-seo-good); }
+.eo-seo-term-check--problem::before { background: var(--eo-seo-problem); }
+.eo-seo-term-check--improve::before,
+.eo-seo-term-check--readability::before { background: var(--eo-seo-improve); }
+.fixed .column-eo_seo .eo-seo-tip { vertical-align: middle; }
