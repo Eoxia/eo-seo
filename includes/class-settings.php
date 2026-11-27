@@ -159,27 +159,61 @@ final class Settings {
 	}
 
 	/**
-	 * Site verification tools: key => label and name of the meta tag printed on the home page.
+	 * Site verification tools, most used first: label, name of the meta tag printed on the
+	 * home page, page of the tool where the code is given, and what the tool is for.
 	 *
-	 * @return array<string, array{label: string, meta: string}>
+	 * @return array<string, array{label: string, meta: string, url: string, tool: string, purpose: string}>
 	 */
 	public static function verification_tools(): array {
 		return array(
 			'google'    => array(
-				'label' => 'Google Search Console',
-				'meta'  => 'google-site-verification',
+				'label'   => 'Google',
+				'meta'    => 'google-site-verification',
+				'url'     => 'https://search.google.com/search-console',
+				'tool'    => 'Google Search Console',
+				'purpose' => __( 'Performance of the site in Google, indexing, errors.', 'eo-seo' ),
 			),
 			'bing'      => array(
-				'label' => 'Bing Webmaster Tools',
-				'meta'  => 'msvalidate.01',
+				'label'   => 'Bing',
+				'meta'    => 'msvalidate.01',
+				'url'     => 'https://www.bing.com/webmasters',
+				'tool'    => 'Bing Webmaster Tools',
+				'purpose' => __( 'Bing, and the search engines that use it (DuckDuckGo, Ecosia…).', 'eo-seo' ),
+			),
+			'ahrefs'    => array(
+				'label'   => 'Ahrefs',
+				'meta'    => 'ahrefs-site-verification',
+				'url'     => 'https://ahrefs.com/webmaster-tools',
+				'tool'    => 'Ahrefs Webmaster Tools',
+				'purpose' => __( 'Backlinks and SEO audit of the site, free for verified sites.', 'eo-seo' ),
 			),
 			'pinterest' => array(
-				'label' => 'Pinterest',
-				'meta'  => 'p:domain_verify',
+				'label'   => 'Pinterest',
+				'meta'    => 'p:domain_verify',
+				'url'     => 'https://www.pinterest.com/settings/claim',
+				'tool'    => 'Pinterest',
+				'purpose' => __( 'Statistics and rich pins of the site on Pinterest.', 'eo-seo' ),
 			),
 			'facebook'  => array(
-				'label' => 'Facebook (Meta)',
-				'meta'  => 'facebook-domain-verification',
+				'label'   => 'Facebook (Meta)',
+				'meta'    => 'facebook-domain-verification',
+				'url'     => 'https://business.facebook.com/settings/owned-domains',
+				'tool'    => 'Meta Business Suite',
+				'purpose' => __( 'Advertising, and editing of the link previews on Facebook and Instagram.', 'eo-seo' ),
+			),
+			'yandex'    => array(
+				'label'   => 'Yandex',
+				'meta'    => 'yandex-verification',
+				'url'     => 'https://webmaster.yandex.com/',
+				'tool'    => 'Yandex Webmaster',
+				'purpose' => __( 'Search engine used in Russia and nearby countries.', 'eo-seo' ),
+			),
+			'baidu'     => array(
+				'label'   => 'Baidu',
+				'meta'    => 'baidu-site-verification',
+				'url'     => 'https://ziyuan.baidu.com/',
+				'tool'    => 'Baidu Webmaster Tools',
+				'purpose' => __( 'Search engine used in China.', 'eo-seo' ),
 			),
 		);
 	}
@@ -392,6 +426,9 @@ final class Settings {
 						'bing'      => array( 'type' => 'string' ),
 						'pinterest' => array( 'type' => 'string' ),
 						'facebook'  => array( 'type' => 'string' ),
+						'ahrefs'    => array( 'type' => 'string' ),
+						'yandex'    => array( 'type' => 'string' ),
+						'baidu'     => array( 'type' => 'string' ),
 					),
 				),
 				'not_found_retention' => array(

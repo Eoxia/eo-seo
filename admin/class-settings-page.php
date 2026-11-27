@@ -42,7 +42,7 @@ final class Settings_Page {
 			),
 			'webmaster'  => array(
 				'label'       => __( 'Webmaster tools', 'eo-seo' ),
-				'description' => __( 'Google, Bing, Pinterest, Facebook', 'eo-seo' ),
+				'description' => __( 'Google, Bing, Ahrefs, Pinterest…', 'eo-seo' ),
 			),
 			'tools'      => array(
 				'label'       => __( 'Tools', 'eo-seo' ),

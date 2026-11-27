@@ -769,3 +769,6 @@ a.eo-seo-stat:focus { border-color: var(--eo-seo-accent); color: inherit; box-sh
 .eo-seo-meter__text { display: block; margin-top: 4px; color: var(--eo-seo-muted); font-size: 12px; }
 .eo-seo-review del,
 .eo-seo-review ins { word-break: break-all; }
+
+/* Webmaster tools: one tool after the other, like a form. */
+.eo-seo-verifications { display: flex; flex-direction: column; gap: 22px; max-width: 640px; }
