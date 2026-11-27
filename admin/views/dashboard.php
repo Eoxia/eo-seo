@@ -104,8 +104,11 @@ $eo_seo_status_labels = array(
 								<span class="screen-reader-text"><?php echo esc_html( $eo_seo_status_labels[ $eo_seo_item['status'] ] ?? '' ); ?></span>
 								<span><?php echo esc_html( $eo_seo_item['message'] ); ?></span>
 							</span>
-							<?php if ( ! empty( $eo_seo_item['view_url'] ) || ( 'good' !== $eo_seo_item['status'] && '' !== $eo_seo_item['fix_url'] ) ) : ?>
+							<?php if ( ! empty( $eo_seo_item['view_url'] ) || ! empty( $eo_seo_item['action_url'] ) || ( 'good' !== $eo_seo_item['status'] && '' !== $eo_seo_item['fix_url'] ) ) : ?>
 								<span class="eo-seo-review__actions">
+									<?php if ( ! empty( $eo_seo_item['action_url'] ) ) : ?>
+										<a class="eo-seo-button eo-seo-button--small" href="<?php echo esc_url( $eo_seo_item['action_url'] ); ?>"><?php echo esc_html( $eo_seo_item['action_label'] ); ?></a>
+									<?php endif; ?>
 									<?php if ( ! empty( $eo_seo_item['view_url'] ) ) : ?>
 										<a class="eo-seo-button eo-seo-button--small eo-seo-button--link" href="<?php echo esc_url( $eo_seo_item['view_url'] ); ?>" target="_blank" rel="noopener">
 											<?php esc_html_e( 'View', 'eo-seo' ); ?>

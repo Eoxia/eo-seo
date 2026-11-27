@@ -76,5 +76,6 @@ use EoSeo\Admin\Ui;
 	Ui::toggle( $option . '[cleanup][extra_feeds]', ! empty( $settings['cleanup']['extra_feeds'] ), __( 'Remove the secondary feeds', 'eo-seo' ), __( 'Comments, categories, tags… links in the <head>.', 'eo-seo' ) );
 	Ui::toggle( $option . '[cleanup][head_links]', ! empty( $settings['cleanup']['head_links'] ), __( 'Remove the useless links of the <head>', 'eo-seo' ), __( 'RSD, shortlink, generator, REST API, oEmbed.', 'eo-seo' ) );
 	Ui::toggle( $option . '[cleanup][replytocom]', ! empty( $settings['cleanup']['replytocom'] ), __( 'Add nofollow to the "Reply" links of comments', 'eo-seo' ), __( 'Keeps the ?replytocom= addresses out of the index.', 'eo-seo' ) );
+	Ui::toggle( $option . '[cleanup][comment_pages]', ! empty( $settings['cleanup']['comment_pages'] ), __( 'Hide the pages of comments', 'eo-seo' ), __( 'When comments are split into pages (Settings › Discussion), pages 2, 3… repeat the content: they are set to noindex.', 'eo-seo' ) );
 	?>
 </section>

@@ -40,6 +40,8 @@ final class Admin {
 			List_Column::init();
 			Editor::init();
 			Metabox::init();
+		} else {
+			Editor::init_compat();
 		}
 	}
 
@@ -140,7 +142,10 @@ final class Admin {
 						implode( ', ', Compat::active_plugins() )
 					)
 				),
-				array( 'type' => 'info' )
+				array(
+					'type'        => 'info',
+					'dismissible' => true,
+				)
 			);
 		}
 	}

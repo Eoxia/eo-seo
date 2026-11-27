@@ -8,90 +8,101 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Domain: eo-seo\n"
 
-#: admin/class-actions.php:53
+#: admin/class-actions.php:55
 msgid "Redirection saved."
 msgstr "Redirection enregistrée."
 
-#: admin/class-actions.php:68
+#: admin/class-actions.php:70
 msgid "Redirections deleted."
 msgstr "Redirections supprimées."
 
-#: admin/class-actions.php:84
+#: admin/class-actions.php:86
 msgid "Choose a CSV file."
 msgstr "Choisissez un fichier CSV."
 
 #. translators: %d: number of redirections.
-#: admin/class-actions.php:91
+#: admin/class-actions.php:93
 msgid "%d redirection imported."
 msgid_plural "%d redirections imported."
 msgstr[0] "%d redirection importée."
 msgstr[1] "%d redirections importées."
 
-#: admin/class-actions.php:126
+#: admin/class-actions.php:128
 msgid "404 log updated."
 msgstr "Journal 404 mis à jour."
 
 #. translators: %d: number of proposals.
-#: admin/class-actions.php:154
+#: admin/class-actions.php:156
 msgid "%d proposal rejected."
 msgid_plural "%d proposals rejected."
 msgstr[0] "%d proposition rejetée."
 msgstr[1] "%d propositions rejetées."
 
 #. translators: %d: number of proposals.
-#: admin/class-actions.php:156
+#: admin/class-actions.php:158
 msgid "%d proposal applied."
 msgid_plural "%d proposals applied."
 msgstr[0] "%d proposition appliquée."
 msgstr[1] "%d propositions appliquées."
 
-#: admin/class-actions.php:173
+#. translators: %d: number of points to fix.
+#: admin/class-actions.php:181
+msgid "Home page checked: %d point to fix."
+msgid_plural "Home page checked: %d points to fix."
+msgstr[0] "Page d’accueil vérifiée : %d point à corriger."
+msgstr[1] "Page d’accueil vérifiée : %d points à corriger."
+
+#: admin/class-actions.php:182
+msgid "Home page checked: everything is fine."
+msgstr "Page d’accueil vérifiée : tout est bon."
+
+#: admin/class-actions.php:196
 msgid "The scan of the site is running in the background."
 msgstr "L’analyse du site tourne en arrière-plan."
 
-#: admin/class-actions.php:218
+#: admin/class-actions.php:241
 msgid "You are not allowed to do this."
 msgstr "Vous n’avez pas le droit de faire cela."
 
 #. Plugin Name of the plugin
-#: admin/class-admin.php:63 admin/class-metabox.php:52 admin/views/partials/header.php:18 assets/js/editor.js:326 eo-seo.php
+#: admin/class-admin.php:77 admin/class-metabox.php:52 admin/views/partials/header.php:18 assets/js/editor.js:329 eo-seo.php
 msgid "EO SEO"
 msgstr "EO SEO"
 
-#: admin/class-admin.php:64 admin/views/dashboard.php:24
+#: admin/class-admin.php:78 admin/views/dashboard.php:24
 msgid "SEO dashboard"
 msgstr "Tableau de bord SEO"
 
-#: admin/class-admin.php:64 admin/class-ui.php:28
+#: admin/class-admin.php:78 admin/class-ui.php:28
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
-#: admin/class-admin.php:65 admin/views/settings.php:21
+#: admin/class-admin.php:79 admin/views/settings.php:21
 msgid "SEO settings"
 msgstr "Réglages SEO"
 
-#: admin/class-admin.php:65 admin/class-dashboard-page.php:28 admin/class-ui.php:32 blocks/breadcrumbs/index.js:21
+#: admin/class-admin.php:79 admin/class-dashboard-page.php:28 admin/class-ui.php:32 blocks/breadcrumbs/index.js:21
 msgid "Settings"
 msgstr "Réglages"
 
-#: admin/class-admin.php:66 admin/class-ui.php:36 admin/views/redirections.php:21 includes/class-proposals.php:443
+#: admin/class-admin.php:80 admin/class-ui.php:36 admin/views/redirections.php:21 includes/class-proposals.php:443
 msgid "Redirections"
 msgstr "Redirections"
 
-#: admin/class-admin.php:67 admin/class-ui.php:40 admin/views/not-found.php:19 includes/class-abilities.php:122 includes/class-site-audit.php:186
+#: admin/class-admin.php:81 admin/class-ui.php:40 admin/views/not-found.php:19 includes/class-abilities.php:122 includes/class-site-audit.php:210
 msgid "404 errors"
 msgstr "Erreurs 404"
 
-#: admin/class-admin.php:72 admin/class-ui.php:48
+#: admin/class-admin.php:86 admin/class-ui.php:48
 msgid "Proposals"
 msgstr "Propositions"
 
-#: admin/class-admin.php:74 admin/views/proposals.php:18 includes/class-proposals.php:46
+#: admin/class-admin.php:88 admin/views/proposals.php:18 includes/class-proposals.php:46
 msgid "SEO proposals"
 msgstr "Propositions SEO"
 
 #. translators: %s: plugin names.
-#: admin/class-admin.php:127
+#: admin/class-admin.php:141
 msgid "%s is active: EO SEO adds nothing on the front (tags, sitemap, robots.txt, structured data) and hides its editor panel. Redirections and the 404 log keep working."
 msgstr "%s est actif : EO SEO n’ajoute rien sur le site (balises, plan de site, robots.txt, données structurées) et masque son panneau dans l’éditeur. Les redirections et le journal 404 continuent de fonctionner."
 
@@ -99,9 +110,14 @@ msgstr "%s est actif : EO SEO n’ajoute rien sur le site (balises, plan de site
 msgid "Indexing"
 msgstr "Indexation"
 
-#: admin/class-dashboard-page.php:30 includes/class-site-audit.php:170
+#: admin/class-dashboard-page.php:30 includes/class-site-audit.php:194
 msgid "Contents"
 msgstr "Contenus"
+
+#. translators: %s: plugin names.
+#: admin/class-editor.php:54
+msgid "%s is active: it handles the SEO of this content, so the EO SEO panel is hidden. Keep only one SEO plugin."
+msgstr "%s est actif : il gère le SEO de ce contenu, le panneau EO SEO est donc masqué. Ne gardez qu’une extension SEO."
 
 #: admin/class-list-column.php:56 admin/class-term-fields.php:66 includes/class-abilities.php:34
 msgid "SEO"
@@ -115,7 +131,7 @@ msgstr "Enregistrez le contenu pour l’analyser."
 msgid "Save the term, or scan the site from the EO SEO dashboard."
 msgstr "Enregistrez le terme, ou lancez l’analyse du site depuis le tableau de bord d’EO SEO."
 
-#: admin/class-list-column.php:112 assets/js/editor.js:320
+#: admin/class-list-column.php:112 assets/js/editor.js:323
 msgid "Not analyzed yet"
 msgstr "Pas encore analysé"
 
@@ -136,11 +152,11 @@ msgstr "Seuls les termes de niveau SEO « %1$s » sont affichés. %2$s"
 msgid "Show all"
 msgstr "Tout afficher"
 
-#: admin/class-media-field.php:29 admin/class-media-field.php:31 assets/js/admin.js:19 assets/js/editor.js:140
+#: admin/class-media-field.php:29 admin/class-media-field.php:31 assets/js/admin.js:19 assets/js/editor.js:142
 msgid "Choose an image"
 msgstr "Choisir une image"
 
-#: admin/class-media-field.php:33 assets/js/editor.js:141
+#: admin/class-media-field.php:33 assets/js/editor.js:143
 msgid "Remove"
 msgstr "Retirer"
 
@@ -208,7 +224,7 @@ msgstr "Outils"
 msgid "404 log, uninstallation"
 msgstr "Journal 404, désinstallation"
 
-#: admin/class-settings-page.php:81
+#: admin/class-settings-page.php:81 includes/class-home-check.php:60 includes/class-site-audit.php:141
 msgid "Home page"
 msgstr "Page d’accueil"
 
@@ -233,7 +249,7 @@ msgstr "Résultats de recherche"
 msgid "Good"
 msgstr "Bon"
 
-#: admin/views/dashboard.php:19 assets/js/editor.js:35
+#: admin/views/dashboard.php:19 assets/js/editor.js:37
 msgid "To improve"
 msgstr "À améliorer"
 
@@ -298,15 +314,15 @@ msgstr "Prochaine analyse dans %s, après les dernières modifications."
 msgid "Scan the whole site"
 msgstr "Analyser tout le site"
 
-#: admin/views/dashboard.php:111
+#: admin/views/dashboard.php:114
 msgid "View"
 msgstr "Voir"
 
-#: admin/views/dashboard.php:112 admin/views/settings-indexing.php:23 admin/views/settings-indexing.php:61
+#: admin/views/dashboard.php:115 admin/views/settings-indexing.php:23 admin/views/settings-indexing.php:61
 msgid "(opens in a new tab)"
 msgstr "(s’ouvre dans un nouvel onglet)"
 
-#: admin/views/dashboard.php:116
+#: admin/views/dashboard.php:119
 msgid "Fix"
 msgstr "Corriger"
 
@@ -315,11 +331,11 @@ msgstr "Corriger"
 msgid "· %s points OK"
 msgstr "· %s points OK"
 
-#: admin/views/list-badge.php:34 admin/views/partials/seo-box.php:34 admin/views/partials/seo-box.php:91 assets/js/editor.js:201 includes/class-admin-bar.php:133
+#: admin/views/list-badge.php:34 admin/views/partials/seo-box.php:34 admin/views/partials/seo-box.php:91 assets/js/editor.js:203 includes/class-admin-bar.php:140
 msgid "Hidden from search engines: nothing to check."
 msgstr "Masqué aux moteurs de recherche : rien à vérifier."
 
-#: admin/views/list-badge.php:36 includes/class-admin-bar.php:135
+#: admin/views/list-badge.php:36 includes/class-admin-bar.php:142
 msgid "Every check passes."
 msgstr "Toutes les vérifications sont bonnes."
 
@@ -328,7 +344,7 @@ msgid "Open it to see the points to fix."
 msgstr "Ouvrez-le pour voir les points à corriger."
 
 #. translators: %d: number of other points to fix.
-#: admin/views/list-badge.php:50 includes/class-admin-bar.php:144
+#: admin/views/list-badge.php:50 includes/class-admin-bar.php:151
 msgid "And %d other point: open it to see them all."
 msgid_plural "And %d other points: open it to see them all."
 msgstr[0] "Et %d autre point : ouvrez-le pour tout voir."
@@ -400,7 +416,7 @@ msgid "EO SEO screens"
 msgstr "Écrans d’EO SEO"
 
 #. translators: 1: number of checks passed, 2: number of checks.
-#: admin/views/partials/seo-box.php:38 assets/js/editor.js:206
+#: admin/views/partials/seo-box.php:38 assets/js/editor.js:208
 msgid "%1$d/%2$d points OK"
 msgstr "%1$d/%2$d points OK"
 
@@ -408,28 +424,28 @@ msgstr "%1$d/%2$d points OK"
 msgid "updated when you save"
 msgstr "mis à jour à l’enregistrement"
 
-#: admin/views/partials/seo-box.php:48 assets/js/editor.js:175
+#: admin/views/partials/seo-box.php:48 assets/js/editor.js:177
 msgid "Search result preview"
 msgstr "Aperçu dans les résultats de recherche"
 
-#: admin/views/partials/seo-box.php:55 assets/js/editor.js:336
+#: admin/views/partials/seo-box.php:55 assets/js/editor.js:339
 msgid "Search engines"
 msgstr "Moteurs de recherche"
 
-#: admin/views/partials/seo-box.php:66 assets/js/editor.js:338
+#: admin/views/partials/seo-box.php:66 assets/js/editor.js:341
 msgid "Social sharing"
 msgstr "Partage sur les réseaux"
 
-#: admin/views/partials/seo-box.php:77 assets/js/editor.js:339
+#: admin/views/partials/seo-box.php:77 assets/js/editor.js:342
 msgid "Advanced"
 msgstr "Avancé"
 
-#: admin/views/partials/seo-box.php:88 admin/views/partials/seo-box.php:89 assets/js/editor.js:337
+#: admin/views/partials/seo-box.php:88 admin/views/partials/seo-box.php:89 assets/js/editor.js:340
 msgid "Checks"
 msgstr "Vérifications"
 
 #. translators: %d: number of checks.
-#: admin/views/partials/seo-box.php:108 assets/js/editor.js:250
+#: admin/views/partials/seo-box.php:108 assets/js/editor.js:252
 msgid "%d point OK"
 msgid_plural "%d points OK"
 msgstr[0] "%d point OK"
@@ -752,6 +768,14 @@ msgstr "Ajouter nofollow aux liens « Répondre » des commentaires"
 msgid "Keeps the ?replytocom= addresses out of the index."
 msgstr "Garde les adresses ?replytocom= hors de l’index."
 
+#: admin/views/settings-indexing.php:79
+msgid "Hide the pages of comments"
+msgstr "Masquer les pages de commentaires"
+
+#: admin/views/settings-indexing.php:79
+msgid "When comments are split into pages (Settings › Discussion), pages 2, 3… repeat the content: they are set to noindex."
+msgstr "Quand les commentaires sont répartis sur plusieurs pages (Réglages › Discussion), les pages 2, 3… répètent le contenu : elles passent en noindex."
+
 #: admin/views/settings-social.php:15
 msgid "Default sharing image"
 msgstr "Image de partage par défaut"
@@ -780,15 +804,36 @@ msgstr "Conservation du journal 404"
 msgid "days"
 msgstr "jours"
 
-#: admin/views/settings-tools.php:27
+#: admin/views/settings-tools.php:28
+msgid "Changes made by the AI"
+msgstr "Modifications faites par l’IA"
+
+#: admin/views/settings-tools.php:29
+msgid "Settings changed through EO Tools (eo-seo/update-settings), with their old value. The last 50 are kept."
+msgstr "Réglages modifiés via EO Tools (eo-seo/update-settings), avec leur ancienne valeur. Les 50 dernières sont gardées."
+
+#: admin/views/settings-tools.php:32
+msgid "No change yet."
+msgstr "Aucune modification pour l’instant."
+
+#. translators: 1: date, 2: user name.
+#: admin/views/settings-tools.php:44
+msgid "%1$s, by %2$s"
+msgstr "%1$s, par %2$s"
+
+#: admin/views/settings-tools.php:46
+msgid "an unknown user"
+msgstr "un utilisateur inconnu"
+
+#: admin/views/settings-tools.php:63
 msgid "Uninstallation"
 msgstr "Désinstallation"
 
-#: admin/views/settings-tools.php:33
+#: admin/views/settings-tools.php:69
 msgid "Delete all EO SEO data when the plugin is deleted"
 msgstr "Supprimer toutes les données d’EO SEO quand l’extension est supprimée"
 
-#: admin/views/settings-tools.php:34
+#: admin/views/settings-tools.php:70
 msgid "SEO fields, redirections, 404 log and settings. Cannot be undone."
 msgstr "Champs SEO, redirections, journal 404 et réglages. Irréversible."
 
@@ -816,16 +861,16 @@ msgstr "Sections des réglages"
 msgid "Save the changes"
 msgstr "Enregistrer les modifications"
 
-#: assets/js/admin.js:67 assets/js/editor.js:75
+#: assets/js/admin.js:67 assets/js/editor.js:77
 msgid "Empty: the template writes it automatically (grey text). Write your own."
 msgstr "Vide : le modèle l’écrit automatiquement (texte grisé). Rédigez le vôtre."
 
-#: assets/js/admin.js:68 assets/js/editor.js:76
+#: assets/js/admin.js:68 assets/js/editor.js:78
 msgid "Empty."
 msgstr "Vide."
 
 #. translators: 1: number of characters, 2: minimum, 3: maximum.
-#: assets/js/admin.js:73 assets/js/editor.js:91
+#: assets/js/admin.js:73 assets/js/editor.js:93
 msgid "%1$d characters (recommended: %2$d to %3$d)"
 msgstr "%1$d caractères (conseillé : %2$d à %3$d)"
 
@@ -837,20 +882,20 @@ msgstr "Analyse terminée. Mise à jour des chiffres…"
 msgid "The scan could not continue from this page: it goes on in the background."
 msgstr "L’analyse n’a pas pu continuer depuis cette page : elle se poursuit en arrière-plan."
 
-#: assets/js/editor.js:34
+#: assets/js/editor.js:36
 msgid "Problems"
 msgstr "Problèmes"
 
-#: assets/js/editor.js:36
+#: assets/js/editor.js:38
 msgid "Readability"
 msgstr "Lisibilité"
 
-#: assets/js/editor.js:140
+#: assets/js/editor.js:142
 msgid "Replace the image"
 msgstr "Remplacer l’image"
 
 #. translators: %s: SEO level (Good, Needs improvement…).
-#: assets/js/editor.js:318 includes/class-admin-bar.php:118
+#: assets/js/editor.js:321 includes/class-admin-bar.php:125
 msgid "EO SEO: %s"
 msgstr "EO SEO : %s"
 
@@ -932,63 +977,71 @@ msgid "Reads the EO SEO settings."
 msgstr "Lit les réglages d’EO SEO."
 
 #: includes/class-abilities.php:155
+msgid "Change EO SEO settings"
+msgstr "Modifier les réglages d’EO SEO"
+
+#: includes/class-abilities.php:167
+msgid "Changes the EO SEO settings (templates, indexing, identity…); the old values are logged."
+msgstr "Modifie les réglages d’EO SEO (modèles, indexation, identité…) ; les anciennes valeurs sont gardées dans un journal."
+
+#: includes/class-abilities.php:172
 msgid "SEO fields of a draft"
 msgstr "Champs SEO d’un brouillon"
 
-#: includes/class-abilities.php:171
+#: includes/class-abilities.php:188
 msgid "Writes the SEO fields of unpublished drafts only."
 msgstr "Écrit les champs SEO des brouillons non publiés uniquement."
 
-#: includes/class-abilities.php:176
+#: includes/class-abilities.php:193
 msgid "Propose SEO fields"
 msgstr "Proposer des champs SEO"
 
-#: includes/class-abilities.php:210
+#: includes/class-abilities.php:227
 msgid "Prepares changes of the SEO fields of published contents, applied by a human."
 msgstr "Prépare des modifications des champs SEO de contenus publiés, appliquées par un humain."
 
-#: includes/class-abilities.php:215
+#: includes/class-abilities.php:232
 msgid "Propose redirections"
 msgstr "Proposer des redirections"
 
-#: includes/class-abilities.php:249
+#: includes/class-abilities.php:266
 msgid "Prepares redirections, created once a human applies them."
 msgstr "Prépare des redirections, créées quand un humain les applique."
 
-#: includes/class-abilities.php:561
+#: includes/class-abilities.php:594
 msgid "You are not allowed to edit this content."
 msgstr "Vous n’avez pas le droit de modifier ce contenu."
 
-#: includes/class-abilities.php:592
+#: includes/class-abilities.php:625
 msgid "You are not allowed to edit this item."
 msgstr "Vous n’avez pas le droit de modifier cet élément."
 
-#: includes/class-abilities.php:660 includes/class-rest.php:95
+#: includes/class-abilities.php:693 includes/class-rest.php:95
 msgid "Content not found."
 msgstr "Contenu introuvable."
 
-#: includes/class-abilities.php:663
+#: includes/class-abilities.php:696
 msgid "You are not allowed to read this content."
 msgstr "Vous n’avez pas le droit de lire ce contenu."
 
 #. translators: %s: points, as "17/23".
-#: includes/class-admin-bar.php:109
+#: includes/class-admin-bar.php:116
 msgid "SEO %s"
 msgstr "SEO %s"
 
-#: includes/class-admin-bar.php:155 includes/class-admin-bar.php:156 includes/class-proposals.php:412
+#: includes/class-admin-bar.php:162 includes/class-admin-bar.php:163 includes/class-proposals.php:412
 msgid "(empty)"
 msgstr "(vide)"
 
-#: includes/class-admin-bar.php:155 includes/class-fields.php:57
+#: includes/class-admin-bar.php:162 includes/class-fields.php:57
 msgid "SEO title"
 msgstr "Titre SEO"
 
-#: includes/class-admin-bar.php:156 includes/class-checks.php:78 includes/class-fields.php:66 includes/class-term-checks.php:78
+#: includes/class-admin-bar.php:163 includes/class-checks.php:78 includes/class-fields.php:66 includes/class-term-checks.php:78
 msgid "Meta description"
 msgstr "Méta description"
 
-#: includes/class-admin-bar.php:163
+#: includes/class-admin-bar.php:170
 msgid "Edit the SEO"
 msgstr "Modifier le SEO"
 
@@ -1200,11 +1253,11 @@ msgstr "Les modèles du site n’ont pas de H1 : ajoutez un titre H1 en haut du 
 msgid "%d H1 headings in the content: keep only one."
 msgstr "%d titres H1 dans le contenu : n’en gardez qu’un."
 
-#: includes/class-checks.php:216 includes/class-site-audit.php:199
+#: includes/class-checks.php:216 includes/class-site-audit.php:223
 msgid "Alternative texts"
 msgstr "Textes alternatifs"
 
-#: includes/class-checks.php:225 includes/class-site-audit.php:203
+#: includes/class-checks.php:225 includes/class-site-audit.php:227
 msgid "Every image has an alternative text."
 msgstr "Chaque image a un texte alternatif."
 
@@ -1366,6 +1419,135 @@ msgstr "Par défaut, l’image mise en avant, puis l’image par défaut du site
 #: includes/class-fields.php:292
 msgid "Recommended length: %1$d to %2$d characters."
 msgstr "Longueur conseillée : %1$d à %2$d caractères."
+
+#. translators: %s: error message.
+#: includes/class-home-check.php:63
+msgid "The home page could not be loaded: %s"
+msgstr "La page d’accueil n’a pas pu être chargée : %s"
+
+#. translators: %d: HTTP status code.
+#: includes/class-home-check.php:65
+msgid "The home page answers with the HTTP code %d instead of 200."
+msgstr "La page d’accueil répond avec le code HTTP %d au lieu de 200."
+
+#. translators: %s: title of the home page.
+#: includes/class-home-check.php:96 includes/class-home-check.php:100
+msgid "Title of the home page"
+msgstr "Titre de la page d’accueil"
+
+#: includes/class-home-check.php:96
+msgid "One title: \"%s\"."
+msgstr "Un seul titre : « %s »."
+
+#. translators: %d: number of title tags.
+#: includes/class-home-check.php:103
+msgid "%d title tags: the theme or another plugin prints one too."
+msgstr "%d balises title : le thème ou une autre extension en affiche une aussi."
+
+#: includes/class-home-check.php:104
+msgid "No title: the theme must support the \"title-tag\" feature."
+msgstr "Pas de titre : le thème doit prendre en charge la fonction « title-tag »."
+
+#: includes/class-home-check.php:111
+msgid "Meta description of the home page"
+msgstr "Méta description de la page d’accueil"
+
+#: includes/class-home-check.php:113
+msgid "One meta description."
+msgstr "Une seule méta description."
+
+#. translators: %d: number of meta descriptions.
+#: includes/class-home-check.php:116
+msgid "%d meta descriptions: another plugin or the theme prints one too."
+msgstr "%d méta descriptions : une autre extension ou le thème en affiche une aussi."
+
+#: includes/class-home-check.php:117
+msgid "No meta description: set the description template of the home page (Settings › Search appearance)."
+msgstr "Pas de méta description : renseignez le modèle de description de la page d’accueil (Réglages › Apparence dans les moteurs)."
+
+#: includes/class-home-check.php:124
+msgid "Canonical URL of the home page"
+msgstr "Adresse canonique de la page d’accueil"
+
+#. translators: %d: number of canonical links.
+#: includes/class-home-check.php:127
+msgid "%d canonical links: search engines may ignore them all."
+msgstr "%d liens canoniques : les moteurs risquent de tous les ignorer."
+
+#: includes/class-home-check.php:128
+msgid "No duplicate canonical link."
+msgstr "Pas de lien canonique en double."
+
+#: includes/class-home-check.php:135
+msgid "Indexing of the home page"
+msgstr "Indexation de la page d’accueil"
+
+#: includes/class-home-check.php:136
+msgid "The home page asks search engines not to index it (noindex)."
+msgstr "La page d’accueil demande aux moteurs de ne pas l’indexer (noindex)."
+
+#: includes/class-home-check.php:136
+msgid "The home page may be indexed."
+msgstr "La page d’accueil peut être indexée."
+
+#: includes/class-home-check.php:143
+msgid "H1 heading of the home page"
+msgstr "Titre H1 de la page d’accueil"
+
+#: includes/class-home-check.php:145
+msgid "One H1 heading."
+msgstr "Un seul titre H1."
+
+#. translators: %d: number of H1 headings.
+#: includes/class-home-check.php:148
+msgid "%d H1 headings: keep only one (often the site title of the header is one too)."
+msgstr "%d titres H1 : n’en gardez qu’un (souvent, le titre du site dans l’en-tête en est un aussi)."
+
+#: includes/class-home-check.php:149
+msgid "No H1 heading on the home page."
+msgstr "Pas de titre H1 sur la page d’accueil."
+
+#: includes/class-home-check.php:157
+msgid "Language and mobile display"
+msgstr "Langue et affichage mobile"
+
+#: includes/class-home-check.php:159
+msgid "The page declares its language and its mobile display (viewport)."
+msgstr "La page déclare sa langue et son affichage mobile (viewport)."
+
+#: includes/class-home-check.php:164
+msgid "No lang attribute on the <html> tag."
+msgstr "Pas d’attribut lang sur la balise <html>."
+
+#: includes/class-home-check.php:165
+msgid "No viewport meta tag: the page is not adapted to mobiles."
+msgstr "Pas de balise meta viewport : la page n’est pas adaptée aux mobiles."
+
+#: includes/class-home-check.php:181
+msgid "Redirection from http to https"
+msgstr "Redirection de http vers https"
+
+#: includes/class-home-check.php:185
+msgid "The site does not use HTTPS: nothing to redirect yet."
+msgstr "Le site n’utilise pas HTTPS : rien à rediriger pour l’instant."
+
+#. translators: %s: error message.
+#: includes/class-home-check.php:191
+msgid "The http:// address could not be checked: %s"
+msgstr "L’adresse http:// n’a pas pu être vérifiée : %s"
+
+#: includes/class-home-check.php:197
+msgid "The http:// address redirects permanently to https://."
+msgstr "L’adresse http:// redirige définitivement vers https://."
+
+#: includes/class-home-check.php:205
+msgid "The http:// address redirects to https:// temporarily (302): the redirection must be permanent (301), on the server."
+msgstr "L’adresse http:// redirige vers https:// de façon temporaire (302) : la redirection doit être définitive (301), sur le serveur."
+
+#. translators: %d: HTTP status code.
+#: includes/class-home-check.php:207
+msgid "The http:// address does not redirect to https:// (code %d): set up a 301 redirection on the server (hosting panel or .htaccess)."
+msgstr "L’adresse http:// ne redirige pas vers https:// (code %d) : mettez en place une redirection 301 sur le serveur (panneau de l’hébergeur ou .htaccess)."
 
 #: includes/class-proposals.php:47
 msgid "SEO proposal"
@@ -1583,63 +1765,84 @@ msgstr "Chaque média a sa propre page presque vide : ces pages devraient rediri
 msgid "Attachment pages redirect to the file."
 msgstr "Les pages des fichiers joints redirigent vers le fichier."
 
-#: includes/class-site-audit.php:143
+#: includes/class-site-audit.php:141
+msgid "Not checked yet: EO SEO loads the home page as a search engine and reads its title, description, canonical, H1 and the redirection from http to https."
+msgstr "Pas encore vérifiée : EO SEO charge la page d’accueil comme un moteur de recherche et lit son titre, sa description, sa canonique, son H1 et la redirection de http vers https."
+
+#: includes/class-site-audit.php:141
+msgid "Check now"
+msgstr "Vérifier maintenant"
+
+#: includes/class-site-audit.php:151
+msgid "Home page check"
+msgstr "Vérification de la page d’accueil"
+
+#. translators: %s: time since the check, e.g. "3 hours".
+#: includes/class-site-audit.php:153
+msgid "Checked %s ago, again every night."
+msgstr "Vérifiée il y a %s, puis chaque nuit."
+
+#: includes/class-site-audit.php:157
+msgid "Check again"
+msgstr "Vérifier à nouveau"
+
+#: includes/class-site-audit.php:167
 msgid "H1 headings of the templates"
 msgstr "Titres H1 des modèles"
 
 #. translators: %s: list of headings (e.g. "site title").
-#: includes/class-site-audit.php:146
+#: includes/class-site-audit.php:170
 msgid "The templates print other H1 headings on every page (%s): only the page title should be an H1. Set them to another level in the site editor."
 msgstr "Les modèles affichent d’autres titres H1 sur toutes les pages (%s) : seul le titre de la page devrait être un H1. Changez leur niveau dans l’éditeur du site."
 
-#: includes/class-site-audit.php:147
+#: includes/class-site-audit.php:171
 msgid "The templates print no other H1 than the page title."
 msgstr "Les modèles n’affichent pas d’autre H1 que le titre de la page."
 
-#: includes/class-site-audit.php:157
+#: includes/class-site-audit.php:181
 msgid "Other SEO plugins"
 msgstr "Autres extensions SEO"
 
 #. translators: %s: plugin names.
-#: includes/class-site-audit.php:160
+#: includes/class-site-audit.php:184
 msgid "Also active: %s. EO SEO adds nothing on the front to avoid duplicates; keep only one SEO plugin."
 msgstr "Aussi actif : %s. EO SEO n’ajoute rien sur le site pour éviter les doublons ; ne gardez qu’une extension SEO."
 
-#: includes/class-site-audit.php:161
+#: includes/class-site-audit.php:185
 msgid "EO SEO is the only SEO plugin."
 msgstr "EO SEO est la seule extension SEO."
 
 #. translators: 1: number of contents with problems, 2: to improve, 3: good.
-#: includes/class-site-audit.php:173 includes/class-site-audit.php:211
+#: includes/class-site-audit.php:197 includes/class-site-audit.php:235
 msgid "%1$d with problems, %2$d to improve, %3$d good."
 msgstr "%1$d avec des problèmes, %2$d à améliorer, %3$d bons."
 
 #. translators: %d: number of addresses.
-#: includes/class-site-audit.php:189
+#: includes/class-site-audit.php:213
 msgid "%d missing address to redirect or handle."
 msgid_plural "%d missing addresses to redirect or handle."
 msgstr[0] "%d adresse introuvable à rediriger ou traiter."
 msgstr[1] "%d adresses introuvables à rediriger ou traiter."
 
-#: includes/class-site-audit.php:190
+#: includes/class-site-audit.php:214
 msgid "No missing address to handle."
 msgstr "Aucune adresse introuvable à traiter."
 
 #. translators: %d: number of images.
-#: includes/class-site-audit.php:202
+#: includes/class-site-audit.php:226
 msgid "%d image of the media library has no alternative text."
 msgid_plural "%d images of the media library have no alternative text."
 msgstr[0] "%d image de la médiathèque n’a pas de texte alternatif."
 msgstr[1] "%d images de la médiathèque n’ont pas de texte alternatif."
 
 #. translators: %d: number of terms.
-#: includes/class-site-audit.php:218
+#: includes/class-site-audit.php:242
 msgid "%d not analyzed yet: scan the site."
 msgid_plural "%d not analyzed yet: scan the site."
 msgstr[0] "%d pas encore analysé : lancez l’analyse du site."
 msgstr[1] "%d pas encore analysés : lancez l’analyse du site."
 
-#: includes/class-site-audit.php:225
+#: includes/class-site-audit.php:249
 msgid "Categories and tags"
 msgstr "Catégories et étiquettes"
 

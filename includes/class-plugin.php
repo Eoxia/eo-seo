@@ -51,5 +51,6 @@ final class Plugin {
 		Not_Found_Log::purge();
 		Proposals::purge_expired();
 		Site_Scan::start();
+		Home_Check::run();
 	}
 }

@@ -7,6 +7,7 @@
 
 namespace EoSeo\Admin;
 
+use EoSeo\Home_Check;
 use EoSeo\Not_Found_Log;
 use EoSeo\Proposals;
 use EoSeo\Redirections;
@@ -30,6 +31,7 @@ final class Actions {
 		add_action( 'admin_post_eo_seo_404', array( self::class, 'not_found' ) );
 		add_action( 'admin_post_eo_seo_proposal', array( self::class, 'proposal' ) );
 		add_action( 'admin_post_eo_seo_scan_start', array( self::class, 'scan_start' ) );
+		add_action( 'admin_post_eo_seo_home_check', array( self::class, 'home_check' ) );
 	}
 
 	/**
@@ -159,6 +161,27 @@ final class Actions {
 		}
 
 		self::notice( $errors ? 'warning' : 'success', $message );
+		self::back();
+	}
+
+	/**
+	 * Checks the home page now (request of the site to itself).
+	 */
+	public static function home_check(): void {
+		self::check_capability( 'manage_options' );
+		check_admin_referer( 'eo_seo_home_check' );
+
+		$result = Home_Check::run();
+		$errors = count( array_filter( $result['items'], static fn( $item ) => 'good' !== $item['status'] ) );
+		self::notice(
+			$errors ? 'warning' : 'success',
+			esc_html(
+				$errors
+					/* translators: %d: number of points to fix. */
+					? sprintf( _n( 'Home page checked: %d point to fix.', 'Home page checked: %d points to fix.', $errors, 'eo-seo' ), $errors )
+					: __( 'Home page checked: everything is fine.', 'eo-seo' )
+			)
+		);
 		self::back();
 	}
 

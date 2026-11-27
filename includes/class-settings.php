@@ -183,9 +183,10 @@ final class Settings {
 			'author_archives'     => true,
 			'robots_rules'        => '',
 			'cleanup'             => array(
-				'extra_feeds' => false,
-				'head_links'  => false,
-				'replytocom'  => true,
+				'extra_feeds'   => false,
+				'head_links'    => false,
+				'replytocom'    => true,
+				'comment_pages' => true,
 			),
 			'default_og_image'    => 0,
 			'x_username'          => '',
@@ -207,6 +208,177 @@ final class Settings {
 			'not_found_retention' => 90,
 			'delete_data'         => false,
 		);
+	}
+
+	/**
+	 * JSON schema of the settings (top-level keys). Static: also the input schema of
+	 * eo-seo/update-settings, which MCP clients cache.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public static function schema(): array {
+		$template = array(
+			'type'       => 'object',
+			'properties' => array(
+				'title'       => array( 'type' => 'string' ),
+				'description' => array( 'type' => 'string' ),
+			),
+		);
+		$switches = array(
+			'type'                 => 'object',
+			'additionalProperties' => array( 'type' => 'boolean' ),
+		);
+
+		return array(
+			'type'       => 'object',
+			'properties' => array(
+				'separator'           => array(
+					'type' => 'string',
+					'enum' => self::SEPARATORS,
+				),
+				'templates'           => array(
+					'type'                 => 'object',
+					'description'          => 'Title and description templates, keyed by context: home, post_type:{name}, archive:{name}, taxonomy:{name}, author, date, search. Variables: %title%, %excerpt%, %term%, %archive%, %author%, %date%, %search%, %sitename%, %tagline%, %sep%, %page%.',
+					'additionalProperties' => $template,
+				),
+				'index'               => array(
+					'type'        => 'object',
+					'description' => 'Shown to search engines (false: noindex and out of the sitemap), per post type and per taxonomy.',
+					'properties'  => array(
+						'post_types' => $switches,
+						'taxonomies' => $switches,
+					),
+				),
+				'noindex_search'      => array( 'type' => 'boolean' ),
+				'noindex_date'        => array( 'type' => 'boolean' ),
+				'author_archives'     => array(
+					'type'        => 'boolean',
+					'description' => 'false: author archives redirect to the home page.',
+				),
+				'robots_rules'        => array(
+					'type'        => 'string',
+					'description' => 'Extra lines of the virtual robots.txt.',
+				),
+				'cleanup'             => array(
+					'type'       => 'object',
+					'properties' => array(
+						'extra_feeds'   => array( 'type' => 'boolean' ),
+						'head_links'    => array( 'type' => 'boolean' ),
+						'replytocom'    => array( 'type' => 'boolean' ),
+						'comment_pages' => array( 'type' => 'boolean' ),
+					),
+				),
+				'default_og_image'    => array(
+					'type'        => 'integer',
+					'description' => 'Attachment ID of the default sharing image.',
+				),
+				'x_username'          => array( 'type' => 'string' ),
+				'identity'            => array(
+					'type'       => 'object',
+					'properties' => array(
+						'type'        => array(
+							'type' => 'string',
+							'enum' => array( 'organization', 'person', 'local_business' ),
+						),
+						'name'        => array( 'type' => 'string' ),
+						'logo'        => array( 'type' => 'integer' ),
+						'street'      => array( 'type' => 'string' ),
+						'postal_code' => array( 'type' => 'string' ),
+						'city'        => array( 'type' => 'string' ),
+						'country'     => array( 'type' => 'string' ),
+						'phone'       => array( 'type' => 'string' ),
+						'same_as'     => array(
+							'type'  => 'array',
+							'items' => array( 'type' => 'string' ),
+						),
+					),
+				),
+				'verification'        => array(
+					'type'       => 'object',
+					'properties' => array(
+						'google' => array( 'type' => 'string' ),
+						'bing'   => array( 'type' => 'string' ),
+					),
+				),
+				'not_found_retention' => array(
+					'type'    => 'integer',
+					'minimum' => 7,
+					'maximum' => 365,
+				),
+				'delete_data'         => array( 'type' => 'boolean' ),
+			),
+		);
+	}
+
+	/**
+	 * Changes some settings (code, abilities): only the given keys change, the others are kept.
+	 * Each change is logged with its old value.
+	 *
+	 * @param array<string, mixed> $changes Settings keyed by top-level key; nested objects may be partial.
+	 * @param string               $source  Who changes them, for the log (ai, …).
+	 * @return array<string, array{before: mixed, after: mixed}> Changes really made.
+	 */
+	public static function update( array $changes, string $source = 'ai' ): array {
+		$current = self::all();
+		$next    = $current;
+
+		foreach ( $changes as $key => $value ) {
+			if ( ! array_key_exists( $key, $current ) || in_array( $key, array( 'delete_data' ), true ) ) {
+				continue; // Unknown keys, and the deletion of the data at uninstallation (human only).
+			}
+			// Partial nested values: the missing sub-keys keep their current value.
+			if ( is_array( $value ) && is_array( $current[ $key ] ) && ! array_is_list( $current[ $key ] ) ) {
+				$value = array_replace_recursive( $current[ $key ], $value );
+			}
+			$next[ $key ] = self::sanitize_value( $key, $value, $current[ $key ] );
+		}
+
+		$made = array();
+		foreach ( $next as $key => $value ) {
+			if ( $value !== $current[ $key ] ) {
+				$made[ $key ] = array(
+					'before' => $current[ $key ],
+					'after'  => $value,
+				);
+			}
+		}
+
+		if ( $made ) {
+			update_option( self::OPTION, $next );
+			self::log( $made, $source );
+		}
+
+		return $made;
+	}
+
+	/**
+	 * Keeps the last changes made outside the settings screen, with their old value.
+	 *
+	 * @param array<string, array{before: mixed, after: mixed}> $changes Changes.
+	 * @param string                                            $source  Who made them.
+	 */
+	private static function log( array $changes, string $source ): void {
+		$log   = get_option( 'eo_seo_settings_log', array() );
+		$log   = is_array( $log ) ? $log : array();
+		$log[] = array(
+			'time'    => time(),
+			'user'    => get_current_user_id(),
+			'source'  => $source,
+			'changes' => $changes,
+		);
+
+		update_option( 'eo_seo_settings_log', array_slice( $log, -50 ), false );
+	}
+
+	/**
+	 * Last changes made outside the settings screen, newest first.
+	 *
+	 * @return array<int, array{time: int, user: int, source: string, changes: array<string, array{before: mixed, after: mixed}>}>
+	 */
+	public static function get_log(): array {
+		$log = get_option( 'eo_seo_settings_log', array() );
+
+		return is_array( $log ) ? array_reverse( $log ) : array();
 	}
 
 	/**

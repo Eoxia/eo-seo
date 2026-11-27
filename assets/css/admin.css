@@ -767,3 +767,5 @@ a.eo-seo-stat:focus { border-color: var(--eo-seo-accent); color: inherit; box-sh
 .eo-seo-meter--good .eo-seo-meter__bar span { background: var(--eo-seo-good); }
 .eo-seo-meter--bad .eo-seo-meter__bar span { background: var(--eo-seo-improve); }
 .eo-seo-meter__text { display: block; margin-top: 4px; color: var(--eo-seo-muted); font-size: 12px; }
+.eo-seo-review del,
+.eo-seo-review ins { word-break: break-all; }

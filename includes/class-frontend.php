@@ -48,7 +48,11 @@ final class Frontend {
 	 * @return array<string, bool|string>
 	 */
 	public static function robots( array $robots ): array {
-		if ( Meta::current()['noindex'] ) {
+		// Pages 2, 3… of the comments repeat the content: kept out of the index, links followed.
+		$cleanup       = (array) Settings::get( 'cleanup' );
+		$comment_pages = ! empty( $cleanup['comment_pages'] ) && is_singular() && (int) get_query_var( 'cpage' ) > 1;
+
+		if ( Meta::current()['noindex'] || $comment_pages ) {
 			$robots['noindex'] = true;
 			$robots['follow']  = true;
 			unset( $robots['max-image-preview'] );

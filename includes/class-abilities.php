@@ -151,6 +151,23 @@ final class Abilities {
 		);
 
 		self::add(
+			'update-settings',
+			__( 'Change EO SEO settings', 'eo-seo' ),
+			'Changes settings of EO SEO. Give only the keys to change; nested objects may be partial (e.g. {"templates": {"post_type:page": {"title": "%title% %sep% %sitename%"}}}). Read eo-seo/get-settings first. The old values are kept in a log shown in EO SEO › Settings › Tools. "delete_data" cannot be changed here.',
+			array(
+				'type'       => 'object',
+				'required'   => array( 'settings' ),
+				'properties' => array(
+					'settings' => Settings::schema(),
+				),
+			),
+			array( self::class, 'update_settings' ),
+			'manage_options',
+			'sensitive',
+			__( 'Changes the EO SEO settings (templates, indexing, identity…); the old values are logged.', 'eo-seo' )
+		);
+
+		self::add(
 			'update-draft-seo',
 			__( 'SEO fields of a draft', 'eo-seo' ),
 			'Writes the SEO fields of a content that is not published (draft, pending): nothing changes on the live site. For published contents use eo-seo/propose-seo.',
@@ -541,6 +558,22 @@ final class Abilities {
 	 */
 	public static function get_settings(): array {
 		return Settings::all() + array( 'template_variables' => Variables::available() );
+	}
+
+	/**
+	 * Execute: eo-seo/update-settings.
+	 *
+	 * @param array<string, mixed>|null $input Input.
+	 * @return array<string, mixed>
+	 */
+	public static function update_settings( ?array $input = null ): array {
+		$changes = Settings::update( (array) ( $input['settings'] ?? array() ), 'ai' );
+
+		return array(
+			'changed' => array_keys( $changes ),
+			'changes' => $changes,
+			'note'    => $changes ? 'Applied. The old values are in the log of EO SEO › Settings › Tools.' : 'Nothing changed: the values given are the current ones, or the keys are unknown.',
+		);
 	}
 
 	/**

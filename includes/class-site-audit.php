@@ -134,6 +134,30 @@ final class Site_Audit {
 			Admin\Admin::page_url( 'eo-seo-settings', array( 'tab' => 'indexing' ) )
 		);
 
+		// Home page as search engines get it (checked on demand and every night).
+		$home_check = Home_Check::last();
+		$check_url  = wp_nonce_url( admin_url( 'admin-post.php?action=eo_seo_home_check' ), 'eo_seo_home_check' );
+		if ( null === $home_check ) {
+			$items[] = self::item( 'home_check', 'indexing', 'warning', __( 'Home page', 'eo-seo' ), __( 'Not checked yet: EO SEO loads the home page as a search engine and reads its title, description, canonical, H1 and the redirection from http to https.', 'eo-seo' ), '', '', $check_url, __( 'Check now', 'eo-seo' ) );
+		} else {
+			foreach ( $home_check['items'] as $result ) {
+				$fix     = 'home_description' === $result['id'] ? Admin\Admin::page_url( 'eo-seo-settings' ) : '';
+				$items[] = self::item( $result['id'], 'indexing', $result['status'], $result['label'], $result['message'], $fix );
+			}
+			$items[] = self::item(
+				'home_check',
+				'indexing',
+				'good',
+				__( 'Home page check', 'eo-seo' ),
+				/* translators: %s: time since the check, e.g. "3 hours". */
+				sprintf( __( 'Checked %s ago, again every night.', 'eo-seo' ), human_time_diff( (int) $home_check['time'] ) ),
+				'',
+				'',
+				$check_url,
+				__( 'Check again', 'eo-seo' )
+			);
+		}
+
 		$extra_h1 = self::template_extra_h1();
 		if ( null !== $extra_h1 ) {
 			$items[] = self::item(
@@ -253,8 +277,8 @@ final class Site_Audit {
 	 * @param string $view_url Where to see the result (sitemap, robots.txt…), empty when there is nothing to see.
 	 * @return array{id: string, group: string, status: string, label: string, message: string, fix_url: string, view_url: string}
 	 */
-	private static function item( string $id, string $group, string $status, string $label, string $message, string $fix_url, string $view_url = '' ): array {
-		return compact( 'id', 'group', 'status', 'label', 'message', 'fix_url', 'view_url' );
+	private static function item( string $id, string $group, string $status, string $label, string $message, string $fix_url, string $view_url = '', string $action_url = '', string $action_label = '' ): array {
+		return compact( 'id', 'group', 'status', 'label', 'message', 'fix_url', 'view_url', 'action_url', 'action_label' );
 	}
 
 	/**
