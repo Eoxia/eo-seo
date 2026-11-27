@@ -83,7 +83,7 @@ final class Term_Checks {
 						return array( true, __( 'The meta description is written for this archive.', 'eo-seo' ) );
 					}
 					return '' !== $a->description
-						? array( false, __( 'Automatic description, taken from the description of the term: write one for search results.', 'eo-seo' ) )
+						? array( true, __( 'Automatic description, taken from the description of the term (Google accepts it). A description written for search results often makes people click more.', 'eo-seo' ) )
 						: array( false, __( 'No meta description: search engines will pick a piece of text themselves.', 'eo-seo' ) );
 				},
 			),
@@ -106,6 +106,8 @@ final class Term_Checks {
 				},
 			),
 		);
+
+		$checks = Checks::classify( $checks, array( 'term_empty', 'term_title_unique', 'term_description' ), array() );
 
 		/**
 		 * Filters the term checks.

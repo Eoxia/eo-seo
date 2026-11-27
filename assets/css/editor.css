@@ -90,3 +90,6 @@
 .eo-seo-check--problem::before { background: #d63638; }
 .eo-seo-check--improve::before,
 .eo-seo-check--readability::before { background: #dba617; }
+
+/* Advice: grey, it does not count in the points. */
+.eo-seo-check--advice::before { background: #a7aaad; }

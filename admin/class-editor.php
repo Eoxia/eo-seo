@@ -134,9 +134,10 @@ final class Editor {
 			'eo-seo-editor',
 			'window.eoSeoEditor = ' . wp_json_encode(
 				array(
-					'route'  => '/' . Rest::NAMESPACE . '/analyze/',
-					'fields' => $fields,
-					'levels' => Checks::levels(),
+					'route'    => '/' . Rest::NAMESPACE . '/analyze/',
+					'fields'   => $fields,
+					'levels'   => Checks::levels(),
+					'families' => Checks::families(),
 				)
 			) . ';',
 			'before'

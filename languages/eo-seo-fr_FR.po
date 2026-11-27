@@ -65,7 +65,7 @@ msgid "You are not allowed to do this."
 msgstr "Vous n’avez pas le droit de faire cela."
 
 #. Plugin Name of the plugin
-#: admin/class-admin.php:77 admin/class-metabox.php:52 admin/views/partials/header.php:18 assets/js/editor.js:329 eo-seo.php
+#: admin/class-admin.php:77 admin/class-metabox.php:52 admin/views/partials/header.php:18 assets/js/editor.js:327 eo-seo.php
 msgid "EO SEO"
 msgstr "EO SEO"
 
@@ -131,7 +131,7 @@ msgstr "Enregistrez le contenu pour l’analyser."
 msgid "Save the term, or scan the site from the EO SEO dashboard."
 msgstr "Enregistrez le terme, ou lancez l’analyse du site depuis le tableau de bord d’EO SEO."
 
-#: admin/class-list-column.php:112 assets/js/editor.js:323
+#: admin/class-list-column.php:112 assets/js/editor.js:321
 msgid "Not analyzed yet"
 msgstr "Pas encore analysé"
 
@@ -152,11 +152,11 @@ msgstr "Seuls les termes de niveau SEO « %1$s » sont affichés. %2$s"
 msgid "Show all"
 msgstr "Tout afficher"
 
-#: admin/class-media-field.php:29 admin/class-media-field.php:31 assets/js/admin.js:19 assets/js/editor.js:142
+#: admin/class-media-field.php:29 admin/class-media-field.php:31 assets/js/admin.js:19 assets/js/editor.js:139
 msgid "Choose an image"
 msgstr "Choisir une image"
 
-#: admin/class-media-field.php:33 assets/js/editor.js:143
+#: admin/class-media-field.php:33 assets/js/editor.js:140
 msgid "Remove"
 msgstr "Retirer"
 
@@ -249,7 +249,7 @@ msgstr "Résultats de recherche"
 msgid "Good"
 msgstr "Bon"
 
-#: admin/views/dashboard.php:19 assets/js/editor.js:37
+#: admin/views/dashboard.php:19
 msgid "To improve"
 msgstr "À améliorer"
 
@@ -331,7 +331,7 @@ msgstr "Corriger"
 msgid "· %s points OK"
 msgstr "· %s points OK"
 
-#: admin/views/list-badge.php:34 admin/views/partials/seo-box.php:34 admin/views/partials/seo-box.php:91 assets/js/editor.js:203 includes/class-admin-bar.php:140
+#: admin/views/list-badge.php:34 admin/views/partials/seo-box.php:34 admin/views/partials/seo-box.php:91 assets/js/editor.js:200 includes/class-admin-bar.php:140
 msgid "Hidden from search engines: nothing to check."
 msgstr "Masqué aux moteurs de recherche : rien à vérifier."
 
@@ -416,7 +416,7 @@ msgid "EO SEO screens"
 msgstr "Écrans d’EO SEO"
 
 #. translators: 1: number of checks passed, 2: number of checks.
-#: admin/views/partials/seo-box.php:38 assets/js/editor.js:208
+#: admin/views/partials/seo-box.php:38 assets/js/editor.js:205
 msgid "%1$d/%2$d points OK"
 msgstr "%1$d/%2$d points OK"
 
@@ -424,28 +424,28 @@ msgstr "%1$d/%2$d points OK"
 msgid "updated when you save"
 msgstr "mis à jour à l’enregistrement"
 
-#: admin/views/partials/seo-box.php:48 assets/js/editor.js:177
+#: admin/views/partials/seo-box.php:48 assets/js/editor.js:174
 msgid "Search result preview"
 msgstr "Aperçu dans les résultats de recherche"
 
-#: admin/views/partials/seo-box.php:55 assets/js/editor.js:339
+#: admin/views/partials/seo-box.php:55 assets/js/editor.js:337
 msgid "Search engines"
 msgstr "Moteurs de recherche"
 
-#: admin/views/partials/seo-box.php:66 assets/js/editor.js:341
+#: admin/views/partials/seo-box.php:66 assets/js/editor.js:339
 msgid "Social sharing"
 msgstr "Partage sur les réseaux"
 
-#: admin/views/partials/seo-box.php:77 assets/js/editor.js:342
+#: admin/views/partials/seo-box.php:77 assets/js/editor.js:340
 msgid "Advanced"
 msgstr "Avancé"
 
-#: admin/views/partials/seo-box.php:88 admin/views/partials/seo-box.php:89 assets/js/editor.js:340
+#: admin/views/partials/seo-box.php:88 admin/views/partials/seo-box.php:89 assets/js/editor.js:338
 msgid "Checks"
 msgstr "Vérifications"
 
 #. translators: %d: number of checks.
-#: admin/views/partials/seo-box.php:108 assets/js/editor.js:252
+#: admin/views/partials/seo-box.php:112 assets/js/editor.js:250
 msgid "%d point OK"
 msgid_plural "%d points OK"
 msgstr[0] "%d point OK"
@@ -878,16 +878,16 @@ msgstr "Sections des réglages"
 msgid "Save the changes"
 msgstr "Enregistrer les modifications"
 
-#: assets/js/admin.js:67 assets/js/editor.js:77
+#: assets/js/admin.js:67 assets/js/editor.js:74
 msgid "Empty: the template writes it automatically (grey text). Write your own."
 msgstr "Vide : le modèle l’écrit automatiquement (texte grisé). Rédigez le vôtre."
 
-#: assets/js/admin.js:68 assets/js/editor.js:78
+#: assets/js/admin.js:68 assets/js/editor.js:75
 msgid "Empty."
 msgstr "Vide."
 
 #. translators: 1: number of characters, 2: minimum, 3: maximum.
-#: assets/js/admin.js:73 assets/js/editor.js:93
+#: assets/js/admin.js:73 assets/js/editor.js:90
 msgid "%1$d characters (recommended: %2$d to %3$d)"
 msgstr "%1$d caractères (conseillé : %2$d à %3$d)"
 
@@ -899,20 +899,12 @@ msgstr "Analyse terminée. Mise à jour des chiffres…"
 msgid "The scan could not continue from this page: it goes on in the background."
 msgstr "L’analyse n’a pas pu continuer depuis cette page : elle se poursuit en arrière-plan."
 
-#: assets/js/editor.js:36
-msgid "Problems"
-msgstr "Problèmes"
-
-#: assets/js/editor.js:38
-msgid "Readability"
-msgstr "Lisibilité"
-
-#: assets/js/editor.js:142
+#: assets/js/editor.js:139
 msgid "Replace the image"
 msgstr "Remplacer l’image"
 
 #. translators: %s: SEO level (Good, Needs improvement…).
-#: assets/js/editor.js:321 includes/class-admin-bar.php:125
+#: assets/js/editor.js:319 includes/class-admin-bar.php:125
 msgid "EO SEO: %s"
 msgstr "EO SEO : %s"
 
@@ -1025,19 +1017,19 @@ msgstr "Proposer des redirections"
 msgid "Prepares redirections, created once a human applies them."
 msgstr "Prépare des redirections, créées quand un humain les applique."
 
-#: includes/class-abilities.php:594
+#: includes/class-abilities.php:608
 msgid "You are not allowed to edit this content."
 msgstr "Vous n’avez pas le droit de modifier ce contenu."
 
-#: includes/class-abilities.php:625
+#: includes/class-abilities.php:639
 msgid "You are not allowed to edit this item."
 msgstr "Vous n’avez pas le droit de modifier cet élément."
 
-#: includes/class-abilities.php:693 includes/class-rest.php:95
+#: includes/class-abilities.php:707 includes/class-rest.php:95
 msgid "Content not found."
 msgstr "Contenu introuvable."
 
-#: includes/class-abilities.php:696
+#: includes/class-abilities.php:710
 msgid "You are not allowed to read this content."
 msgstr "Vous n’avez pas le droit de lire ce contenu."
 
@@ -1096,8 +1088,8 @@ msgid "The SEO title is written for this page."
 msgstr "Le titre SEO est écrit pour cette page."
 
 #: includes/class-checks.php:57
-msgid "The SEO title comes from the template: write one for this page."
-msgstr "Le titre SEO vient du modèle : rédigez-en un pour cette page."
+msgid "The SEO title comes from the template, which repeats the page title: Google accepts it. A title written for this page can make people click more."
+msgstr "Le titre SEO vient du modèle, qui reprend le titre de la page : Google l’accepte. Un titre rédigé pour cette page peut donner plus envie de cliquer."
 
 #: includes/class-checks.php:60 includes/class-term-checks.php:91
 msgid "SEO title length"
@@ -1121,8 +1113,8 @@ msgid "The meta description is written for this page."
 msgstr "La méta description est écrite pour cette page."
 
 #: includes/class-checks.php:87
-msgid "Automatic description, taken from the beginning of the text by the template: write one for this page."
-msgstr "Description automatique, tirée du début du texte par le modèle : rédigez-en une pour cette page."
+msgid "Automatic description, taken from the beginning of the text (Google accepts it). A description written for this page often makes people click more."
+msgstr "Description automatique, tirée du début du texte (Google l’accepte). Une description rédigée pour cette page donne souvent plus envie de cliquer."
 
 #: includes/class-checks.php:88 includes/class-term-checks.php:87
 msgid "No meta description: search engines will pick a piece of text themselves."
@@ -1163,8 +1155,8 @@ msgstr "Requête non visée ailleurs"
 
 #. translators: %s: title of another content.
 #: includes/class-checks.php:130
-msgid "\"%s\" targets the same keyphrase: the two pages compete in search results."
-msgstr "« %s » vise la même requête : les deux pages se concurrencent dans les résultats."
+msgid "\"%s\" targets the same keyphrase: check that the two pages answer different needs, or merge them."
+msgstr "« %s » vise la même requête : vérifiez que les deux pages répondent à des besoins différents, ou regroupez-les."
 
 #: includes/class-checks.php:131
 msgid "No other content targets this keyphrase."
@@ -1195,8 +1187,8 @@ msgid "The address contains the keyphrase."
 msgstr "L’adresse contient la requête."
 
 #: includes/class-checks.php:149
-msgid "Put the keyphrase in the address (slug)."
-msgstr "Mettez la requête dans l’adresse (slug)."
+msgid "The keyphrase is not in the address. Google gives it little weight: change the address only for a new page."
+msgstr "La requête n’est pas dans l’adresse. Google y accorde peu de poids : ne changez l’adresse que pour une nouvelle page."
 
 #: includes/class-checks.php:153
 msgid "Content"
@@ -1224,8 +1216,8 @@ msgstr "%d mots."
 
 #. translators: %d: number of words.
 #: includes/class-checks.php:169
-msgid "%d words: aim for at least 300."
-msgstr "%d mots : visez au moins 300."
+msgid "%d words. Google sets no minimum: a longer text helps when the subject needs it."
+msgstr "%d mots. Google ne fixe pas de minimum : un texte plus long aide quand le sujet le demande."
 
 #: includes/class-checks.php:172 includes/class-fields.php:89
 msgid "Canonical URL"
@@ -1254,21 +1246,21 @@ msgstr "Les modèles du site fournissent le H1 (%s) : le contenu utilise des niv
 
 #. translators: %s: H1 headings of the templates (e.g. "page title, site title").
 #: includes/class-checks.php:201
-msgid "Your site already uses the H1 in its templates (%s). Your page must not contain one: use H2 headings."
-msgstr "Votre site utilise déjà le H1 dans ses modèles (%s). Votre page ne doit pas en contenir : utilisez des titres H2."
+msgid "Your site already uses the H1 in its templates (%s). Your page must not contain one: use H2 headings. A good practice for the structure and the accessibility of the page, not a Google requirement."
+msgstr "Votre site utilise déjà le H1 dans ses modèles (%s). Votre page ne doit pas en contenir : utilisez des titres H2. Une bonne pratique pour la structure et l’accessibilité de la page, pas une exigence de Google."
 
 #: includes/class-checks.php:206
 msgid "The content has its H1 heading (the templates of the site have none)."
 msgstr "Le contenu a son titre H1 (les modèles du site n’en ont pas)."
 
 #: includes/class-checks.php:210
-msgid "The templates of the site have no H1: add one H1 heading at the top of the content."
-msgstr "Les modèles du site n’ont pas de H1 : ajoutez un titre H1 en haut du contenu."
+msgid "The templates of the site have no H1: add one H1 heading at the top of the content. A good practice for the structure and the accessibility of the page, not a Google requirement."
+msgstr "Les modèles du site n’ont pas de H1 : ajoutez un titre H1 en haut du contenu. Une bonne pratique pour la structure et l’accessibilité de la page, pas une exigence de Google."
 
 #. translators: %d: number of H1 headings.
 #: includes/class-checks.php:212
-msgid "%d H1 headings in the content: keep only one."
-msgstr "%d titres H1 dans le contenu : n’en gardez qu’un."
+msgid "%d H1 headings in the content: keep only one. A good practice for the structure and the accessibility of the page, not a Google requirement."
+msgstr "%d titres H1 dans le contenu : n’en gardez qu’un. Une bonne pratique pour la structure et l’accessibilité de la page, pas une exigence de Google."
 
 #: includes/class-checks.php:216 includes/class-site-audit.php:223
 msgid "Alternative texts"
@@ -1365,26 +1357,42 @@ msgstr "Le texte est découpé par des intertitres."
 msgid "A part of the text has more than 300 words without a subheading."
 msgstr "Une partie du texte dépasse 300 mots sans intertitre."
 
-#. translators: 1: length, 2: minimum length.
-#: includes/class-checks.php:428
-msgid "%1$d characters: too short (at least %2$d)."
-msgstr "%1$d caractères : trop court (au moins %2$d)."
+#: includes/class-checks.php:340
+msgid "Google recommendations"
+msgstr "Recommandations de Google"
 
-#. translators: 1: length, 2: maximum length.
-#: includes/class-checks.php:432
-msgid "%1$d characters: too long, it will be cut (at most %2$d)."
-msgstr "%1$d caractères : trop long, il sera coupé (au plus %2$d)."
+#: includes/class-checks.php:341
+msgid "Good practices"
+msgstr "Bonnes pratiques"
+
+#: includes/class-checks.php:342
+msgid "Readability"
+msgstr "Lisibilité"
+
+#: includes/class-checks.php:343
+msgid "Advice"
+msgstr "Conseils"
+
+#. translators: 1: length, 2: recommended minimum.
+#: includes/class-checks.php:475
+msgid "%1$d characters: short. A more descriptive text (around %2$d characters or more) tells more about the page."
+msgstr "%1$d caractères : court. Un texte plus descriptif (environ %2$d caractères ou plus) en dit davantage sur la page."
+
+#. translators: 1: length, 2: usual visible length.
+#: includes/class-checks.php:479
+msgid "%1$d characters: the end may be cut in Google (about %2$d characters are shown). Put the important words first."
+msgstr "%1$d caractères : la fin risque d’être coupée dans Google (environ %2$d caractères sont affichés). Placez les mots importants au début."
 
 #. translators: %d: length.
-#: includes/class-checks.php:436
+#: includes/class-checks.php:483
 msgid "%d characters."
 msgstr "%d caractères."
 
-#: includes/class-checks.php:453
+#: includes/class-checks.php:500
 msgid "The keyphrase is there."
 msgstr "La requête y est."
 
-#: includes/class-checks.php:454
+#: includes/class-checks.php:501
 msgid "The keyphrase is missing."
 msgstr "La requête n’y est pas."
 
@@ -1948,8 +1956,8 @@ msgid "The meta description is written for this archive."
 msgstr "La méta description est écrite pour cette archive."
 
 #: includes/class-term-checks.php:86
-msgid "Automatic description, taken from the description of the term: write one for search results."
-msgstr "Description automatique, tirée de la description du terme : rédigez-en une pour les résultats de recherche."
+msgid "Automatic description, taken from the description of the term (Google accepts it). A description written for search results often makes people click more."
+msgstr "Description automatique, tirée de la description du terme (Google l’accepte). Une description rédigée pour les résultats de recherche donne souvent plus envie de cliquer."
 
 #. translators: 1: term name, 2: taxonomy name.
 #: includes/class-term-checks.php:104

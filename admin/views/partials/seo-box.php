@@ -90,16 +90,20 @@ $eo_seo_passed = array_values( array_filter( $result['checks'], static fn( $chec
 			<?php if ( ! $result['checks'] ) : ?>
 				<p class="eo-seo-muted"><?php esc_html_e( 'Hidden from search engines: nothing to check.', 'eo-seo' ); ?></p>
 			<?php endif; ?>
-			<?php if ( $eo_seo_failed ) : ?>
-				<ul class="eo-seo-box__list">
-					<?php foreach ( $eo_seo_failed as $eo_seo_check ) : ?>
-						<li class="eo-seo-box__check eo-seo-box__check--<?php echo esc_attr( $eo_seo_check['severity'] ); ?>">
-							<strong><?php echo esc_html( $eo_seo_check['label'] ); ?></strong>
-							<span><?php echo esc_html( $eo_seo_check['message'] ); ?></span>
-						</li>
-					<?php endforeach; ?>
-				</ul>
-			<?php endif; ?>
+			<?php foreach ( EoSeo\Checks::families() as $eo_seo_family => $eo_seo_family_label ) : ?>
+				<?php $eo_seo_list = array_filter( $eo_seo_failed, static fn( $check ) => ( $check['family'] ?? 'practice' ) === $eo_seo_family ); ?>
+				<?php if ( $eo_seo_list ) : ?>
+					<p class="eo-seo-box__family"><?php echo esc_html( $eo_seo_family_label ); ?></p>
+					<ul class="eo-seo-box__list">
+						<?php foreach ( $eo_seo_list as $eo_seo_check ) : ?>
+							<li class="eo-seo-box__check eo-seo-box__check--<?php echo esc_attr( $eo_seo_check['severity'] ); ?>">
+								<strong><?php echo esc_html( $eo_seo_check['label'] ); ?></strong>
+								<span><?php echo esc_html( $eo_seo_check['message'] ); ?></span>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+			<?php endforeach; ?>
 			<?php if ( $eo_seo_passed ) : ?>
 				<details class="eo-seo-box__ok">
 					<summary>

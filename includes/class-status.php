@@ -104,7 +104,8 @@ final class Status {
 		// Failed checks, worst first, shown when hovering the badge in the lists.
 		$issues = array();
 		foreach ( $result['checks'] as $check ) {
-			if ( ! $check['passed'] ) {
+			// Advice (not counted) is left out: the tooltip explains the level and the points.
+			if ( ! $check['passed'] && ( $check['scored'] ?? true ) ) {
 				$issues[] = array(
 					'id'       => $check['id'],
 					'severity' => $check['severity'],

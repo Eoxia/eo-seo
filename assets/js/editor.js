@@ -32,11 +32,8 @@
 		advanced: [ 'noindex', 'canonical' ],
 		social: [ 'og_title', 'og_description', 'og_image_id' ],
 	};
-	const SEVERITIES = [
-		[ 'problem', __( 'Problems', 'eo-seo' ) ],
-		[ 'improve', __( 'To improve', 'eo-seo' ) ],
-		[ 'readability', __( 'Readability', 'eo-seo' ) ],
-	];
+	// Families of the checks, in their order: Google recommendations, good practices, readability, advice.
+	const FAMILIES = Object.entries( config.families || {} );
 
 	/**
 	 * Coloured badge of a level.
@@ -216,7 +213,8 @@
 	}
 
 	/**
-	 * Checks, grouped by severity; passed checks are folded.
+	 * Checks to fix, grouped by family (Google recommendations first; advice does not count in the
+	 * points); passed checks are folded.
 	 *
 	 * @param {Object} props        Props.
 	 * @param {Object} props.result Analysis.
@@ -235,10 +233,10 @@
 		return el(
 			Fragment,
 			null,
-			SEVERITIES.map( ( [ severity, label ] ) => {
-				const list = failed.filter( ( check ) => check.severity === severity );
+			FAMILIES.map( ( [ family, label ] ) => {
+				const list = failed.filter( ( check ) => check.family === family );
 				return list.length
-					? el( 'div', { key: severity, className: 'eo-seo-checks-group' }, el( 'h3', null, label ), el( 'ul', { className: 'eo-seo-checks' }, list.map( item ) ) )
+					? el( 'div', { key: family, className: 'eo-seo-checks-group eo-seo-checks-group--' + family }, el( 'h3', null, label ), el( 'ul', { className: 'eo-seo-checks' }, list.map( item ) ) )
 					: null;
 			} ),
 			passed.length

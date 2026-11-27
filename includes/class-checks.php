@@ -54,7 +54,7 @@ final class Checks {
 				'severity' => 'improve',
 				'callback' => static fn( Analysis $a ) => '' !== (string) $a->values['title']
 					? array( true, __( 'The SEO title is written for this page.', 'eo-seo' ) )
-					: array( false, __( 'The SEO title comes from the template: write one for this page.', 'eo-seo' ) ),
+					: array( false, __( 'The SEO title comes from the template, which repeats the page title: Google accepts it. A title written for this page can make people click more.', 'eo-seo' ) ),
 			),
 			'title_length'          => array(
 				'label'    => __( 'SEO title length', 'eo-seo' ),
@@ -84,7 +84,7 @@ final class Checks {
 					}
 					// Empty field: the template may still print an automatic description (beginning of the text).
 					return '' !== $a->description
-						? array( false, __( 'Automatic description, taken from the beginning of the text by the template: write one for this page.', 'eo-seo' ) )
+						? array( true, __( 'Automatic description, taken from the beginning of the text (Google accepts it). A description written for this page often makes people click more.', 'eo-seo' ) )
 						: array( false, __( 'No meta description: search engines will pick a piece of text themselves.', 'eo-seo' ) );
 				},
 			),
@@ -121,13 +121,13 @@ final class Checks {
 			'keyword_unique'        => array(
 				'label'    => __( 'Keyphrase not targeted elsewhere', 'eo-seo' ),
 				'group'    => 'keyword',
-				'severity' => 'problem',
+				'severity' => 'improve',
 				'keyword'  => true,
 				'callback' => static function ( Analysis $a ) {
 					$other = Duplicates::post_with_meta( $a->post, '_eo_seo_focus_keyword', $a->keyword );
 					return $other
 						/* translators: %s: title of another content. */
-						? array( false, sprintf( __( '"%s" targets the same keyphrase: the two pages compete in search results.', 'eo-seo' ), get_the_title( $other ) ) )
+						? array( false, sprintf( __( '"%s" targets the same keyphrase: check that the two pages answer different needs, or merge them.', 'eo-seo' ), get_the_title( $other ) ) )
 						: array( true, __( 'No other content targets this keyphrase.', 'eo-seo' ) );
 				},
 			),
@@ -146,7 +146,7 @@ final class Checks {
 					}
 					return str_contains( $a->slug, sanitize_title( $a->keyword ) )
 						? array( true, __( 'The address contains the keyphrase.', 'eo-seo' ) )
-						: array( false, __( 'Put the keyphrase in the address (slug).', 'eo-seo' ) );
+						: array( false, __( 'The keyphrase is not in the address. Google gives it little weight: change the address only for a new page.', 'eo-seo' ) );
 				},
 			),
 			'content_not_empty'     => array(
@@ -166,7 +166,7 @@ final class Checks {
 					/* translators: %d: number of words. */
 					? array( true, sprintf( __( '%d words.', 'eo-seo' ), $a->word_count ) )
 					/* translators: %d: number of words. */
-					: array( false, sprintf( __( '%d words: aim for at least 300.', 'eo-seo' ), $a->word_count ) ),
+					: array( false, sprintf( __( '%d words. Google sets no minimum: a longer text helps when the subject needs it.', 'eo-seo' ), $a->word_count ) ),
 			),
 			'canonical'             => array(
 				'label'    => __( 'Canonical URL', 'eo-seo' ),
@@ -198,7 +198,7 @@ final class Checks {
 							/* translators: %s: H1 headings of the templates (e.g. "page title, site title"). */
 							? array( true, sprintf( __( 'The templates of the site provide the H1 (%s): the content uses lower headings.', 'eo-seo' ), implode( ', ', $in_template ) ) )
 							/* translators: %s: H1 headings of the templates (e.g. "page title, site title"). */
-							: array( false, sprintf( __( 'Your site already uses the H1 in its templates (%s). Your page must not contain one: use H2 headings.', 'eo-seo' ), implode( ', ', $in_template ) ) );
+							: array( false, sprintf( __( 'Your site already uses the H1 in its templates (%s). Your page must not contain one: use H2 headings. A good practice for the structure and the accessibility of the page, not a Google requirement.', 'eo-seo' ), implode( ', ', $in_template ) ) );
 					}
 
 					// No H1 in the templates: the content brings the only H1 of the page.
@@ -207,9 +207,9 @@ final class Checks {
 					}
 
 					return 0 === $h1
-						? array( false, __( 'The templates of the site have no H1: add one H1 heading at the top of the content.', 'eo-seo' ) )
+						? array( false, __( 'The templates of the site have no H1: add one H1 heading at the top of the content. A good practice for the structure and the accessibility of the page, not a Google requirement.', 'eo-seo' ) )
 						/* translators: %d: number of H1 headings. */
-						: array( false, sprintf( __( '%d H1 headings in the content: keep only one.', 'eo-seo' ), $h1 ) );
+						: array( false, sprintf( __( '%d H1 headings in the content: keep only one. A good practice for the structure and the accessibility of the page, not a Google requirement.', 'eo-seo' ), $h1 ) );
 				},
 			),
 			'images_alt'            => array(
@@ -313,12 +313,56 @@ final class Checks {
 			),
 		);
 
+		$checks = self::classify(
+			$checks,
+			// Written in the documentation of Google (Search Central).
+			array( 'title_unique', 'description_present', 'description_unique', 'canonical', 'content_not_empty', 'images_alt', 'internal_links', 'orphan', 'broken_links' ),
+			// Advice only: shown, never counted in the points nor in the level.
+			array( 'title_custom', 'content_length', 'keyword_in_slug' )
+		);
+
 		/**
 		 * Filters the content checks.
 		 *
 		 * @param array<string, array<string, mixed>> $checks Checks keyed by ID.
 		 */
 		return (array) apply_filters( 'eo_seo_checks', $checks );
+	}
+
+	/**
+	 * Families of the checks: what Google recommends in its documentation, the good practices of the
+	 * trade, the readability; and whether they count in the points of the indicator.
+	 *
+	 * @return array<string, string> Family => label.
+	 */
+	public static function families(): array {
+		return array(
+			'google'      => __( 'Google recommendations', 'eo-seo' ),
+			'practice'    => __( 'Good practices', 'eo-seo' ),
+			'readability' => __( 'Readability', 'eo-seo' ),
+			'advice'      => __( 'Advice', 'eo-seo' ),
+		);
+	}
+
+	/**
+	 * Sets the family of each check (google, practice, readability) and whether it counts.
+	 *
+	 * @param array<string, array<string, mixed>> $checks Checks.
+	 * @param string[]                            $google IDs based on the documentation of Google.
+	 * @param string[]                            $advice IDs given as advice, not counted.
+	 * @return array<string, array<string, mixed>>
+	 */
+	public static function classify( array $checks, array $google, array $advice ): array {
+		foreach ( $checks as $id => $check ) {
+			if ( ! isset( $check['family'] ) ) {
+				$checks[ $id ]['family'] = in_array( $id, $google, true ) ? 'google' : ( 'readability' === $check['severity'] ? 'readability' : 'practice' );
+			}
+			if ( ! isset( $check['scored'] ) ) {
+				$checks[ $id ]['scored'] = ! in_array( $id, $advice, true );
+			}
+		}
+
+		return $checks;
 	}
 
 	/**
@@ -373,15 +417,18 @@ final class Checks {
 				continue;
 			}
 
+			$scored    = $check['scored'] ?? true;
 			$results[] = array(
 				'id'       => $id,
 				'label'    => $check['label'],
 				'group'    => $check['group'],
-				'severity' => $check['severity'],
+				'severity' => $scored ? $check['severity'] : 'advice',
+				'family'   => $scored ? ( $check['family'] ?? 'practice' ) : 'advice',
+				'scored'   => $scored,
 				'passed'   => (bool) $passed,
 				'message'  => $message,
 			);
-			if ( ! $passed ) {
+			if ( ! $passed && $scored ) {
 				$failed[] = $check['severity'];
 			}
 		}
@@ -394,21 +441,20 @@ final class Checks {
 			$level = self::LEVEL_GOOD;
 		}
 
-		// Failed checks first, problems before improvements.
-		$order = array(
-			'problem'     => 0,
-			'improve'     => 1,
-			'readability' => 2,
-		);
+		// Failed checks first; Google recommendations, then good practices, readability and advice.
+		$order = array_flip( array_keys( self::families() ) );
 		usort(
 			$results,
-			static fn( $a, $b ) => array( (int) $a['passed'], $order[ $a['severity'] ] ?? 3 ) <=> array( (int) $b['passed'], $order[ $b['severity'] ] ?? 3 )
+			static fn( $a, $b ) => array( (int) $a['passed'], $order[ $a['family'] ] ?? 9, 'problem' === $a['severity'] ? 0 : 1 ) <=> array( (int) $b['passed'], $order[ $b['family'] ] ?? 9, 'problem' === $b['severity'] ? 0 : 1 )
 		);
+
+		// Only the counted checks make the points ("9/12 points OK").
+		$counted = array_filter( $results, static fn( $result ) => $result['scored'] );
 
 		return array(
 			'level'  => $level,
-			'passed' => count( $results ) - count( $failed ),
-			'total'  => count( $results ),
+			'passed' => count( $counted ) - count( $failed ),
+			'total'  => count( $counted ),
 			'checks' => $results,
 		);
 	}
@@ -423,13 +469,14 @@ final class Checks {
 	public static function length_result( string $text, array $field ): array {
 		$length = mb_strlen( $text );
 
+		// Google sets no length: it cuts what does not fit the width of the screen. The figures are the usual marks.
 		if ( $length < $field['min'] ) {
-			/* translators: 1: length, 2: minimum length. */
-			return array( false, sprintf( __( '%1$d characters: too short (at least %2$d).', 'eo-seo' ), $length, $field['min'] ) );
+			/* translators: 1: length, 2: recommended minimum. */
+			return array( false, sprintf( __( '%1$d characters: short. A more descriptive text (around %2$d characters or more) tells more about the page.', 'eo-seo' ), $length, $field['min'] ) );
 		}
 		if ( $length > $field['max'] ) {
-			/* translators: 1: length, 2: maximum length. */
-			return array( false, sprintf( __( '%1$d characters: too long, it will be cut (at most %2$d).', 'eo-seo' ), $length, $field['max'] ) );
+			/* translators: 1: length, 2: usual visible length. */
+			return array( false, sprintf( __( '%1$d characters: the end may be cut in Google (about %2$d characters are shown). Put the important words first.', 'eo-seo' ), $length, $field['max'] ) );
 		}
 
 		/* translators: %d: length. */

@@ -128,7 +128,7 @@ final class Admin_Bar {
 			)
 		);
 
-		$failed = array_values( array_filter( $result['checks'], static fn( $check ) => ! $check['passed'] ) );
+		$failed = array_values( array_filter( $result['checks'], static fn( $check ) => ! $check['passed'] && ( $check['scored'] ?? true ) ) );
 		$bar->add_group(
 			array(
 				'parent' => 'eo-seo',
