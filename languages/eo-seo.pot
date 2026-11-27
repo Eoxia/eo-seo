@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-27T09:24:39+00:00\n"
+"POT-Creation-Date: 2026-11-27T09:38:05+00:00\n"
 "X-Domain: eo-seo\n"
 
 #: admin/class-actions.php:55
@@ -206,7 +206,7 @@ msgid "Identity"
 msgstr ""
 
 #: admin/class-settings-page.php:37
-msgid "Organization, logo, address, profiles"
+msgid "Organization, logo, address"
 msgstr ""
 
 #: admin/class-settings-page.php:40
@@ -214,7 +214,7 @@ msgid "Social networks"
 msgstr ""
 
 #: admin/class-settings-page.php:41
-msgid "Sharing image and X account"
+msgid "Accounts of the site, sharing image"
 msgstr ""
 
 #: admin/class-settings-page.php:44
@@ -222,7 +222,7 @@ msgid "Webmaster tools"
 msgstr ""
 
 #: admin/class-settings-page.php:45
-msgid "Search Console and Bing"
+msgid "Google, Bing, Pinterest, Facebook"
 msgstr ""
 
 #: admin/class-settings-page.php:48
@@ -683,12 +683,12 @@ msgstr ""
 msgid "Shown by Google for a local business."
 msgstr ""
 
-#: admin/views/settings-identity.php:74 admin/views/settings-identity.php:77
-msgid "Profiles on other sites"
+#: admin/views/settings-identity.php:73
+msgid "The accounts of the site on the social networks are set in the \"Social networks\" section."
 msgstr ""
 
-#: admin/views/settings-identity.php:75
-msgid "One address per line: LinkedIn, Facebook, Instagram, YouTube, Wikipedia…"
+#: admin/views/settings-identity.php:74
+msgid "Set the accounts"
 msgstr ""
 
 #: admin/views/settings-indexing.php:19
@@ -799,20 +799,36 @@ msgstr ""
 msgid "When comments are split into pages (Settings › Discussion), pages 2, 3… repeat the content: they are set to noindex."
 msgstr ""
 
-#: admin/views/settings-social.php:15
+#: admin/views/settings-social.php:17
+msgid "Accounts of the site"
+msgstr ""
+
+#: admin/views/settings-social.php:18
+msgid "Google links these accounts to the organization (structured data). Leave empty the networks the site does not use."
+msgstr ""
+
+#: admin/views/settings-social.php:28
+msgid "X (Twitter)"
+msgstr ""
+
+#: admin/views/settings-social.php:33
+msgid "Also shown with the pages shared on X."
+msgstr ""
+
+#: admin/views/settings-social.php:40 admin/views/settings-social.php:43
+msgid "Other profiles"
+msgstr ""
+
+#: admin/views/settings-social.php:41
+msgid "Other pages about the organization: Wikipedia, Google Business Profile, directories, other networks… One address per line."
+msgstr ""
+
+#: admin/views/settings-social.php:49
 msgid "Default sharing image"
 msgstr ""
 
-#: admin/views/settings-social.php:16
-msgid "Used when a page is shared and has neither a social image nor a featured image. Recommended size: 1200 × 630 pixels."
-msgstr ""
-
-#: admin/views/settings-social.php:23 admin/views/settings-social.php:28
-msgid "X (Twitter) account"
-msgstr ""
-
-#: admin/views/settings-social.php:24
-msgid "Shown with the pages shared on X."
+#: admin/views/settings-social.php:50
+msgid "Used when a page is shared (Facebook, LinkedIn, WhatsApp, X…) and has neither a social image nor a featured image. Recommended size: 1200 × 630 pixels."
 msgstr ""
 
 #: admin/views/settings-tools.php:16
@@ -862,18 +878,26 @@ msgid "SEO fields, redirections, 404 log and settings. Cannot be undone."
 msgstr ""
 
 #: admin/views/settings-webmaster.php:14
-msgid "Google Search Console"
+msgid "Search Console: performance in Google, indexing, errors."
 msgstr ""
 
 #: admin/views/settings-webmaster.php:15
-msgid "Bing Webmaster Tools"
+msgid "Bing Webmaster Tools: Bing, and the search engines that use it (DuckDuckGo, Ecosia…)."
 msgstr ""
 
-#: admin/views/settings-webmaster.php:20
+#: admin/views/settings-webmaster.php:16
+msgid "Claims the site on Pinterest (statistics, rich pins)."
+msgstr ""
+
+#: admin/views/settings-webmaster.php:17
+msgid "Verifies the domain in the Meta Business Suite (advertising, editing of the link previews)."
+msgstr ""
+
+#: admin/views/settings-webmaster.php:22
 msgid "Site verification"
 msgstr ""
 
-#: admin/views/settings-webmaster.php:21
+#: admin/views/settings-webmaster.php:23
 msgid "Paste the verification code, or the whole <meta> tag: only the code is kept. The tag is added to the home page."
 msgstr ""
 

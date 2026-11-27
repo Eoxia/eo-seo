@@ -69,11 +69,7 @@ $eo_seo_address  = array(
 	</div>
 </section>
 
-<section class="eo-seo-card">
-	<header class="eo-seo-card__head">
-		<h2 class="eo-seo-card__title"><?php esc_html_e( 'Profiles on other sites', 'eo-seo' ); ?></h2>
-		<p><?php esc_html_e( 'One address per line: LinkedIn, Facebook, Instagram, YouTube, Wikipedia…', 'eo-seo' ); ?></p>
-	</header>
-	<label class="screen-reader-text" for="eo-seo-same-as"><?php esc_html_e( 'Profiles on other sites', 'eo-seo' ); ?></label>
-	<textarea id="eo-seo-same-as" class="eo-seo-input eo-seo-input--code" rows="4" name="<?php echo esc_attr( $eo_seo_name ); ?>[same_as]" placeholder="https://www.linkedin.com/company/…"><?php echo esc_textarea( implode( "\n", (array) $eo_seo_identity['same_as'] ) ); ?></textarea>
-</section>
+<p class="eo-seo-help">
+	<?php esc_html_e( 'The accounts of the site on the social networks are set in the "Social networks" section.', 'eo-seo' ); ?>
+	<a href="<?php echo esc_url( EoSeo\Admin\Admin::page_url( 'eo-seo-settings', array( 'tab' => 'social' ) ) ); ?>"><?php esc_html_e( 'Set the accounts', 'eo-seo' ); ?></a>
+</p>

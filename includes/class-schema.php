@@ -140,8 +140,10 @@ final class Schema {
 			}
 		}
 
-		if ( $settings['same_as'] ) {
-			$node['sameAs'] = array_values( (array) $settings['same_as'] );
+		// Accounts on the social networks, X and other profiles.
+		$profiles = Settings::profile_urls();
+		if ( $profiles ) {
+			$node['sameAs'] = $profiles;
 		}
 
 		if ( 'LocalBusiness' === $type ) {

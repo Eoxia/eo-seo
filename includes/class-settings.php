@@ -23,7 +23,7 @@ final class Settings {
 		'appearance' => array( 'separator', 'templates' ),
 		'indexing'   => array( 'index', 'noindex_search', 'noindex_date', 'author_archives', 'robots_rules', 'cleanup' ),
 		'identity'   => array( 'identity' ),
-		'social'     => array( 'default_og_image', 'x_username' ),
+		'social'     => array( 'default_og_image', 'x_username', 'profiles', 'same_as' ),
 		'webmaster'  => array( 'verification' ),
 		'tools'      => array( 'not_found_retention', 'delete_data' ),
 	);
@@ -124,6 +124,83 @@ final class Settings {
 	}
 
 	/**
+	 * Social networks of the accounts of the site (sameAs of the structured data).
+	 * X has its own field (x_username), also used by the X card.
+	 *
+	 * @return array<string, array{label: string, placeholder: string}>
+	 */
+	public static function networks(): array {
+		return array(
+			'facebook'  => array(
+				'label'       => 'Facebook',
+				'placeholder' => 'https://www.facebook.com/…',
+			),
+			'instagram' => array(
+				'label'       => 'Instagram',
+				'placeholder' => 'https://www.instagram.com/…',
+			),
+			'linkedin'  => array(
+				'label'       => 'LinkedIn',
+				'placeholder' => 'https://www.linkedin.com/company/…',
+			),
+			'youtube'   => array(
+				'label'       => 'YouTube',
+				'placeholder' => 'https://www.youtube.com/@…',
+			),
+			'tiktok'    => array(
+				'label'       => 'TikTok',
+				'placeholder' => 'https://www.tiktok.com/@…',
+			),
+			'pinterest' => array(
+				'label'       => 'Pinterest',
+				'placeholder' => 'https://www.pinterest.com/…',
+			),
+		);
+	}
+
+	/**
+	 * Site verification tools: key => label and name of the meta tag printed on the home page.
+	 *
+	 * @return array<string, array{label: string, meta: string}>
+	 */
+	public static function verification_tools(): array {
+		return array(
+			'google'    => array(
+				'label' => 'Google Search Console',
+				'meta'  => 'google-site-verification',
+			),
+			'bing'      => array(
+				'label' => 'Bing Webmaster Tools',
+				'meta'  => 'msvalidate.01',
+			),
+			'pinterest' => array(
+				'label' => 'Pinterest',
+				'meta'  => 'p:domain_verify',
+			),
+			'facebook'  => array(
+				'label' => 'Facebook (Meta)',
+				'meta'  => 'facebook-domain-verification',
+			),
+		);
+	}
+
+	/**
+	 * Addresses of the accounts of the site on other sites (social networks, X, other profiles).
+	 *
+	 * @return string[]
+	 */
+	public static function profile_urls(): array {
+		$urls = array_values( array_filter( (array) self::get( 'profiles' ) ) );
+
+		$x = (string) self::get( 'x_username' );
+		if ( '' !== $x ) {
+			$urls[] = 'https://x.com/' . rawurlencode( $x );
+		}
+
+		return array_values( array_unique( array_merge( $urls, (array) self::get( 'same_as' ) ) ) );
+	}
+
+	/**
 	 * Default settings.
 	 *
 	 * @return array<string, mixed>
@@ -190,6 +267,8 @@ final class Settings {
 			),
 			'default_og_image'    => 0,
 			'x_username'          => '',
+			'profiles'            => array_fill_keys( array_keys( self::networks() ), '' ),
+			'same_as'             => array(),
 			'identity'            => array(
 				'type'        => 'organization',
 				'name'        => '',
@@ -199,12 +278,8 @@ final class Settings {
 				'city'        => '',
 				'country'     => '',
 				'phone'       => '',
-				'same_as'     => array(),
 			),
-			'verification'        => array(
-				'google' => '',
-				'bing'   => '',
-			),
+			'verification'        => array_fill_keys( array_keys( self::verification_tools() ), '' ),
 			'not_found_retention' => 90,
 			'delete_data'         => false,
 		);
@@ -272,7 +347,27 @@ final class Settings {
 					'type'        => 'integer',
 					'description' => 'Attachment ID of the default sharing image.',
 				),
-				'x_username'          => array( 'type' => 'string' ),
+				'x_username'          => array(
+					'type'        => 'string',
+					'description' => 'Name of the X account, without @.',
+				),
+				'profiles'            => array(
+					'type'        => 'object',
+					'description' => 'Addresses of the accounts of the site on the social networks.',
+					'properties'  => array(
+						'facebook'  => array( 'type' => 'string' ),
+						'instagram' => array( 'type' => 'string' ),
+						'linkedin'  => array( 'type' => 'string' ),
+						'youtube'   => array( 'type' => 'string' ),
+						'tiktok'    => array( 'type' => 'string' ),
+						'pinterest' => array( 'type' => 'string' ),
+					),
+				),
+				'same_as'             => array(
+					'type'        => 'array',
+					'description' => 'Other profiles of the organization (Wikipedia, directories…), full addresses.',
+					'items'       => array( 'type' => 'string' ),
+				),
 				'identity'            => array(
 					'type'       => 'object',
 					'properties' => array(
@@ -287,17 +382,16 @@ final class Settings {
 						'city'        => array( 'type' => 'string' ),
 						'country'     => array( 'type' => 'string' ),
 						'phone'       => array( 'type' => 'string' ),
-						'same_as'     => array(
-							'type'  => 'array',
-							'items' => array( 'type' => 'string' ),
-						),
 					),
 				),
 				'verification'        => array(
-					'type'       => 'object',
-					'properties' => array(
-						'google' => array( 'type' => 'string' ),
-						'bing'   => array( 'type' => 'string' ),
+					'type'        => 'object',
+					'description' => 'Verification codes printed on the home page.',
+					'properties'  => array(
+						'google'    => array( 'type' => 'string' ),
+						'bing'      => array( 'type' => 'string' ),
+						'pinterest' => array( 'type' => 'string' ),
+						'facebook'  => array( 'type' => 'string' ),
 					),
 				),
 				'not_found_retention' => array(
@@ -570,10 +664,21 @@ final class Settings {
 			case 'x_username':
 				return ltrim( sanitize_text_field( (string) $value ), '@' );
 
+			case 'profiles':
+				$value = (array) $value;
+				$clean = array();
+				foreach ( array_keys( self::networks() ) as $network ) {
+					$clean[ $network ] = self::sanitize_profile_url( (string) ( $value[ $network ] ?? '' ) );
+				}
+				return $clean;
+
+			case 'same_as':
+				$urls = is_array( $value ) ? $value : preg_split( '/\R/', (string) $value );
+				return array_values( array_unique( array_filter( array_map( array( self::class, 'sanitize_profile_url' ), (array) $urls ) ) ) );
+
 			case 'identity':
 				$value = (array) $value;
 				$type  = sanitize_key( (string) ( $value['type'] ?? '' ) );
-				$urls  = is_array( $value['same_as'] ?? null ) ? $value['same_as'] : preg_split( '/\R/', (string) ( $value['same_as'] ?? '' ) );
 				return array(
 					'type'        => in_array( $type, array( 'organization', 'person', 'local_business' ), true ) ? $type : 'organization',
 					'name'        => sanitize_text_field( (string) ( $value['name'] ?? '' ) ),
@@ -583,18 +688,37 @@ final class Settings {
 					'city'        => sanitize_text_field( (string) ( $value['city'] ?? '' ) ),
 					'country'     => sanitize_text_field( (string) ( $value['country'] ?? '' ) ),
 					'phone'       => sanitize_text_field( (string) ( $value['phone'] ?? '' ) ),
-					'same_as'     => array_values( array_filter( array_map( 'esc_url_raw', array_map( 'trim', (array) $urls ) ) ) ),
 				);
 
 			case 'verification':
 				$value = (array) $value;
-				return array(
-					'google' => self::sanitize_verification( (string) ( $value['google'] ?? '' ) ),
-					'bing'   => self::sanitize_verification( (string) ( $value['bing'] ?? '' ) ),
-				);
+				$clean = array();
+				foreach ( array_keys( self::verification_tools() ) as $tool ) {
+					$clean[ $tool ] = self::sanitize_verification( (string) ( $value[ $tool ] ?? '' ) );
+				}
+				return $clean;
 		}
 
 		return $previous;
+	}
+
+	/**
+	 * Address of a profile: a full http(s) address with a domain, else empty.
+	 *
+	 * @param string $url Typed address.
+	 */
+	public static function sanitize_profile_url( string $url ): string {
+		$url = trim( $url );
+		if ( '' === $url || preg_match( '/\s/', $url ) ) {
+			return '';
+		}
+		if ( ! preg_match( '#^https?://#i', $url ) ) {
+			$url = 'https://' . $url; // "linkedin.com/company/…" typed without the protocol.
+		}
+
+		$host = (string) wp_parse_url( $url, PHP_URL_HOST );
+
+		return str_contains( $host, '.' ) ? esc_url_raw( $url, array( 'http', 'https' ) ) : '';
 	}
 
 	/**

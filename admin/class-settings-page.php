@@ -34,15 +34,15 @@ final class Settings_Page {
 			),
 			'identity'   => array(
 				'label'       => __( 'Identity', 'eo-seo' ),
-				'description' => __( 'Organization, logo, address, profiles', 'eo-seo' ),
+				'description' => __( 'Organization, logo, address', 'eo-seo' ),
 			),
 			'social'     => array(
 				'label'       => __( 'Social networks', 'eo-seo' ),
-				'description' => __( 'Sharing image and X account', 'eo-seo' ),
+				'description' => __( 'Accounts of the site, sharing image', 'eo-seo' ),
 			),
 			'webmaster'  => array(
 				'label'       => __( 'Webmaster tools', 'eo-seo' ),
-				'description' => __( 'Search Console and Bing', 'eo-seo' ),
+				'description' => __( 'Google, Bing, Pinterest, Facebook', 'eo-seo' ),
 			),
 			'tools'      => array(
 				'label'       => __( 'Tools', 'eo-seo' ),

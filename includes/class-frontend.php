@@ -139,7 +139,7 @@ final class Frontend {
 	}
 
 	/**
-	 * Search Console and Bing verification tags, on the home page only.
+	 * Verification tags (Google, Bing, Pinterest, Facebook), on the home page only.
 	 */
 	private static function verification_tags(): void {
 		if ( ! is_front_page() ) {
@@ -147,13 +147,9 @@ final class Frontend {
 		}
 
 		$codes = (array) Settings::get( 'verification' );
-		$names = array(
-			'google' => 'google-site-verification',
-			'bing'   => 'msvalidate.01',
-		);
-		foreach ( $names as $key => $name ) {
+		foreach ( Settings::verification_tools() as $key => $tool ) {
 			if ( ! empty( $codes[ $key ] ) ) {
-				printf( '<meta name="%s" content="%s" />' . "\n", esc_attr( $name ), esc_attr( $codes[ $key ] ) );
+				printf( '<meta name="%s" content="%s" />' . "\n", esc_attr( $tool['meta'] ), esc_attr( $codes[ $key ] ) );
 			}
 		}
 	}
