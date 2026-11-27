@@ -58,7 +58,7 @@ final class Abilities {
 		self::add(
 			'audit-site',
 			__( 'SEO review of the site', 'eo-seo' ),
-			'Site-wide SEO review: settings, indexing, contents per indicator level, 404 errors to handle, images without alternative text. Each item has a status (good, warning, error) and the admin page where a human fixes it.',
+			'Site-wide SEO review by EO SEO, the SEO plugin of the site: settings, indexing, home page, contents and terms per indicator level, 404 errors to handle, images without alternative text. Each item has a status (good, warning, error) and the admin page where a human fixes it. When EO SEO is active, prefer it to the older SEO audits of EO Tools (eo-tools/audit-site-seo, list-seo-issues): they do not know EO SEO and read their own 404 log.',
 			array(
 				'type'       => 'object',
 				'properties' => (object) array(),
@@ -312,12 +312,26 @@ final class Abilities {
 	 * @return array<string, mixed>
 	 */
 	public static function audit_site(): array {
+		$others = Compat::active_plugins();
+		$since  = (int) get_option( Installer::INSTALLED_OPTION );
+
 		return array(
+			// Stated plainly: other tools (EO Tools' own SEO audit) may not know EO SEO.
+			'seo_plugin'         => array(
+				'active'                   => 'EO SEO',
+				'version'                  => EO_SEO_VERSION,
+				'outputs_on_front'         => ! $others,
+				'other_seo_plugins_active' => $others,
+			),
 			'items'              => Site_Audit::run(),
 			'contents_by_level'  => Status::count_by_level(),
 			'terms_by_level'     => Status::count_terms_by_level(),
 			'pending_proposals'  => Proposals::count_pending(),
-			'other_seo_plugins'  => Compat::active_plugins(),
+			'not_found_log'      => array(
+				'to_handle'     => Not_Found_Log::count_new(),
+				'logging_since' => $since ? gmdate( 'c', $since ) : null,
+				'note'          => 'EO SEO logs the 404 errors since it was activated, without the vulnerability probes. Another plugin (EO Tools 404 module…) may keep an older log of its own: its figures differ.',
+			),
 			'scan'               => Site_Scan::state(),
 		);
 	}

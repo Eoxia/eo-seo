@@ -25,6 +25,11 @@ final class Installer {
 	public const DB_OPTION = 'eo_seo_db_version';
 
 	/**
+	 * Option storing the time of the first activation.
+	 */
+	public const INSTALLED_OPTION = 'eo_seo_installed';
+
+	/**
 	 * Scheduled daily cleanup.
 	 */
 	public const CRON_HOOK = 'eo_seo_daily';
@@ -85,6 +90,10 @@ final class Installer {
 		if ( self::DB_VERSION !== get_option( self::DB_OPTION ) ) {
 			self::install();
 		}
+		// Sites installed before this option existed.
+		if ( false === get_option( self::INSTALLED_OPTION ) ) {
+			add_option( self::INSTALLED_OPTION, time() );
+		}
 	}
 
 	/**
@@ -129,6 +138,8 @@ final class Installer {
 		);
 
 		update_option( self::DB_OPTION, self::DB_VERSION, false );
+		// First activation: start of the 404 log (kept across updates).
+		add_option( self::INSTALLED_OPTION, time() );
 
 		if ( ! wp_next_scheduled( self::CRON_HOOK ) ) {
 			wp_schedule_event( time() + HOUR_IN_SECONDS, 'daily', self::CRON_HOOK );
