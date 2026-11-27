@@ -39,11 +39,11 @@ final class Editor {
 			'eo-seo-editor',
 			EO_SEO_URL . 'assets/js/editor.js',
 			array( 'wp-api-fetch', 'wp-block-editor', 'wp-components', 'wp-data', 'wp-editor', 'wp-element', 'wp-i18n', 'wp-plugins' ),
-			EO_SEO_VERSION,
+			Admin::asset_version( 'assets/js/editor.js' ),
 			true
 		);
 		wp_set_script_translations( 'eo-seo-editor', 'eo-seo', EO_SEO_DIR . 'languages' );
-		wp_enqueue_style( 'eo-seo-editor', EO_SEO_URL . 'assets/css/editor.css', array(), EO_SEO_VERSION );
+		wp_enqueue_style( 'eo-seo-editor', EO_SEO_URL . 'assets/css/editor.css', array(), Admin::asset_version( 'assets/css/editor.css' ) );
 
 		$fields = array();
 		foreach ( Fields::all() as $name => $field ) {

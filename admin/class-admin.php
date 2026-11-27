@@ -44,6 +44,18 @@ final class Admin {
 	}
 
 	/**
+	 * Version of an asset: the plugin version plus the time of the file, so that browsers
+	 * never keep an old script or style after an update.
+	 *
+	 * @param string $path Path relative to the plugin folder.
+	 */
+	public static function asset_version( string $path ): string {
+		$time = @filemtime( EO_SEO_DIR . $path ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- A missing file only drops the suffix.
+
+		return EO_SEO_VERSION . ( $time ? '.' . $time : '' );
+	}
+
+	/**
 	 * Address of a plugin screen.
 	 *
 	 * @param string               $page Page slug.
@@ -90,11 +102,11 @@ final class Admin {
 			return;
 		}
 
-		wp_enqueue_style( 'eo-seo-admin', EO_SEO_URL . 'assets/css/admin.css', array(), EO_SEO_VERSION );
+		wp_enqueue_style( 'eo-seo-admin', EO_SEO_URL . 'assets/css/admin.css', array(), self::asset_version( 'assets/css/admin.css' ) );
 
 		if ( $ours || $classic || ( $screen && 'term' === $screen->base ) ) {
 			wp_enqueue_media();
-			wp_enqueue_script( 'eo-seo-admin', EO_SEO_URL . 'assets/js/admin.js', array( 'wp-api-fetch', 'wp-i18n' ), EO_SEO_VERSION, true );
+			wp_enqueue_script( 'eo-seo-admin', EO_SEO_URL . 'assets/js/admin.js', array( 'wp-api-fetch', 'wp-i18n' ), self::asset_version( 'assets/js/admin.js' ), true );
 			wp_set_script_translations( 'eo-seo-admin', 'eo-seo', EO_SEO_DIR . 'languages' );
 		}
 	}

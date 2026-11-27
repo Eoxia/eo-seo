@@ -25,6 +25,8 @@
 		return;
 	}
 
+	// Identifier of the sidebar: plugin name / sidebar name.
+	const SIDEBAR = 'eo-seo/sidebar';
 	const GROUPS = {
 		main: [ 'title', 'description', 'focus_keyword' ],
 		advanced: [ 'noindex', 'canonical' ],
@@ -277,18 +279,45 @@
 		const [ result, setResult ] = useState( null );
 
 		// "Edit the SEO" from the admin bar of the site (?eo-seo=open): open the EO SEO sidebar.
+		// The editor opens its default sidebar (Document) while it starts, after the plugins are
+		// mounted: wait until it has chosen one, then replace it.
 		useEffect( () => {
 			const url = new URL( window.location.href );
-			if ( 'open' !== url.searchParams.get( 'eo-seo' ) ) {
+			const ui = wp.data.select( 'core/interface' );
+			const actions = wp.data.dispatch( 'core/interface' );
+			if ( 'open' !== url.searchParams.get( 'eo-seo' ) || ! ui || ! actions ) {
 				return;
 			}
-			const store = wp.data.dispatch( 'core/interface' );
-			if ( store && store.enableComplementaryArea ) {
-				store.enableComplementaryArea( 'core', 'eo-seo/sidebar' );
-			}
+
 			// Not again when the page is reloaded.
 			url.searchParams.delete( 'eo-seo' );
 			window.history.replaceState( window.history.state, '', url.toString() );
+
+			let done = false;
+			const open = () => {
+				if ( done ) {
+					return;
+				}
+				done = true;
+				unsubscribe();
+				clearTimeout( fallback );
+				if ( SIDEBAR !== ui.getActiveComplementaryArea( 'core' ) ) {
+					actions.enableComplementaryArea( 'core', SIDEBAR );
+				}
+			};
+			const unsubscribe = wp.data.subscribe( () => {
+				if ( undefined !== ui.getActiveComplementaryArea( 'core' ) ) {
+					// Next tick: after the effect of the default sidebar.
+					setTimeout( open, 0 );
+				}
+			}, 'core/interface' );
+			// The editor may already have chosen, or never choose (small screens).
+			const fallback = setTimeout( open, 1500 );
+
+			return () => {
+				unsubscribe();
+				clearTimeout( fallback );
+			};
 		}, [] );
 
 		const values = {};
