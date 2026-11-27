@@ -36,6 +36,7 @@ final class Plugin {
 			Frontend::init();
 			Sitemaps::init();
 			Schema::init();
+			Admin_Bar::init();
 		}
 
 		if ( is_admin() ) {

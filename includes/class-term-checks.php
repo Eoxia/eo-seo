@@ -15,14 +15,17 @@ defined( 'ABSPATH' ) || exit;
 final class Term_Checks {
 
 	/**
-	 * Below this number of contents, an indexed archive is thin.
+	 * Below this number of contents, an indexed archive is thin: with a single content,
+	 * it repeats that content. Google gives no figure; an empty archive is the real problem
+	 * (Google advises a 404 or a noindex for it).
 	 */
-	public const MIN_CONTENTS = 3;
+	public const MIN_CONTENTS = 2;
 
 	/**
-	 * Below this number of words, the introduction text of an archive is short.
+	 * Below this number of words, the introduction text of an archive is short. Google gives no
+	 * figure and advises against long texts on listing pages; 30 words is the threshold of Yoast SEO.
 	 */
-	public const MIN_INTRO_WORDS = 50;
+	public const MIN_INTRO_WORDS = 30;
 
 	/**
 	 * Check definitions (same format as Checks::definitions(), callbacks receive a Term_Analysis).

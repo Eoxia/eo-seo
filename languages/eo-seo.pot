@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-26T16:33:20+00:00\n"
+"POT-Creation-Date: 2026-11-27T08:49:59+00:00\n"
 "X-Domain: eo-seo\n"
 
 #: admin/class-actions.php:53
@@ -329,11 +329,11 @@ msgstr ""
 msgid "· %s points OK"
 msgstr ""
 
-#: admin/views/list-badge.php:34 admin/views/partials/seo-box.php:34 admin/views/partials/seo-box.php:91 assets/js/editor.js:201
+#: admin/views/list-badge.php:34 admin/views/partials/seo-box.php:34 admin/views/partials/seo-box.php:91 assets/js/editor.js:201 includes/class-admin-bar.php:133
 msgid "Hidden from search engines: nothing to check."
 msgstr ""
 
-#: admin/views/list-badge.php:36
+#: admin/views/list-badge.php:36 includes/class-admin-bar.php:135
 msgid "Every check passes."
 msgstr ""
 
@@ -342,7 +342,7 @@ msgid "Open it to see the points to fix."
 msgstr ""
 
 #. translators: %d: number of other points to fix.
-#: admin/views/list-badge.php:50
+#: admin/views/list-badge.php:50 includes/class-admin-bar.php:144
 #, php-format
 msgid "And %d other point: open it to see them all."
 msgid_plural "And %d other points: open it to see them all."
@@ -872,7 +872,7 @@ msgid "Replace the image"
 msgstr ""
 
 #. translators: %s: SEO level (Good, Needs improvement…).
-#: assets/js/editor.js:318
+#: assets/js/editor.js:318 includes/class-admin-bar.php:118
 #, php-format
 msgid "EO SEO: %s"
 msgstr ""
@@ -994,6 +994,28 @@ msgstr ""
 msgid "You are not allowed to read this content."
 msgstr ""
 
+#. translators: %s: points, as "17/23".
+#: includes/class-admin-bar.php:109
+#, php-format
+msgid "SEO %s"
+msgstr ""
+
+#: includes/class-admin-bar.php:155 includes/class-admin-bar.php:156 includes/class-proposals.php:412
+msgid "(empty)"
+msgstr ""
+
+#: includes/class-admin-bar.php:155 includes/class-fields.php:57
+msgid "SEO title"
+msgstr ""
+
+#: includes/class-admin-bar.php:156 includes/class-checks.php:78 includes/class-fields.php:66 includes/class-term-checks.php:78
+msgid "Meta description"
+msgstr ""
+
+#: includes/class-admin-bar.php:163
+msgid "Edit the SEO"
+msgstr ""
+
 #: includes/class-breadcrumbs.php:39
 msgid "Home"
 msgstr ""
@@ -1032,11 +1054,11 @@ msgstr ""
 msgid "The SEO title comes from the template: write one for this page."
 msgstr ""
 
-#: includes/class-checks.php:60 includes/class-term-checks.php:88
+#: includes/class-checks.php:60 includes/class-term-checks.php:91
 msgid "SEO title length"
 msgstr ""
 
-#: includes/class-checks.php:66 includes/class-term-checks.php:94
+#: includes/class-checks.php:66 includes/class-term-checks.php:97
 msgid "Unique SEO title"
 msgstr ""
 
@@ -1050,10 +1072,6 @@ msgstr ""
 msgid "No other content has this SEO title."
 msgstr ""
 
-#: includes/class-checks.php:78 includes/class-fields.php:66 includes/class-term-checks.php:75
-msgid "Meta description"
-msgstr ""
-
 #: includes/class-checks.php:83
 msgid "The meta description is written for this page."
 msgstr ""
@@ -1062,7 +1080,7 @@ msgstr ""
 msgid "Automatic description, taken from the beginning of the text by the template: write one for this page."
 msgstr ""
 
-#: includes/class-checks.php:88 includes/class-term-checks.php:84
+#: includes/class-checks.php:88 includes/class-term-checks.php:87
 msgid "No meta description: search engines will pick a piece of text themselves."
 msgstr ""
 
@@ -1342,10 +1360,6 @@ msgstr ""
 msgid "The keyphrase is missing."
 msgstr ""
 
-#: includes/class-fields.php:57
-msgid "SEO title"
-msgstr ""
-
 #: includes/class-fields.php:58
 msgid "Title shown by search engines. Leave empty to use the template."
 msgstr ""
@@ -1456,10 +1470,6 @@ msgstr ""
 
 #: includes/class-proposals.php:409
 msgid "no"
-msgstr ""
-
-#: includes/class-proposals.php:412
-msgid "(empty)"
 msgstr ""
 
 #: includes/class-proposals.php:434
@@ -1698,12 +1708,12 @@ msgstr ""
 msgid "heading"
 msgstr ""
 
-#: includes/class-term-checks.php:37
+#: includes/class-term-checks.php:40
 msgid "Contents of the archive"
 msgstr ""
 
 #. translators: %d: number of contents.
-#: includes/class-term-checks.php:46
+#: includes/class-term-checks.php:49
 #, php-format
 msgid "%d content in this archive."
 msgid_plural "%d contents in this archive."
@@ -1711,56 +1721,56 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. translators: 1: number of contents, 2: minimum number of contents.
-#: includes/class-term-checks.php:48
+#: includes/class-term-checks.php:51
 #, php-format
 msgid "Thin archive: %1$d content (at least %2$d recommended), or hide it (noindex)."
 msgid_plural "Thin archive: %1$d contents (at least %2$d recommended), or hide it (noindex)."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-term-checks.php:52
+#: includes/class-term-checks.php:55
 msgid "Empty archive"
 msgstr ""
 
-#: includes/class-term-checks.php:56
+#: includes/class-term-checks.php:59
 msgid "This archive has no content: search engines see an empty page. Add contents, or hide it (noindex)."
 msgstr ""
 
-#: includes/class-term-checks.php:60
+#: includes/class-term-checks.php:63
 msgid "Introduction text"
 msgstr ""
 
-#: includes/class-term-checks.php:65
+#: includes/class-term-checks.php:68
 msgid "No description: write an introduction text, shown at the top of the archive by most themes."
 msgstr ""
 
 #. translators: %d: number of words.
-#: includes/class-term-checks.php:69
+#: includes/class-term-checks.php:72
 #, php-format
 msgid "Introduction text of %d words."
 msgstr ""
 
 #. translators: 1: number of words, 2: minimum number of words.
-#: includes/class-term-checks.php:71
+#: includes/class-term-checks.php:74
 #, php-format
 msgid "Short introduction text (%1$d words): aim for at least %2$d."
 msgstr ""
 
-#: includes/class-term-checks.php:80
+#: includes/class-term-checks.php:83
 msgid "The meta description is written for this archive."
 msgstr ""
 
-#: includes/class-term-checks.php:83
+#: includes/class-term-checks.php:86
 msgid "Automatic description, taken from the description of the term: write one for search results."
 msgstr ""
 
 #. translators: 1: term name, 2: taxonomy name.
-#: includes/class-term-checks.php:101
+#: includes/class-term-checks.php:104
 #, php-format
 msgid "Same SEO title as \"%1$s\" (%2$s)."
 msgstr ""
 
-#: includes/class-term-checks.php:102
+#: includes/class-term-checks.php:105
 msgid "No other archive has this SEO title."
 msgstr ""
 
