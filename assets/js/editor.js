@@ -276,6 +276,21 @@
 		const { editPost } = useDispatch( 'core/editor' );
 		const [ result, setResult ] = useState( null );
 
+		// "Edit the SEO" from the admin bar of the site (?eo-seo=open): open the EO SEO sidebar.
+		useEffect( () => {
+			const url = new URL( window.location.href );
+			if ( 'open' !== url.searchParams.get( 'eo-seo' ) ) {
+				return;
+			}
+			const store = wp.data.dispatch( 'core/interface' );
+			if ( store && store.enableComplementaryArea ) {
+				store.enableComplementaryArea( 'core', 'eo-seo/sidebar' );
+			}
+			// Not again when the page is reloaded.
+			url.searchParams.delete( 'eo-seo' );
+			window.history.replaceState( window.history.state, '', url.toString() );
+		}, [] );
+
 		const values = {};
 		Object.keys( config.fields ).forEach( ( name ) => {
 			values[ name ] = meta[ config.fields[ name ].meta ];

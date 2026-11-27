@@ -689,6 +689,9 @@ a.eo-seo-stat:focus { border-color: var(--eo-seo-accent); color: inherit; box-sh
 }
 
 #eo-seo .inside { margin: 0; padding: 0; }
+
+/* Reached from "Edit the SEO" of the admin bar (#eo-seo-box): not hidden under the admin bar. */
+.eo-seo-box { scroll-margin-top: 48px; }
 #eo-seo .eo-seo-app.eo-seo-box { max-width: none; margin: 0; border: 0; border-radius: 0; box-shadow: none; }
 
 .eo-seo-box__head {

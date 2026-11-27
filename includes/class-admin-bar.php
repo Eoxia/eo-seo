@@ -94,12 +94,19 @@ final class Admin_Bar {
 			$title       = $analysis->seo_title;
 			$description = $analysis->description;
 			$edit        = (string) get_edit_post_link( $subject['object']->ID, 'raw' );
+			// Block editor: the EO SEO sidebar opens by itself; classic editor: straight to the SEO box.
+			if ( '' !== $edit ) {
+				$edit = use_block_editor_for_post( $subject['object'] ) ? add_query_arg( 'eo-seo', 'open', $edit ) : $edit . '#eo-seo-box';
+			}
 		} else {
 			$analysis    = new Term_Analysis( $subject['object'] );
 			$result      = Term_Checks::run( $analysis );
 			$title       = $analysis->seo_title;
 			$description = $analysis->description;
 			$edit        = (string) get_edit_term_link( $subject['object']->term_id, $subject['object']->taxonomy );
+			if ( '' !== $edit ) {
+				$edit .= '#eo-seo-box'; // Straight to the SEO box of the term screen.
+			}
 		}
 
 		$levels = Checks::levels();

@@ -24,7 +24,7 @@ $eo_seo_groups = array(
 $eo_seo_failed = array_values( array_filter( $result['checks'], static fn( $check ) => ! $check['passed'] ) );
 $eo_seo_passed = array_values( array_filter( $result['checks'], static fn( $check ) => $check['passed'] ) );
 ?>
-<div class="eo-seo-app eo-seo-box" data-eo-seo-box data-sitename="<?php echo esc_attr( $vars['sitename'] ); ?>" data-sep="<?php echo esc_attr( $vars['sep'] ); ?>" data-title="<?php echo esc_attr( $vars['title'] ); ?>">
+<div class="eo-seo-app eo-seo-box" id="eo-seo-box" data-eo-seo-box data-sitename="<?php echo esc_attr( $vars['sitename'] ); ?>" data-sep="<?php echo esc_attr( $vars['sep'] ); ?>" data-title="<?php echo esc_attr( $vars['title'] ); ?>">
 	<div class="eo-seo-box__head">
 		<span class="eo-seo-badge eo-seo-badge--large eo-seo-badge--<?php echo esc_attr( $result['level'] ); ?>" aria-hidden="true"></span>
 		<div>
