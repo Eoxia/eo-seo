@@ -278,47 +278,6 @@
 		const { editPost } = useDispatch( 'core/editor' );
 		const [ result, setResult ] = useState( null );
 
-		// "Edit the SEO" from the admin bar of the site (?eo-seo=open): open the EO SEO sidebar.
-		// The editor opens its default sidebar (Document) while it starts, after the plugins are
-		// mounted: wait until it has chosen one, then replace it.
-		useEffect( () => {
-			const url = new URL( window.location.href );
-			const ui = wp.data.select( 'core/interface' );
-			const actions = wp.data.dispatch( 'core/interface' );
-			if ( 'open' !== url.searchParams.get( 'eo-seo' ) || ! ui || ! actions ) {
-				return;
-			}
-
-			// Not again when the page is reloaded.
-			url.searchParams.delete( 'eo-seo' );
-			window.history.replaceState( window.history.state, '', url.toString() );
-
-			let done = false;
-			const open = () => {
-				if ( done ) {
-					return;
-				}
-				done = true;
-				unsubscribe();
-				clearTimeout( fallback );
-				if ( SIDEBAR !== ui.getActiveComplementaryArea( 'core' ) ) {
-					actions.enableComplementaryArea( 'core', SIDEBAR );
-				}
-			};
-			const unsubscribe = wp.data.subscribe( () => {
-				if ( undefined !== ui.getActiveComplementaryArea( 'core' ) ) {
-					// Next tick: after the effect of the default sidebar.
-					setTimeout( open, 0 );
-				}
-			}, 'core/interface' );
-			// The editor may already have chosen, or never choose (small screens).
-			const fallback = setTimeout( open, 1500 );
-
-			return () => {
-				unsubscribe();
-				clearTimeout( fallback );
-			};
-		}, [] );
 
 		const values = {};
 		Object.keys( config.fields ).forEach( ( name ) => {
@@ -387,4 +346,45 @@
 
 	// A plugin sidebar is pinned in the top bar by default: the badge sits next to the Settings button.
 	wp.plugins.registerPlugin( 'eo-seo', { render: EoSeo } );
+
+	/**
+	 * "Edit the SEO" from the admin bar of the site (?eo-seo=open): opens the EO SEO sidebar.
+	 *
+	 * Run once when the script loads, outside the component: the editor mounts the plugins more
+	 * than once while it starts. It also opens its default sidebar (Document) while starting:
+	 * the EO SEO sidebar replaces it once the editor is ready.
+	 */
+	( function openFromAdminBar() {
+		const url = new URL( window.location.href );
+		if ( 'open' !== url.searchParams.get( 'eo-seo' ) ) {
+			return;
+		}
+
+		// Not again when the page is reloaded.
+		url.searchParams.delete( 'eo-seo' );
+		window.history.replaceState( window.history.state, '', url.toString() );
+
+		let tries = 0;
+		let opened = 0;
+		const timer = setInterval( () => {
+			const editor = wp.data.select( 'core/editor' );
+			const ui = wp.data.select( 'core/interface' );
+			if ( ++tries > 40 ) {
+				clearInterval( timer ); // 10 seconds: give up.
+				return;
+			}
+			if ( ! ui || ! editor || ! editor.getCurrentPostId() ) {
+				return; // Editor not started yet.
+			}
+			if ( SIDEBAR === ui.getActiveComplementaryArea( 'core' ) ) {
+				// Kept for a second: the editor has finished starting.
+				if ( ++opened >= 4 ) {
+					clearInterval( timer );
+				}
+				return;
+			}
+			opened = 0;
+			wp.data.dispatch( 'core/interface' ).enableComplementaryArea( 'core', SIDEBAR );
+		}, 250 );
+	} )();
 } )( window.wp, window.eoSeoEditor );
